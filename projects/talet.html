@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talet - AI Voice Cloning | Yunho Jang</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#skills">Skills</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Projects
+            </a>
+            <span class="hero-label">AI / Voice Cloning / TTS</span>
+            <h1>Talet - AI Voice Fairy Tale</h1>
+            <p class="subtitle">
+                다문화 가정을 위한 AI 음성 전래동화 서비스.
+                XTTS v2 모델 파인튜닝으로 외국인 억양의 한국어 음성을 학습하여,
+                부모님 목소리로 아이에게 한국 전래동화를 들려줄 수 있는 보이스 클로닝 기능 구현.
+            </p>
+            <div class="project-badges">
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    Team Project (AI/ML Lead)
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    2024
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    iOS App
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Role -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>My Role: AI/ML Engineer</h2>
+            <p>
+                팀 프로젝트에서 <strong>AI/ML 파트 전담</strong>으로 참여했습니다.
+                AIHub의 외국인 한국어 발화 데이터셋을 활용하여 XTTS v2 TTS 모델을 파인튜닝하고,
+                다문화 가정 부모님의 목소리로 한국어 전래동화를 낭독하는 보이스 클로닝 시스템을 구축했습니다.
+            </p>
+
+            <div class="info-box">
+                <h4>담당 업무</h4>
+                <p>
+                    <strong>데이터</strong>: AIHub 외국인 한국어 발화 데이터 전처리 및 학습 데이터 구축<br>
+                    <strong>모델</strong>: Coqui XTTS v2 모델 다국어(중국어, 영어, 일본어, 태국어, 베트남어) 파인튜닝<br>
+                    <strong>서비스</strong>: FastAPI 기반 TTS REST API 서버 개발<br>
+                    <strong>최적화</strong>: 한국어 음성 합성 품질 향상을 위한 하이퍼파라미터 튜닝
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Overview -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Technical Implementation</h2>
+
+            <h3>1. Data Pipeline</h3>
+            <div class="code-block">
+                <div class="code-header">AIHub Foreign Korean Speech Dataset Processing</div>
+                <pre><code>Dataset: AIHub 외국인 한국어 발화 데이터
+- 국가별 분류: 중국, 영어권, 일본, 태국, 베트남
+- 총 데이터: 각 국가별 수천 시간 음성 데이터
+- 전처리: 16kHz WAV 변환, 노이즈 제거, 발화 구간 분할
+
+Processing Pipeline:
+Raw Audio → Noise Reduction → VAD Segmentation → Quality Filter → Training Set
+    ↓                              ↓                    ↓
+  16kHz Resample           Silent Removal        SNR > 15dB only</code></pre>
+            </div>
+
+            <h3>2. XTTS v2 Fine-tuning</h3>
+            <div class="code-block">
+                <div class="code-header">Multi-Language Model Training</div>
+                <pre><code>Base Model: Coqui XTTS v2 (Zero-shot Voice Cloning TTS)
+
+Fine-tuned Models:
+├── chinese/     → 중국인 억양 한국어
+├── english/     → 영어권 억양 한국어
+├── japanese/    → 일본인 억양 한국어
+├── thai/        → 태국인 억양 한국어
+├── vietnamese/  → 베트남인 억양 한국어
+└── original/    → 한국어 원본 (baseline)
+
+Training Config:
+- Batch Size: 16
+- Learning Rate: 1e-5 (with warmup)
+- GPT Layers: 30
+- Audio Token Max: 604
+- Text Token Max: 402</code></pre>
+            </div>
+
+            <h3>3. TTS Service Architecture</h3>
+            <div class="architecture-list">
+                <div class="arch-item">
+                    <div class="arch-number">1</div>
+                    <div class="arch-content">
+                        <h4>Model Manager (Singleton)</h4>
+                        <p>6개 언어별 파인튜닝 모델을 메모리에 로드하여 관리. GPU 메모리 최적화를 위한 per_process_memory_fraction 설정.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">2</div>
+                    <div class="arch-content">
+                        <h4>Voice Cloning Engine</h4>
+                        <p>사용자 음성 파일(3-10초)을 Speaker Embedding으로 변환하여 목소리 특성 추출. Zero-shot 방식으로 새로운 텍스트 합성.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">3</div>
+                    <div class="arch-content">
+                        <h4>Korean Text Processor</h4>
+                        <p>한국어 문장 분할(200자 기준), 문장부호 기반 청킹, 장문 텍스트 처리 및 병합.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">4</div>
+                    <div class="arch-content">
+                        <h4>Streaming Synthesis</h4>
+                        <p>AsyncGenerator 기반 실시간 스트리밍으로 긴 동화도 청크 단위로 즉시 재생 가능.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Implementation -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Implementation Details</h2>
+
+            <h3>TTS Synthesis Parameters</h3>
+            <div class="code-block">
+                <div class="code-header">tts_service.py - Optimized Parameters</div>
+                <pre><code>class TTSConfig:
+    # TTS 하이퍼파라미터 (한국어 음성 품질 최적화)
+    TTS_TEMPERATURE = 0.35      # 낮은 값 = 안정적인 발음
+    TTS_LENGTH_PENALTY = 1.0    # 발화 길이 페널티
+    TTS_REPETITION_PENALTY = 8.0 # 반복 방지 (높은 값)
+    TTS_TOP_K = 50              # 토큰 샘플링 범위
+    TTS_TOP_P = 0.4             # Nucleus sampling
+
+    # 한국어 텍스트 처리
+    KO_CHAR_LIMIT = 200         # 청크당 최대 글자 수
+    SYNTHESIS_LANGUAGE = "ko"   # 합성 언어 코드</code></pre>
+            </div>
+
+            <h3>Voice Cloning with Custom Speaker</h3>
+            <div class="code-block">
+                <div class="code-header">tts_service.py - Custom Voice Synthesis</div>
+                <pre><code>def synthesize_with_custom_voice(self, text: str, speaker_audio_path: Path,
+                               user_languages: List[str], role: str = None) -> Optional[bytes]:
+    """사용자 음성 파일을 사용한 맞춤 음성 합성"""
+
+    # 사용자 모국어 기반으로 최적의 파인튜닝 모델 선택
+    selected_country = self.select_country_by_user_languages(user_languages, role)
+    model = self.models[selected_country]
+
+    # XTTS Zero-shot Voice Cloning
+    outputs = model.model.synthesize(
+        text=text,
+        config=model.model.config,
+        speaker_wav=[str(speaker_audio_path)],  # 사용자 음성 (3-10초)
+        language="ko",
+        temperature=0.35,
+        repetition_penalty=8.0,
+        top_k=50,
+        top_p=0.4
+    )
+
+    # 24kHz WAV 출력
+    return wav_to_bytes(outputs['wav'], sample_rate=24000)</code></pre>
+            </div>
+
+            <h3>Fairy Tale Processing</h3>
+            <div class="code-block">
+                <div class="code-header">Dynamic Role Parsing</div>
+                <pre><code>def parse_fairy_tale_text(self, text: str) -> List[Tuple[str, str]]:
+    """동화 텍스트 파싱: [역할] 대사 형식을 동적으로 파싱"""
+    dialogues = []
+
+    for line in text.strip().split("\n"):
+        # [역할] 대사 패턴 매칭
+        match = re.match(r"^\[([^\]]+)\]\s*(.+)", line)
+        if match:
+            role, dialogue_text = match.groups()
+            dialogues.append((role.strip(), dialogue_text.strip()))
+        else:
+            # 역할 태그 없으면 해설자로 처리
+            dialogues.append(("해설자", line))
+
+    return dialogues
+
+# Example Input:
+# [해설자] 옛날 옛적에 견우와 직녀가 살았습니다.
+# [견우] 직녀야, 보고 싶었어.
+# [직녀] 나도 많이 보고 싶었어요.</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Endpoints -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>REST API Design</h2>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Endpoint</th>
+                            <th>Method</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/synthesize/custom</code></td>
+                            <td>POST</td>
+                            <td>사용자 음성 기반 맞춤 TTS 합성</td>
+                        </tr>
+                        <tr>
+                            <td><code>/synthesize/fairy_tale</code></td>
+                            <td>POST</td>
+                            <td>전체 동화 음성 합성 (역할별 분할)</td>
+                        </tr>
+                        <tr>
+                            <td><code>/synthesize/custom/stream</code></td>
+                            <td>POST</td>
+                            <td>실시간 스트리밍 음성 합성</td>
+                        </tr>
+                        <tr>
+                            <td><code>/synthesize/fairy_tale/stream</code></td>
+                            <td>POST</td>
+                            <td>동화 스트리밍 합성 (청크 단위)</td>
+                        </tr>
+                        <tr>
+                            <td><code>/analyze/fairy_tale_roles</code></td>
+                            <td>POST</td>
+                            <td>동화 역할 분석 (역할별 대사 수)</td>
+                        </tr>
+                        <tr>
+                            <td><code>/health</code></td>
+                            <td>GET</td>
+                            <td>서버 상태 및 로드된 모델 확인</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>API Request/Response Example</h3>
+            <div class="code-block">
+                <div class="code-header">POST /synthesize/fairy_tale</div>
+                <pre><code>Request (multipart/form-data):
+{
+    "fairy_tale_text": "[해설자] 옛날 옛적에...\n[견우] 직녀야!",
+    "user_profile": {
+        "nickname": "수아맘",
+        "gender": "woman",
+        "languages": ["VIETNAMESE", "KOREAN"]
+    },
+    "fairy_tale_name": "견우와직녀",
+    "merge_output": true,
+    "speaker_audio": (binary file, 3-10s WAV)
+}
+
+Response:
+{
+    "success": true,
+    "message": "동화 음성 합성이 완료되었습니다 (15개 파일)",
+    "audio_files": [
+        "/static/audio/견우와직녀_해설자_수아맘_001.wav",
+        "/static/audio/견우와직녀_견우_수아맘_002.wav",
+        ...
+    ],
+    "merged_audio_url": "/static/audio/fairy_tale_견우와직녀_20241103.wav",
+    "total_duration": 45.3
+}</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Tech Stack (My Part)</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>AI / ML</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Coqui TTS</span>
+                        <span class="skill-tag">XTTS v2</span>
+                        <span class="skill-tag">HuggingFace</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">AIHub Dataset</span>
+                        <span class="skill-tag">Librosa</span>
+                        <span class="skill-tag">SoundFile</span>
+                        <span class="skill-tag">NumPy</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Pydantic</span>
+                        <span class="skill-tag">Uvicorn</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Infrastructure</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">CUDA</span>
+                        <span class="skill-tag">GPU Server</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Achievements -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Key Technical Achievements</h2>
+            <ul>
+                <li><strong>Multi-accent Korean TTS</strong>: 5개국 억양의 한국어 음성 합성 모델 구축으로 다문화 가정 맞춤 서비스</li>
+                <li><strong>Zero-shot Voice Cloning</strong>: 3-10초 음성 샘플만으로 사용자 목소리 복제, 별도 학습 없이 즉시 사용</li>
+                <li><strong>Optimized Korean Synthesis</strong>: 한국어 특화 하이퍼파라미터 튜닝으로 자연스러운 발음과 억양 구현</li>
+                <li><strong>Streaming Architecture</strong>: AsyncGenerator 기반 실시간 스트리밍으로 긴 동화도 버퍼링 없이 재생</li>
+                <li><strong>Role-based Synthesis</strong>: 동화 역할(해설자, 등장인물) 자동 파싱 및 일관된 음성으로 합성</li>
+                <li><strong>Production-ready API</strong>: FastAPI 기반 RESTful API로 iOS 앱과 원활한 연동</li>
+            </ul>
+
+            <div class="info-box">
+                <h4>Performance Metrics</h4>
+                <p>
+                    <strong>Synthesis Speed</strong>: RTF 0.3-0.5x (실시간보다 2-3배 빠름)<br>
+                    <strong>Audio Quality</strong>: 24kHz, 16-bit WAV<br>
+                    <strong>Voice Similarity</strong>: Speaker Embedding 유사도 기반 클로닝<br>
+                    <strong>Supported Languages</strong>: 중국어, 영어, 일본어, 태국어, 베트남어 억양 한국어
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Links -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Project Links</h2>
+            <div class="cta-buttons">
+                <a href="https://github.com/Talet-project/Talet_iOS" target="_blank" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    iOS Repository
+                </a>
+                <a href="https://github.com/Talet-project/Talet_BE" target="_blank" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    Backend Repository
+                </a>
+                <a href="../index.html#projects" class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back to Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

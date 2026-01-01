@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADBIAS | Yunho Jang</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#skills">Skills</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Projects
+            </a>
+            <span class="hero-label">AI Research</span>
+            <h1>ADBIAS</h1>
+            <p class="subtitle">
+                Multi-LLM 편향 조정을 통한 자동 에세이 채점 프레임워크.
+                4개의 LLM 채점 편향을 MFRM으로 정량화하고, Meta-LLM을 통해 편향 인지 통합 평가 수행.
+            </p>
+            <div class="project-badges">
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    2025
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Team Project (5)
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    ACL 2025 Submission
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Overview</h2>
+            <p>
+                <strong>ADBIAS (Adjusting Multi-LLM Biases)</strong>는 자동 에세이 채점(AES) 시스템에서
+                여러 LLM의 채점 편향을 정량적으로 측정하고 보정하여 더 공정하고 신뢰성 있는
+                평가를 가능하게 하는 Multi-Agent 프레임워크입니다.
+            </p>
+
+            <div class="info-box">
+                <h4>Problem</h4>
+                <p>
+                    기존 단일 LLM 기반 AES 시스템은 모델 고유의 편향으로 인해 일관성 없는 평가 결과를 생성합니다.
+                    GPT는 중간 점수로 회귀하는 경향이 있고, Claude는 보수적으로 낮은 점수를 부여하는 경향이 있습니다.
+                </p>
+            </div>
+
+            <h3>Key Results</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Baseline</th>
+                            <th>ADBIAS</th>
+                            <th>Improvement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight">
+                            <td>Accuracy (QWK)</td>
+                            <td>0.4326</td>
+                            <td>0.4600</td>
+                            <td><strong>+6.4%</strong></td>
+                        </tr>
+                        <tr class="highlight">
+                            <td>Bias Variance</td>
+                            <td>0.00192</td>
+                            <td>0.00081</td>
+                            <td><strong>-57.9%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Mean |β|</td>
+                            <td>0.0775</td>
+                            <td>0.0380</td>
+                            <td>-50.9%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="image-grid">
+                <div class="image-block">
+                    <img src="../../ADBIAS/assets/figure_mean_qwk.png" alt="Mean QWK Comparison">
+                    <div class="image-caption">Mean QWK: Meta-LLM vs Individual LLMs</div>
+                </div>
+                <div class="image-block">
+                    <img src="../../ADBIAS/assets/figure_mean_severity.png" alt="Mean Severity Comparison">
+                    <div class="image-caption">Mean Severity: Bias Reduction Effect</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>System Architecture</h2>
+            <p>
+                ADBIAS는 3단계 파이프라인으로 구성되어 있으며, 각 단계에서 모델별 편향을 체계적으로 처리합니다.
+            </p>
+
+            <div class="image-block">
+                <img src="../../ADBIAS/assets/adbias_pipeline.png" alt="ADBIAS Pipeline Architecture">
+                <div class="image-caption">ADBIAS 3-Stage Pipeline Architecture</div>
+            </div>
+
+            <div class="architecture-list">
+                <div class="arch-item">
+                    <div class="arch-number">1</div>
+                    <div class="arch-content">
+                        <h4>Multi-LLM Independent Evaluation</h4>
+                        <p>4개의 LLM(GPT-4o, Claude 3.5, Gemini 2.5, LLaMA 4)이 동일한 에세이를 독립적으로 평가. temperature=0으로 결정적 출력 보장.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">2</div>
+                    <div class="arch-content">
+                        <h4>MFRM-based Bias Quantification</h4>
+                        <p>Many-Facet Rasch Model을 적용하여 각 모델의 특성별 채점 엄격도(β)를 통계적으로 측정.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">3</div>
+                    <div class="arch-content">
+                        <h4>Meta-LLM Bias-Aware Aggregation</h4>
+                        <p>Meta-LLM이 원본 에세이, Peer 점수/근거, 편향 메타데이터를 종합하여 최종 점수 생성.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>LLM Configuration</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Role</th>
+                            <th>Characteristics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>GPT-4o (OpenAI)</td>
+                            <td>Peer Evaluator</td>
+                            <td>General purpose, lenient tendency</td>
+                        </tr>
+                        <tr>
+                            <td>Claude 3.5 Sonnet (Anthropic)</td>
+                            <td>Peer Evaluator</td>
+                            <td>Conservative, strict scoring</td>
+                        </tr>
+                        <tr>
+                            <td>Gemini 2.5 Flash (Google)</td>
+                            <td>Peer Evaluator</td>
+                            <td>Lightweight, fast response</td>
+                        </tr>
+                        <tr>
+                            <td>LLaMA 4 Maverick (Meta)</td>
+                            <td>Meta-LLM</td>
+                            <td>Stable, final aggregator</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- MFRM -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>MFRM Model</h2>
+            <p>
+                Many-Facet Rasch Model (MFRM)을 적용하여 각 모델의 채점 편향을 통계적으로 측정합니다.
+                교육 측정학에서 사용되는 이론적 모델을 LLM 평가에 적용한 최초의 시도입니다.
+            </p>
+
+            <div class="image-block">
+                <img src="../../ADBIAS/assets/figure_MFRM.png" alt="MFRM Model">
+                <div class="image-caption">MFRM Parameter Estimation</div>
+            </div>
+
+            <div class="info-box">
+                <h4>MFRM Parameters</h4>
+                <p>
+                    <strong>θ (Ability)</strong>: Essay latent ability &nbsp;|&nbsp;
+                    <strong>β (Severity)</strong>: LLM trait-specific scoring strictness &nbsp;|&nbsp;
+                    <strong>τ (Threshold)</strong>: Score category difficulty
+                </p>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">MFRM.py - PyTorch Implementation</div>
+                <pre><code>class MFRM(nn.Module):
+    def __init__(self, N_person, N_trait, N_rater, N_strat, K_max):
+        # Essay ability (θ)
+        self.person_trait = nn.Embedding(N_person * N_trait, 1)
+
+        # Rater severity (β)
+        self.rater_set_trait = nn.Embedding(N_rater * N_strat, 1)
+
+        # Category threshold (τ)
+        self.threshold_raw = nn.Embedding(N_strat, K_max)</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Experimental Results</h2>
+
+            <h3>Dataset</h3>
+            <p>
+                ASAP (Automated Student Assessment Prize) 및 ASAP++ 데이터셋 사용.
+                12,978개 에세이, 8개 프롬프트, 7-10학년 대상.
+            </p>
+
+            <h3>Performance Comparison</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Mean QWK</th>
+                            <th>β Variance</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>GPT-4o (Single)</td>
+                            <td>0.398</td>
+                            <td>0.0041</td>
+                            <td>Lenient bias</td>
+                        </tr>
+                        <tr>
+                            <td>Claude 3.5 (Single)</td>
+                            <td>0.471</td>
+                            <td>0.0017</td>
+                            <td>Conservative bias</td>
+                        </tr>
+                        <tr>
+                            <td>Gemini 2.5 (Single)</td>
+                            <td>0.420</td>
+                            <td>0.0033</td>
+                            <td>Moderate</td>
+                        </tr>
+                        <tr>
+                            <td>Majority Voting</td>
+                            <td>0.430</td>
+                            <td>-</td>
+                            <td>Simple ensemble</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td><strong>ADBIAS (Ours)</strong></td>
+                            <td><strong>0.460</strong></td>
+                            <td><strong>0.0008</strong></td>
+                            <td>Bias-aware aggregation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Trait-level Analysis</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Trait</th>
+                            <th>β-Aware QWK</th>
+                            <th>β-Blind QWK</th>
+                            <th>Improvement</th>
+                            <th>β Variance Reduction</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Content</td>
+                            <td>0.516</td>
+                            <td>0.448</td>
+                            <td>+6.8%</td>
+                            <td>-40%</td>
+                        </tr>
+                        <tr>
+                            <td>Organization</td>
+                            <td>0.505</td>
+                            <td>0.423</td>
+                            <td>+8.2%</td>
+                            <td>-75%</td>
+                        </tr>
+                        <tr>
+                            <td>Language</td>
+                            <td>0.535</td>
+                            <td>0.467</td>
+                            <td>+6.8%</td>
+                            <td>-89%</td>
+                        </tr>
+                        <tr>
+                            <td>Narrativity</td>
+                            <td>0.592</td>
+                            <td>0.523</td>
+                            <td>+6.9%</td>
+                            <td>-78%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Core Framework</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>LLM APIs</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">OpenAI API</span>
+                        <span class="skill-tag">Anthropic API</span>
+                        <span class="skill-tag">Google AI</span>
+                        <span class="skill-tag">OpenRouter</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Statistical Model</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">MFRM</span>
+                        <span class="skill-tag">Rasch Model</span>
+                        <span class="skill-tag">scipy</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data & Evaluation</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">ASAP Dataset</span>
+                        <span class="skill-tag">QWK Metric</span>
+                        <span class="skill-tag">JSON</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Team</h2>
+            <div class="team-list">
+                <div class="team-member">
+                    <div class="team-avatar">H</div>
+                    <div class="team-info">
+                        <span class="team-name">Hojin Lee</span>
+                        <span class="team-role">@leehee16</span>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">K</div>
+                    <div class="team-info">
+                        <span class="team-name">Kihoon Kang</span>
+                        <span class="team-role">@kanggihoon</span>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">S</div>
+                    <div class="team-info">
+                        <span class="team-name">Seunghyun Yang</span>
+                        <span class="team-role">@sseunghyun9</span>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">E</div>
+                    <div class="team-info">
+                        <span class="team-name">Euijin Lee</span>
+                        <span class="team-role">@leeeug.da</span>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">Y</div>
+                    <div class="team-info">
+                        <span class="team-name">Yunho Jang</span>
+                        <span class="team-role">@joyuno</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>View Project</h2>
+            <div class="cta-buttons">
+                <a href="https://github.com/leehee16/ADBIAS" target="_blank" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub Repository
+                </a>
+                <a href="../index.html#projects" class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back to Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

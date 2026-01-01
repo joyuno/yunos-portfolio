@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIIV - AI Mock Interview | Yunho Jang</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#skills">Skills</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Projects
+            </a>
+            <span class="hero-label">AI Product / Full Stack</span>
+            <h1>AIIV - AI Mock Interview</h1>
+            <p class="subtitle">
+                실시간 음성 대화 기반 AI 모의면접 서비스.
+                RAG 파이프라인으로 이력서/자소서 분석, 음성 분석으로 말하기 패턴 피드백 제공.
+                aiiv.site에 배포 운영 중.
+            </p>
+            <div class="project-badges">
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <a href="https://aiiv.site" target="_blank" style="color: inherit;">aiiv.site</a>
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    2024-2025
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    Production Deployed
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Overview</h2>
+            <p>
+                <strong>AIIV</strong>는 AI 면접관과 실시간 음성 대화를 통해 면접을 연습할 수 있는 서비스입니다.
+                사용자의 이력서와 자기소개서를 RAG 파이프라인으로 분석하여 맞춤형 질문을 생성하고,
+                음성 분석을 통해 말하기 속도, 습관어, 자신감 등을 평가하여 구체적인 피드백을 제공합니다.
+            </p>
+
+            <div class="info-box">
+                <h4>Key Metrics</h4>
+                <p>
+                    <strong>End-to-End Latency</strong>: 1.6~2.5초 (음성 입력 → AI 응답 재생 시작)<br>
+                    <strong>RAG Precision</strong>: Hybrid Search + Reranking으로 40-60% 정확도 향상<br>
+                    <strong>Voice Analysis</strong>: 15+ 한국어 습관어 탐지, 0-100 자신감 점수
+                </p>
+            </div>
+
+            <h3>Core Features</h3>
+            <div class="architecture-list">
+                <div class="arch-item">
+                    <div class="arch-number">1</div>
+                    <div class="arch-content">
+                        <h4>Real-time Voice Interview</h4>
+                        <p>SSE 기반 스트리밍 파이프라인으로 실시간 음성 대화. Whisper STT → GPT-4o → OpenAI TTS 연계.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">2</div>
+                    <div class="arch-content">
+                        <h4>Document RAG Pipeline</h4>
+                        <p>이력서/자소서 분석을 위한 한국어 최적화 청킹, LlamaParse PDF 처리, Hybrid Search (Vector + BM25).</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">3</div>
+                    <div class="arch-content">
+                        <h4>Voice Pattern Analysis</h4>
+                        <p>WPM 계산, 습관어(음, 어, 그러니까) 탐지, 침묵 패턴 분석, 자신감 점수화 및 개선 피드백 생성.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">4</div>
+                    <div class="arch-content">
+                        <h4>Multiple Interviewer Personas</h4>
+                        <p>채용담당자, 기술면접관, HR 등 다양한 면접관 캐릭터로 실전과 유사한 면접 경험 제공.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>System Architecture</h2>
+
+            <h3>Streaming Pipeline</h3>
+            <div class="code-block">
+                <div class="code-header">Real-time Voice Processing Flow</div>
+                <pre><code>Audio Input → STT (Whisper) → LLM (GPT-4o) → TTS (OpenAI) → Audio Output
+              ↓                ↓                ↓
+           SSE Event      SSE Event        SSE Chunks
+           (stt_complete) (llm_complete)   (tts_chunk)
+
+Latency Breakdown:
+- STT: 500-800ms (Whisper API)
+- LLM: 800-1200ms (GPT-4o with RAG context)
+- TTS First Chunk: 300-500ms (OpenAI TTS streaming)
+- Total E2E: 1.6-2.5 seconds</code></pre>
+            </div>
+
+            <h3>RAG Pipeline</h3>
+            <div class="code-block">
+                <div class="code-header">Document Processing & Retrieval</div>
+                <pre><code>Document Upload Flow:
+PDF → LlamaParse (complex) / Basic (simple) → Korean Chunking → Embeddings → pgvector
+
+Query Flow:
+User Question → Embedding → Hybrid Search (Vector 0.6 + BM25 0.4) → Cohere Rerank → Top K Results
+
+Chunking Strategy (Korean Optimized):
+1. Section-aware: 지원동기, 성장과정, 경력, 입사 후 포부, 장단점
+2. Sentence boundary preservation
+3. 800 chars/chunk with 100 char overlap
+4. Token estimation (~1.5 chars/token for Korean)</code></pre>
+            </div>
+
+            <h3>Voice Analysis Metrics</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Description</th>
+                            <th>Optimal Range</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>WPM</td>
+                            <td>Words Per Minute (한국어 최적화)</td>
+                            <td>120-180</td>
+                        </tr>
+                        <tr>
+                            <td>Filler Rate</td>
+                            <td>습관어 비율 (음, 어, 그러니까 등)</td>
+                            <td>&lt;5%</td>
+                        </tr>
+                        <tr>
+                            <td>Silence Rate</td>
+                            <td>침묵 시간 비율</td>
+                            <td>15-30%</td>
+                        </tr>
+                        <tr>
+                            <td>Long Pauses</td>
+                            <td>2초 이상 긴 침묵 횟수</td>
+                            <td>&lt;2</td>
+                        </tr>
+                        <tr>
+                            <td>Confidence Score</td>
+                            <td>종합 자신감 점수</td>
+                            <td>&gt;70</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Implementation Highlights</h2>
+
+            <h3>SSE Streaming Server</h3>
+            <div class="code-block">
+                <div class="code-header">app/api/interview/stream/route.ts</div>
+                <pre><code>export async function POST(request: Request) {
+  const formData = await request.formData();
+  const audio = formData.get('audio') as File;
+
+  const stream = createSSEStream(audioBuffer, {
+    interviewerId: 'hiring_manager',
+    position: 'Software Engineer',
+    conversationHistory: [...],
+    voice: 'onyx'
+  }, true); // parallel processing
+
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive'
+    }
+  });
+}</code></pre>
+            </div>
+
+            <h3>Korean Document Chunking</h3>
+            <div class="code-block">
+                <div class="code-header">lib/rag/chunking.ts</div>
+                <pre><code>export function chunkKoreanDocument(text: string, options: ChunkOptions) {
+  // Section-aware chunking for Korean cover letters
+  const sections = ['지원동기', '성장과정', '경력', '입사 후 포부', '장단점'];
+
+  const chunks = text
+    .split(/(?=\\d+\\.\\s*(?:${sections.join('|')}))/g)
+    .filter(chunk => chunk.trim().length > 50)
+    .map((chunk, index) => ({
+      content: chunk,
+      metadata: {
+        section: detectSection(chunk, sections),
+        chunkIndex: index,
+        tokenEstimate: Math.ceil(chunk.length / 1.5) // Korean token estimation
+      }
+    }));
+
+  return chunks;
+}</code></pre>
+            </div>
+
+            <h3>Voice Confidence Scoring</h3>
+            <div class="code-block">
+                <div class="code-header">lib/analysis/voice.ts</div>
+                <pre><code>export function calculateConfidence(analysis: VoiceAnalysis): number {
+  const speechPace = calculatePaceScore(analysis.wpm);       // 0-100
+  const fluency = calculateFluencyScore(analysis.fillerRate); // 0-100
+  const articulation = calculateArticulationScore(analysis);  // 0-100
+
+  // Weighted average
+  return (speechPace * 0.3) + (fluency * 0.4) + (articulation * 0.3);
+}
+
+// Korean filler words
+const FILLER_WORDS = [
+  '음', '어', '으', '아', '저',           // Hesitation
+  '그', '그게', '그러니까', '저기', '뭐',  // Thinking
+  '진짜', '좀', '되게', '완전', '엄청'     // Emphasis
+];</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Next.js 16</span>
+                        <span class="skill-tag">React 18</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">Framer Motion</span>
+                        <span class="skill-tag">Radix UI</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend / AI</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">OpenAI GPT-4o</span>
+                        <span class="skill-tag">Whisper STT</span>
+                        <span class="skill-tag">OpenAI TTS</span>
+                        <span class="skill-tag">text-embedding-3-small</span>
+                        <span class="skill-tag">Cohere Rerank</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Database / Auth</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Supabase</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">pgvector</span>
+                        <span class="skill-tag">Supabase Auth</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Infrastructure</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Vercel</span>
+                        <span class="skill-tag">Sentry</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">Capacitor (iOS)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Key Technical Achievements</h2>
+            <ul>
+                <li><strong>Sub-2s Latency</strong>: SSE 기반 병렬 처리로 음성 입력부터 AI 응답 재생까지 2초 미만 달성</li>
+                <li><strong>Korean NLP Optimization</strong>: 한국어 자소서 섹션 인식 청킹, 습관어 탐지, 토큰 추정 최적화</li>
+                <li><strong>Hybrid RAG Search</strong>: Vector + BM25 가중치 자동 튜닝으로 검색 정확도 40-60% 향상</li>
+                <li><strong>Voice Trend Analysis</strong>: 면접 진행에 따른 음성 패턴 변화 추적 및 개선 추이 분석</li>
+                <li><strong>Production-grade Infrastructure</strong>: Sentry 에러 모니터링, Rate Limiting, Security 헤더 적용</li>
+                <li><strong>Cross-platform</strong>: Web + iOS 앱 동시 지원 (Capacitor)</li>
+            </ul>
+
+            <div class="info-box">
+                <h4>Performance Benchmarks</h4>
+                <p>
+                    <strong>RAG Retrieval</strong>: Vector 150-200ms, Hybrid 200-300ms, +Rerank 400-600ms<br>
+                    <strong>Document Upload</strong>: Simple PDF 2-3s, Complex PDF 8-12s (LlamaParse)<br>
+                    <strong>Voice Analysis</strong>: Transcription + Analysis 1-2s (async, non-blocking)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Try the Service</h2>
+            <div class="cta-buttons">
+                <a href="https://aiiv.site" target="_blank" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    Visit aiiv.site
+                </a>
+                <a href="../index.html#projects" class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back to Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LG U+ Internship | Yunho Jang</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#skills">Skills</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Projects
+            </a>
+            <span class="hero-label">Data Engineering / Automation</span>
+            <h1>LG U+ MVNO Business Automation</h1>
+            <p class="subtitle">
+                LG U+ 사무 인턴십 기간 중 수행한 MVNO(알뜰폰) 사업팀 업무 자동화 프로젝트.
+                웹 크롤링, 감성 분석, 자동 리포트 시스템 구축.
+            </p>
+            <div class="project-badges">
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    2025
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    LG U+ Internship
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Business Automation
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Overview</h2>
+            <p>
+                LG U+ MVNO 사업팀에서 사무 인턴으로 근무하며 <strong>경쟁사 요금제 모니터링</strong>,
+                <strong>뉴스 감성 분석</strong>, <strong>커뮤니티 여론 분석</strong> 업무를 자동화했습니다.
+                기존 수작업으로 수 시간이 소요되던 반복 업무를 Python 기반 자동화 시스템으로 대체하여
+                업무 효율성을 대폭 개선했습니다.
+            </p>
+
+            <div class="info-box">
+                <h4>Business Impact</h4>
+                <p>
+                    매일 아침 수동으로 진행하던 경쟁사 요금제 조사를 자동화하여
+                    GitHub Actions 기반 매일 자동 실행 및 이메일 리포트 발송 시스템 구축.
+                    업무 시간 절감 및 데이터 정확성 향상.
+                </p>
+            </div>
+
+            <h3>Key Deliverables</h3>
+            <div class="architecture-list">
+                <div class="arch-item">
+                    <div class="arch-number">1</div>
+                    <div class="arch-content">
+                        <h4>MVNO Promotion Crawler</h4>
+                        <p>7개 경쟁사 사이트(모요플랜, 아이즈, 프릿, 모빙, 스마텔, 이야기, 티플러스)에서 요금제 정보를 자동 수집하고 비교 분석 리포트 생성.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">2</div>
+                    <div class="arch-content">
+                        <h4>Daily Automated Report System</h4>
+                        <p>GitHub Actions로 매일 오전 7:30(KST) 자동 실행, 크롤링 결과를 Excel로 정리하여 담당자에게 이메일 자동 발송.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">3</div>
+                    <div class="arch-content">
+                        <h4>News Sentiment Analysis</h4>
+                        <p>Naver API로 알뜰폰 관련 뉴스 수집, TF-IDF 중복 필터링, HuggingFace 감성 분석 모델로 긍정 뉴스 자동 추출.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">4</div>
+                    <div class="arch-content">
+                        <h4>Community Sentiment Monitoring</h4>
+                        <p>뽐뿌 커뮤니티에서 MVNO 관련 게시글 수집, KOTE 감성 분석 모델로 44개 감정 라벨 분류 및 여론 분석.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotion Crawler -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>MVNO Promotion Crawler</h2>
+            <p>
+                다양한 MVNO 비교 사이트에서 요금제 정보를 수집하는 Selenium 기반 웹 크롤러입니다.
+                각 사이트의 구조에 맞춘 커스텀 파서를 구현하고, 데이터를 정규화하여 비교 가능한 형태로 가공합니다.
+            </p>
+
+            <h3>Supported Sites</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Site</th>
+                            <th>URL</th>
+                            <th>Data Collected</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>모요플랜 (Moyoplan)</td>
+                            <td>moyoplan.com</td>
+                            <td>요금제명, 데이터, 통화, 가격, 할인기간</td>
+                        </tr>
+                        <tr>
+                            <td>아이즈 (Eyes)</td>
+                            <td>eyes.co.kr</td>
+                            <td>통신사별 요금제, 프로모션 가격</td>
+                        </tr>
+                        <tr>
+                            <td>프릿 (Freet)</td>
+                            <td>freet.co.kr</td>
+                            <td>데이터/통화 무제한 요금제</td>
+                        </tr>
+                        <tr>
+                            <td>모빙 (Mobing)</td>
+                            <td>mobing.co.kr</td>
+                            <td>프로모션 요금제 정보</td>
+                        </tr>
+                        <tr>
+                            <td>스마텔 (Smartel)</td>
+                            <td>smartel.kr</td>
+                            <td>LTE 요금제 정보</td>
+                        </tr>
+                        <tr>
+                            <td>이야기 (Eyagi)</td>
+                            <td>eyagi.co.kr</td>
+                            <td>SKT/KT/LGU+ 요금제</td>
+                        </tr>
+                        <tr>
+                            <td>티플러스 (T-Plus)</td>
+                            <td>tplusmobile.com</td>
+                            <td>통신사별 요금제</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Data Processing Pipeline</h3>
+            <div class="code-block">
+                <div class="code-header">MoyoplanScraper - Core Logic</div>
+                <pre><code>class MoyoplanScraper:
+    def __init__(self, search_terms=None):
+        self.search_terms = search_terms or DEFAULT_SEARCH_TERMS
+        self.driver = setup_chrome_driver()
+
+    def scrape_search_term(self, search_term: str):
+        """검색어별 요금제 데이터 수집"""
+        url = f'{BASE_URL}?searchText={search_term}&sorting=fee_asc'
+        self.driver.get(url)
+        scroll_to_bottom(self.driver)
+
+        # 페이지네이션 처리
+        for page in range(1, total_pages + 1):
+            soup = BeautifulSoup(self.driver.page_source, 'html.parser')
+            data = extract_plan_data(soup, search_term)
+            self.scraped_data.extend(data)
+
+        return self.scraped_data
+
+    def process_dataframe(self, df):
+        """데이터 정제 및 피벗 테이블 생성"""
+        df['데이터크기_범주'] = df.apply(categorize_data_size, axis=1)
+        pivot_df = df.pivot_table(
+            index='통신사이름',
+            columns='데이터크기_범주',
+            values=['프로모션가격', '할인개월수', '원가']
+        )
+        return pivot_df</code></pre>
+            </div>
+
+            <h3>Output Format</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Site / Telecom</th>
+                            <th>7GB</th>
+                            <th>10GB</th>
+                            <th>15GB-100min</th>
+                            <th>100GB+</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>eyes / SKT</td>
+                            <td>8,000 (7m)</td>
+                            <td>11,000 (7m)</td>
+                            <td>15,000 (7m)</td>
+                            <td>28,000 (7m)</td>
+                        </tr>
+                        <tr>
+                            <td>eyes / KT</td>
+                            <td>8,030 (7m)</td>
+                            <td>11,000 (7m)</td>
+                            <td>15,070 (7m)</td>
+                            <td>25,080 (7m)</td>
+                        </tr>
+                        <tr>
+                            <td>eyes / LGU+</td>
+                            <td>15,100 (36m)</td>
+                            <td>18,700 (36m)</td>
+                            <td>21,800 (12m)</td>
+                            <td>38,700 (36m)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Automation -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>GitHub Actions Automation</h2>
+            <p>
+                크롤링 작업을 GitHub Actions로 자동화하여 매일 정해진 시간에 실행되도록 구성했습니다.
+                수집된 데이터는 Excel 파일로 생성되어 담당자에게 이메일로 자동 발송됩니다.
+            </p>
+
+            <div class="code-block">
+                <div class="code-header">.github/workflows/daily-crawl.yml</div>
+                <pre><code>name: Run Moyoplan Daily
+
+on:
+  schedule:
+    - cron: '30 22 * * *'  # UTC 22:30 = KST 07:30
+  workflow_dispatch:        # 수동 실행 지원
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run crawler
+        env:
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: python moyo_프로모션조사_구문.py</code></pre>
+            </div>
+
+            <h3>Email Report</h3>
+            <div class="code-block">
+                <div class="code-header">Email Sending with Gmail SMTP</div>
+                <pre><code>def send_email_report(excel_filename):
+    msg = EmailMessage()
+    msg['Subject'] = f"프로모션_{today}"
+    msg['From'] = SENDER_EMAIL
+    msg['To'] = RECEIVER_EMAIL
+    msg.set_content(f"25년 {today} 프로모션 현황입니다.")
+
+    # Excel 파일 첨부
+    with open(excel_filename, "rb") as f:
+        msg.add_attachment(f.read(),
+            maintype="application",
+            subtype="vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            filename=excel_filename)
+
+    # Gmail SMTP로 발송
+    with smtplib.SMTP("smtp.gmail.com", 587) as conn:
+        conn.starttls()
+        conn.login(SENDER_EMAIL, EMAIL_PASSWORD)
+        conn.send_message(msg)</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sentiment Analysis -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>News & Community Sentiment Analysis</h2>
+
+            <h3>News Sentiment Analysis</h3>
+            <p>
+                Naver News API를 활용하여 알뜰폰 관련 뉴스를 수집하고,
+                HuggingFace의 fine-tuned 감성 분석 모델로 긍정적인 뉴스를 자동 추출합니다.
+            </p>
+
+            <div class="code-block">
+                <div class="code-header">News Collection & Analysis</div>
+                <pre><code># Naver API로 뉴스 수집
+def get_news(keyword, start, display):
+    url = f"https://openapi.naver.com/v1/search/news.json"
+    headers = {
+        'X-Naver-Client-Id': client_id,
+        'X-Naver-Client-Secret': client_secret
+    }
+    response = requests.get(url, headers=headers, params={
+        'query': keyword, 'display': display, 'sort': 'date'
+    })
+    return response.json()
+
+# TF-IDF로 유사 기사 필터링
+def filter_similar_articles(articles, threshold=0.8):
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(descriptions)
+    sim_matrix = cosine_similarity(tfidf_matrix)
+    # Greedy 방식으로 중복 제거
+    ...
+
+# 감성 분석 (HuggingFace)
+model = AutoModelForSequenceClassification.from_pretrained(
+    "alsgyu/sentiment-analysis-fine-tuned-model"
+)
+def analyze_sentiment(text):
+    inputs = tokenizer(text, return_tensors="pt", truncation=True)
+    outputs = model(**inputs)
+    return torch.softmax(outputs.logits, dim=-1)[0][2].item()  # 긍정 점수</code></pre>
+            </div>
+
+            <h3>Community Sentiment Monitoring</h3>
+            <p>
+                뽐뿌(ppomppu) 커뮤니티에서 MVNO 관련 게시글을 수집하고,
+                KOTE(Korean Online Text Emotion) 모델로 44개 감정 라벨을 분류합니다.
+            </p>
+
+            <div class="code-block">
+                <div class="code-header">Community Crawler with Emotion Analysis</div>
+                <pre><code># 뽐뿌 게시판 크롤링
+keywords = ["이야기", "마블", "헬모", "아이즈", "유모바일", ...]
+base_url = 'https://www.ppomppu.co.kr/zboard/zboard.php?id=phone'
+
+for page in range(start_page, end_page + 1):
+    soup = BeautifulSoup(response.text, 'html.parser')
+    for row in table.find_all("tr"):
+        if keyword_pattern.search(span_text):
+            # 게시글 상세 내용 수집
+            ...
+
+# KOTE 감정 분석 모델
+model = AutoModelForSequenceClassification.from_pretrained(
+    "searle-j/kote_for_easygoing_people"
+)
+# 44개 감정 라벨: 기쁨, 슬픔, 분노, 놀람, 혐오, 두려움, ...</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Web Scraping</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Selenium</span>
+                        <span class="skill-tag">BeautifulSoup</span>
+                        <span class="skill-tag">Requests</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Processing</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">openpyxl</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>NLP / ML</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">HuggingFace Transformers</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">scikit-learn (TF-IDF)</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Automation</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">Gmail SMTP</span>
+                        <span class="skill-tag">Cron Scheduling</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Results & Impact</h2>
+            <ul>
+                <li><strong>업무 자동화</strong>: 매일 2-3시간 소요되던 수동 조사 업무를 완전 자동화</li>
+                <li><strong>데이터 정확성</strong>: 수동 입력 오류 제거, 일관된 데이터 포맷 유지</li>
+                <li><strong>실시간 모니터링</strong>: 경쟁사 가격 변동 및 프로모션 즉시 감지</li>
+                <li><strong>의사결정 지원</strong>: 데이터 기반 요금제 전략 수립에 기여</li>
+                <li><strong>확장성</strong>: 새로운 사이트 추가 시 모듈식 파서 구조로 빠른 대응 가능</li>
+            </ul>
+
+            <div class="info-box">
+                <h4>Key Learnings</h4>
+                <p>
+                    실제 비즈니스 환경에서의 데이터 엔지니어링 경험.
+                    웹사이트 구조 변경에 대응하는 유지보수, 안정적인 스케줄링,
+                    비개발자 동료에게 결과물 전달 등 실무 역량 향상.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>View Project</h2>
+            <div class="cta-buttons">
+                <a href="https://github.com/joyuno/lguplus_project" target="_blank" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    Analysis Notebooks
+                </a>
+                <a href="https://github.com/joyuno/Daily-Crawler-Moyoplan" target="_blank" class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    Daily Crawler
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
