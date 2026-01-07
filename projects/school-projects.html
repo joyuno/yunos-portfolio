@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Projects - 학교 프로젝트 | Yunho Jang</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .school-projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        .school-project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .school-project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        .school-project-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .school-project-header h3 {
+            font-size: 1.25rem;
+            color: var(--text);
+            margin: 0;
+        }
+        .school-project-header .category {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        .school-project-header .date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: var(--bg);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+        .school-project-body {
+            padding: 2rem;
+        }
+        .school-project-body p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .school-project-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .school-project-images img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .school-project-images img:hover {
+            transform: scale(1.02);
+        }
+        .school-project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .school-project-meta .tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+        .role-box {
+            background: var(--bg);
+            border-left: 3px solid var(--accent);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .role-box h4 {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin: 0 0 0.5rem 0;
+        }
+        .role-box p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .results-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+        .results-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .results-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        @media (max-width: 768px) {
+            .school-project-header {
+                padding: 1rem 1.5rem;
+            }
+            .school-project-body {
+                padding: 1.5rem;
+            }
+            .school-project-images img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#skills">Skills</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Projects
+            </a>
+            <span class="hero-label">Data Analysis / Machine Learning</span>
+            <h1>Academic Projects</h1>
+            <p class="subtitle">
+                대학 재학 중 수행한 데이터 분석 및 머신러닝 프로젝트 모음.
+                회귀분석, 클러스터링, 연관규칙 분석, 시각화 등 다양한 기법을 적용한 실습 프로젝트입니다.
+            </p>
+            <div class="project-badges">
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    2022 - 2024
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    Academic
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                    7 Projects
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects List -->
+    <section class="project-content-section">
+        <div class="container">
+            <div class="school-projects-grid">
+
+                <!-- Project 1: Boston Housing -->
+                <article class="school-project-card">
+                    <div class="school-project-header">
+                        <div>
+                            <span class="category">Real Estate / Regression Analysis</span>
+                            <h3>Boston Housing Price Regression Analysis</h3>
+                        </div>
+                        <span class="date">2023.12</span>
+                    </div>
+                    <div class="school-project-body">
+                        <p>
+                            보스턴 주택 가격 데이터셋을 활용한 다중회귀분석 프로젝트.
+                            PCA를 통한 다중공선성 해결, 랜덤포레스트 회귀, K-평균 군집화를 적용하여
+                            주택 가격 예측 모델을 구축하고 시장 세분화를 수행했습니다.
+                        </p>
+                        <div class="school-project-images">
+                            <img src="../assets/school/boston-1.png" alt="Boston Housing Analysis">
+                            <img src="../assets/school/boston-2.png" alt="Boston Housing Visualization">
+                        </div>
+                        <div class="role-box">
+                            <h4>My Role</h4>
+                            <p>PCA로 다중공선성 해결 (9개 주성분으로 95% 분산 설명), 다중회귀/랜덤포레스트 모델 구축 및 K-평균 군집화 수행</p>
+                        </div>
+                        <h4>Key Results</h4>
+                        <ul class="results-list">
+                            <li>다중회귀 R² 0.7338 / PCA 적용 후 R² 0.7456</li>
+                            <li>랜덤포레스트 R² 0.877, MAE 2.29, RMSE 3.30</li>
+                            <li>K-평균 군집화로 4개 시장 세그먼트 도출</li>
+                        </ul>
+                        <div class="school-project-meta">
+                            <span class="tag">Python</span>
+                            <span class="tag">PCA</span>
+                            <span class="tag">Random Forest</span>
+                            <span class="tag">K-Means</span>
+                            <span class="tag">Multiple Regression</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2: CNT Industry -->
+                <article class="school-project-card">
+                    <div class="school-project-header">
+                        <div>
+                            <span class="category">Industry Analysis / Market Research</span>
+                            <h3>China CNT Industry Market Analysis Report</h3>
+                        </div>
+                        <span class="date">2024.04</span>
+                    </div>
+                    <div class="school-project-body">
+                        <p>
+                            중국 탄소나노튜브(CNT) 산업의 주요 기업, 시장 동향, 기술 발전 및 응용 분야를 종합 분석한 보고서 프로젝트.
+                            리튬배터리, 신에너지차 등 다운스트림 산업과의 연계 분석을 통해 시장 전망을 도출했습니다.
+                        </p>
+                        <div class="school-project-images">
+                            <img src="../assets/school/cnt-1.png" alt="CNT Market Analysis">
+                            <img src="../assets/school/cnt-2.png" alt="CNT Industry Data">
+                        </div>
+                        <div class="role-box">
+                            <h4>My Role</h4>
+                            <p>엑셀을 활용한 재무제표 데이터 수집 및 시각화, 보고서 작성</p>
+                        </div>
+                        <h4>Key Results</h4>
+                        <ul class="results-list">
+                            <li>2025년 중국 CNT 시장 규모 27.6억 위안 전망 (CAGR 19.1%)</li>
+                            <li>CNT 제품의 80%가 리튬배터리 분야에 응용</li>
+                            <li>CR3 71%, Jiangsu Cnano Technology 시장점유율 43.4%로 1위</li>
+                        </ul>
+                        <div class="school-project-meta">
+                            <span class="tag">Excel</span>
+                            <span class="tag">Market Research</span>
+                            <span class="tag">Data Visualization</span>
+                            <span class="tag">Industry Analysis</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3: Shanghai Metro -->
+                <article class="school-project-card">
+                    <div class="school-project-header">
+                        <div>
+                            <span class="category">Transportation / Clustering</span>
+                            <h3>Shanghai Metro Passenger Classification</h3>
+                        </div>
+                        <span class="date">2022.12</span>
+                    </div>
+                    <div class="school-project-body">
+                        <p>
+                            상하이 지하철 출입 데이터(468,264 trips, 258,554 passengers)를 기반으로
+                            K-Means, 계층적 클러스터링, DBSCAN 등 다양한 클러스터링 알고리즘을 비교하여
+                            승객 유형을 분류하고 최적 모델을 탐색한 프로젝트입니다.
+                        </p>
+                        <div class="school-project-images">
+                            <img src="../assets/school/shanghai-1.png" alt="Shanghai Metro Data">
+                            <img src="../assets/school/shanghai-2.png" alt="Clustering Results">
+                        </div>
+                        <div class="role-box">
+                            <h4>My Role</h4>
+                            <p>데이터 전처리 (결측치/이상치 처리, 특성 엔지니어링) 및 DBSCAN 군집분석 수행</p>
+                        </div>
+                        <h4>Key Results</h4>
+                        <ul class="results-list">
+                            <li>Birch 알고리즘으로 처리시간 10분 → 87초로 단축</li>
+                            <li>단거리/장거리 통근자, 외곽/내곽 이동 패턴 분류</li>
+                            <li>K-Means Silhouette Score 0.42 달성</li>
+                        </ul>
+                        <div class="school-project-meta">
+                            <span class="tag">Python</span>
+                            <span class="tag">K-Means</span>
+                            <span class="tag">DBSCAN</span>
+                            <span class="tag">Hierarchical Clustering</span>
+                            <span class="tag">Birch</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4: Instacart -->
+                <article class="school-project-card">
+                    <div class="school-project-header">
+                        <div>
+                            <span class="category">Retail / Association Rules</span>
+                            <h3>Instacart Product Association Rule Analysis</h3>
+                        </div>
+                        <span class="date">2022.12</span>
+                    </div>
+                    <div class="school-project-body">
+                        <p>
+                            Instacart 온라인 식료품 주문 데이터를 활용한 장바구니 분석 프로젝트.
+                            Apriori 및 FP-Growth 알고리즘을 적용하여 상품 간 연관 규칙을 발견하고,
+                            교차 판매 및 추천 시스템 인사이트를 도출했습니다.
+                        </p>
+                        <div class="school-project-images">
+                            <img src="../assets/school/instacart-1.png" alt="Instacart Data">
+                            <img src="../assets/school/instacart-2.png" alt="Association Rules">
+                        </div>
+                        <div class="role-box">
+                            <h4>My Role</h4>
+                            <p>연관 규칙 분석 (Apriori, FP-Growth) 및 결과 해석, 시각화</p>
+                        </div>
+                        <h4>Key Results</h4>
+                        <ul class="results-list">
+                            <li>Support, Confidence, Lift 기반 유의미한 연관 규칙 도출</li>
+                            <li>FP-Growth가 대용량 데이터에서 Apriori 대비 처리 효율 우수</li>
+                            <li>교차 판매 전략 수립을 위한 상품 조합 인사이트 제공</li>
+                        </ul>
+                        <div class="school-project-meta">
+                            <span class="tag">Python</span>
+                            <span class="tag">Apriori</span>
+                            <span class="tag">FP-Growth</span>
+                            <span class="tag">Market Basket Analysis</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 5: Global Terrorism -->
+                <article class="school-project-card">
+                    <div class="school-project-header">
+                        <div>
+                            <span class="category">Security / Data Visualization</span>
+                            <h3>Global Terrorism Data Analysis</h3>
+                        </div>
+                        <span class="date">2022.11</span>
+                    </div>
+                    <div class="school-project-body">
+                        <p>
+                            2011-2017년 글로벌 테러리즘 데이터베이스(GTD)를 활용한 원인 분석 프로젝트.
+                            지역별 히트맵, 시계열 분석, 공격 유형별 분석을 통해
+                            테러 발생 패턴과 추세를 시각화하고 인사이트를 도출했습니다.
+                        </p>
+                        <div class="school-project-images">
+                            <img src="../assets/school/terrorism-1.png" alt="Terrorism Heatmap">
+                            <img src="../assets/school/terrorism-2.png" alt="Terrorism Analysis">
+                        </div>
+                        <div class="role-box">
+                            <h4>My Role</h4>
+                            <p>개인 100% 프로젝트 - 데이터 수집, 전처리, 분석, 시각화 전 과정 수행</p>
+                        </div>
+                        <h4>Key Results</h4>
+                        <ul class="results-list">
+                            <li>중동/북아프리카 지역 테러 발생률 60%로 최다</li>
+                            <li>2015년 8,568건으로 기간 내 최고점 기록</li>
+                            <li>폭발물/무장 공격이 전체의 70% 이상 차지</li>
+                        </ul>
+                        <div class="school-project-meta">
+                            <span class="tag">Python</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">Matplotlib</span>
+                            <span class="tag">Heatmap</span>
+                            <span class="tag">Time Series</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 6: Taxi Operations -->
+                <article class="school-project-card">
+                    <div class="school-project-header">
+                        <div>
+                            <span class="category">Transportation / Data Processing</span>
+                            <h3>Taxi Fleet Operations Data Analysis</h3>
+                        </div>
+                        <span class="date">2022.10</span>
+                    </div>
+                    <div class="school-project-body">
+                        <p>
+                            248대 택시의 운영 현황 데이터를 전처리하고 분석하는 프로젝트.
+                            이상치 제거, 날짜/시간 분리, 총 운행 시간 계산 등의 데이터 정제 작업을 수행하고,
+                            노선별/시간대별 수익 데이터를 시각화했습니다.
+                        </p>
+                        <div class="school-project-images">
+                            <img src="../assets/school/taxi-1.png" alt="Taxi Data Processing">
+                            <img src="../assets/school/taxi-2.png" alt="Taxi Analytics">
+                        </div>
+                        <div class="role-box">
+                            <h4>My Role</h4>
+                            <p>데이터 전처리 (이상치 제거, 날짜/시간 분리, 결측치 처리), 운행 시간 계산 로직 구현</p>
+                        </div>
+                        <h4>Key Results</h4>
+                        <ul class="results-list">
+                            <li>248대 택시의 일별/시간대별 운행 패턴 분석</li>
+                            <li>노선별 수익성 비교 시각화</li>
+                            <li>피크 시간대 식별 및 운영 효율화 인사이트 도출</li>
+                        </ul>
+                        <div class="school-project-meta">
+                            <span class="tag">Python</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">Data Cleaning</span>
+                            <span class="tag">Visualization</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 7: Bootstrap Ellipse -->
+                <article class="school-project-card">
+                    <div class="school-project-header">
+                        <div>
+                            <span class="category">Computer Vision / Statistical Estimation</span>
+                            <h3>Bootstrap-based Unbiased Ellipse Estimation</h3>
+                        </div>
+                        <span class="date">2023</span>
+                    </div>
+                    <div class="school-project-body">
+                        <p>
+                            컴퓨터 비전에서 타원 파라미터 추정 시 발생하는 편향을 최소화하는 논문 분석 프로젝트.
+                            부트스트랩 기법을 활용한 중앙값 기반 편향 감소(Median Bias Reduction) 방법론을
+                            분석하고 구현했습니다.
+                        </p>
+                        <div class="school-project-images">
+                            <img src="../assets/school/bootstrap-1.png" alt="Bootstrap Method">
+                            <img src="../assets/school/bootstrap-2.png" alt="Ellipse Estimation">
+                        </div>
+                        <div class="role-box">
+                            <h4>My Role</h4>
+                            <p>논문 분석 및 알고리즘 구현, 실험 결과 검증</p>
+                        </div>
+                        <h4>Key Concepts</h4>
+                        <ul class="results-list">
+                            <li>타원 파라미터 theta = (a, b, alpha, r, c) 추정</li>
+                            <li>대수적 거리 최소화 모델: f(u, theta) = u^T A u</li>
+                            <li>N=20 부트스트랩 샘플링으로 중앙값 함수 계산</li>
+                        </ul>
+                        <div class="school-project-meta">
+                            <span class="tag">Python</span>
+                            <span class="tag">Bootstrap</span>
+                            <span class="tag">Computer Vision</span>
+                            <span class="tag">Statistical Estimation</span>
+                            <span class="tag">Nonparametric Methods</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Technical Summary</h2>
+            <p>
+                위 프로젝트들을 통해 데이터 분석의 전체 파이프라인 - 데이터 수집, 전처리, 탐색적 분석,
+                모델링, 시각화, 인사이트 도출 - 을 경험했습니다.
+            </p>
+
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Analysis Methods</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Multiple Regression</span>
+                        <span class="skill-tag">PCA</span>
+                        <span class="skill-tag">K-Means Clustering</span>
+                        <span class="skill-tag">DBSCAN</span>
+                        <span class="skill-tag">Hierarchical Clustering</span>
+                        <span class="skill-tag">Association Rules</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Libraries</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Seaborn</span>
+                        <span class="skill-tag">Excel</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Domain Knowledge</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Transportation</span>
+                        <span class="skill-tag">Real Estate</span>
+                        <span class="skill-tag">Retail</span>
+                        <span class="skill-tag">Industry Analysis</span>
+                        <span class="skill-tag">Computer Vision</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>View Other Projects</h2>
+            <div class="cta-buttons">
+                <a href="codefill.html" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                    CodeFill - AI Platform
+                </a>
+                <a href="../index.html#projects" class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back to Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
