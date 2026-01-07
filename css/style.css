@@ -101,6 +101,30 @@ a {
     border-bottom: 1px solid var(--border);
 }
 
+.hero-with-photo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-photo {
+    flex-shrink: 0;
+}
+
+.hero-photo img {
+    width: 200px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
 .hero-label {
     display: inline-block;
     font-size: 12px;
@@ -758,6 +782,21 @@ tr:hover {
 @media (max-width: 768px) {
     .nav-links {
         display: none;
+    }
+
+    .hero-with-photo {
+        flex-direction: column-reverse;
+        gap: 32px;
+        text-align: center;
+    }
+
+    .hero-photo img {
+        width: 150px;
+        height: 195px;
+    }
+
+    .hero-links {
+        justify-content: center;
     }
 
     .hero h1 {

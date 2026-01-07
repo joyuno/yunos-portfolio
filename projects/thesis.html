@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduation Thesis - 강화학습 기반 포트폴리오 최적화 | Yunho Jang</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#skills">Skills</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Projects
+            </a>
+            <span class="hero-label">Undergraduate Thesis / Deep Learning</span>
+            <h1>Dual-LSTM 기반 포트폴리오 최적화 모델</h1>
+            <p class="subtitle">
+                강화학습과 딥러닝을 결합한 포트폴리오 수익-위험 최적화 연구.
+                CSI 300 지수 데이터를 활용하여 기존 MVO 모델 대비 Sharpe Ratio 2.44 달성.
+            </p>
+            <div class="project-badges">
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    May 2024
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    Fudan University
+                </span>
+                <span class="badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                    Quantitative Finance
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Abstract -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Abstract</h2>
+            <div class="info-box">
+                <h4>Research Summary</h4>
+                <p>
+                    본 연구는 현대 포트폴리오 이론(MPT)의 한계를 극복하기 위해 딥러닝 기반 예측 모델과
+                    평균-분산 최적화(MVO)를 결합한 새로운 포트폴리오 관리 프레임워크를 제안합니다.
+                    Dual-LSTM 아키텍처를 통해 수익률과 변동성을 동시에 예측하고,
+                    이를 MVO에 입력하여 동적 자산 배분을 수행합니다.
+                </p>
+            </div>
+
+            <h3>Research Background</h3>
+            <p>
+                <strong>Markowitz의 평균-분산 최적화(MVO)</strong>는 1952년 발표 이후 포트폴리오 이론의 기초가 되었습니다.
+                그러나 전통적인 MVO는 과거 데이터에 기반한 정적 추정치를 사용하므로,
+                시장 변동에 대한 적응력이 떨어지고 추정 오차에 민감하다는 한계가 있습니다.
+            </p>
+            <p>
+                본 연구는 LSTM(Long Short-Term Memory) 신경망의 시계열 패턴 학습 능력을 활용하여
+                수익률과 변동성을 동적으로 예측하고, 이를 MVO 프레임워크에 통합함으로써
+                전통적 접근법의 한계를 극복하고자 합니다.
+            </p>
+
+            <h3>Research Objectives</h3>
+            <div class="architecture-list">
+                <div class="arch-item">
+                    <div class="arch-number">1</div>
+                    <div class="arch-content">
+                        <h4>Dynamic Return & Volatility Prediction</h4>
+                        <p>Dual-LSTM 아키텍처를 통해 PRM(Predict Return Module)과 PVM(Predict Volatility Module)을 구현하여 시장의 동적 변화를 포착</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">2</div>
+                    <div class="arch-content">
+                        <h4>Risk-Adjusted Portfolio Optimization</h4>
+                        <p>예측된 수익률과 변동성을 MVO에 입력하여 위험 조정 수익률(Sharpe Ratio) 최대화</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">3</div>
+                    <div class="arch-content">
+                        <h4>Empirical Validation on CSI 300</h4>
+                        <p>중국 CSI 300 지수 구성 종목을 대상으로 실증 분석을 수행하여 모델의 실효성 검증</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Methodology</h2>
+
+            <h3>System Architecture</h3>
+            <p>
+                제안하는 프레임워크는 크게 세 가지 모듈로 구성됩니다:
+                <strong>데이터 전처리 모듈</strong>, <strong>Dual-LSTM 예측 모듈</strong>, 그리고 <strong>MVO 최적화 모듈</strong>.
+            </p>
+            <div class="code-block">
+                <div class="code-header">Framework Architecture</div>
+                <pre><code>┌─────────────────────────────────────────────────────────────────────────┐
+│                        Data Preprocessing Module                         │
+│  ┌─────────────┐   ┌─────────────────┐   ┌─────────────────────────┐   │
+│  │ Raw OHLCV   │ → │ Feature Eng.    │ → │ Sequence Generation     │   │
+│  │ Data        │   │ (Returns, Vol)  │   │ (Sliding Window: 20d)   │   │
+│  └─────────────┘   └─────────────────┘   └─────────────────────────┘   │
+├─────────────────────────────────────────────────────────────────────────┤
+│                         Dual-LSTM Prediction Module                      │
+│  ┌─────────────────────────────┐   ┌─────────────────────────────┐     │
+│  │        PRM (LSTM)           │   │        PVM (LSTM)           │     │
+│  │  Input: Price sequence      │   │  Input: Volatility seq.     │     │
+│  │  Output: Expected Return    │   │  Output: Expected Vol.      │     │
+│  │  Hidden: 64 units, 2 layers │   │  Hidden: 64 units, 2 layers │     │
+│  └─────────────────────────────┘   └─────────────────────────────┘     │
+│                    ↓                              ↓                      │
+│            μ (Expected Return)         σ² (Expected Variance)           │
+├─────────────────────────────────────────────────────────────────────────┤
+│                        MVO Optimization Module                           │
+│  ┌─────────────────────────────────────────────────────────────────┐   │
+│  │  Objective: max Sharpe Ratio = (μᵖ - rᶠ) / σᵖ                  │   │
+│  │  Subject to: Σwᵢ = 1, wᵢ ≥ 0                                   │   │
+│  │  Output: Optimal Weights w* = (w₁, w₂, ..., wₙ)                │   │
+│  └─────────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────┘</code></pre>
+            </div>
+
+            <h3>LSTM Model Architecture</h3>
+            <p>
+                LSTM은 순환 신경망(RNN)의 장기 의존성 문제를 해결하기 위해 설계된 아키텍처입니다.
+                Cell State와 Gate 메커니즘을 통해 장기간의 시계열 패턴을 효과적으로 학습합니다.
+            </p>
+            <div class="code-block">
+                <div class="code-header">LSTM Cell Equations</div>
+                <pre><code># Forget Gate: 이전 정보 중 버릴 정보 결정
+fₜ = σ(Wf · [hₜ₋₁, xₜ] + bf)
+
+# Input Gate: 새로운 정보 중 저장할 정보 결정
+iₜ = σ(Wi · [hₜ₋₁, xₜ] + bi)
+C̃ₜ = tanh(Wc · [hₜ₋₁, xₜ] + bc)
+
+# Cell State Update
+Cₜ = fₜ * Cₜ₋₁ + iₜ * C̃ₜ
+
+# Output Gate: 출력할 정보 결정
+oₜ = σ(Wo · [hₜ₋₁, xₜ] + bo)
+hₜ = oₜ * tanh(Cₜ)</code></pre>
+            </div>
+
+            <h3>Mean-Variance Optimization (MVO)</h3>
+            <p>
+                Markowitz의 MVO는 주어진 위험 수준에서 기대 수익률을 최대화하거나,
+                주어진 수익률 수준에서 위험을 최소화하는 최적 포트폴리오를 구성합니다.
+            </p>
+            <div class="code-block">
+                <div class="code-header">Optimization Formulation</div>
+                <pre><code># Portfolio Return
+μᵖ = Σ wᵢ · μᵢ = w'μ
+
+# Portfolio Variance
+σ²ᵖ = Σᵢ Σⱼ wᵢwⱼσᵢⱼ = w'Σw
+
+# Sharpe Ratio Maximization
+max   (w'μ - rf) / √(w'Σw)
+s.t.  Σwᵢ = 1 (fully invested)
+      wᵢ ≥ 0  (no short selling)
+      wᵢ ≤ 0.1 (diversification constraint)</code></pre>
+            </div>
+
+            <h3>Dual-LSTM Integration</h3>
+            <p>
+                본 연구의 핵심 기여는 수익률 예측(PRM)과 변동성 예측(PVM)을 분리된 LSTM 모듈로 구현하여
+                각각의 예측 정확도를 높이고, 이를 MVO의 입력으로 활용하는 것입니다.
+            </p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Module</th>
+                            <th>Input Features</th>
+                            <th>Output</th>
+                            <th>Loss Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>PRM</strong> (Predict Return Module)</td>
+                            <td>20-day price sequence, volume, technical indicators</td>
+                            <td>Next-day return μᵢ</td>
+                            <td>MSE Loss</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PVM</strong> (Predict Volatility Module)</td>
+                            <td>20-day return volatility, GARCH features</td>
+                            <td>Next-day volatility σᵢ</td>
+                            <td>MSE Loss</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data & Experiments -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Data & Experiments</h2>
+
+            <h3>Dataset: CSI 300 Index</h3>
+            <p>
+                중국 상하이/선전 증권거래소에 상장된 시가총액 상위 300개 종목으로 구성된 CSI 300 지수를 분석 대상으로 선정했습니다.
+                CSI 300은 중국 A주 시장의 약 60%를 대표하는 핵심 지수입니다.
+            </p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Analysis Period</td>
+                            <td>2019.01 - 2023.12 (5 years)</td>
+                        </tr>
+                        <tr>
+                            <td>Number of Stocks</td>
+                            <td>273 (after filtering)</td>
+                        </tr>
+                        <tr>
+                            <td>Total Records</td>
+                            <td>77,438</td>
+                        </tr>
+                        <tr>
+                            <td>Train / Validation / Test</td>
+                            <td>70% / 15% / 15%</td>
+                        </tr>
+                        <tr>
+                            <td>Sequence Length</td>
+                            <td>20 trading days</td>
+                        </tr>
+                        <tr>
+                            <td>Rebalancing Frequency</td>
+                            <td>Monthly</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Model Configuration</h3>
+            <div class="code-block">
+                <div class="code-header">Hyperparameters</div>
+                <pre><code># LSTM Configuration
+HIDDEN_SIZE = 64
+NUM_LAYERS = 2
+DROPOUT = 0.2
+SEQUENCE_LENGTH = 20
+
+# Training Configuration
+BATCH_SIZE = 32
+LEARNING_RATE = 0.001
+EPOCHS = 100
+OPTIMIZER = Adam
+EARLY_STOPPING_PATIENCE = 10
+
+# Portfolio Constraints
+MAX_WEIGHT = 0.10  # 개별 종목 최대 비중 10%
+MIN_STOCKS = 10    # 최소 10개 종목 보유
+RISK_FREE_RATE = 0.02  # 무위험 이자율 2%</code></pre>
+            </div>
+
+            <h3>Evaluation Metrics</h3>
+            <div class="architecture-list">
+                <div class="arch-item">
+                    <div class="arch-number">APV</div>
+                    <div class="arch-content">
+                        <h4>Accumulated Portfolio Value</h4>
+                        <p>초기 자본 대비 최종 포트폴리오 가치. 전체 투자 기간의 수익률을 나타냄.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">SR</div>
+                    <div class="arch-content">
+                        <h4>Sharpe Ratio</h4>
+                        <p>위험 조정 수익률 지표. SR = (μᵖ - rf) / σᵖ. 높을수록 위험 대비 수익이 우수함.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">MDD</div>
+                    <div class="arch-content">
+                        <h4>Maximum Drawdown</h4>
+                        <p>최고점 대비 최대 하락폭. 투자의 최악의 손실 시나리오를 측정. 낮을수록 우수.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Experimental Results</h2>
+
+            <h3>Performance Comparison</h3>
+            <p>
+                제안 모델(Dual-LSTM + MVO)을 CSI 300 벤치마크 및 기타 베이스라인 전략과 비교했습니다.
+            </p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Strategy</th>
+                            <th>APV</th>
+                            <th>Annual Return</th>
+                            <th>Sharpe Ratio</th>
+                            <th>MDD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CSI 300 Index (Benchmark)</td>
+                            <td>1.23</td>
+                            <td>4.2%</td>
+                            <td>0.31</td>
+                            <td>-34.7%</td>
+                        </tr>
+                        <tr>
+                            <td>Equal Weight Portfolio</td>
+                            <td>1.18</td>
+                            <td>3.4%</td>
+                            <td>0.24</td>
+                            <td>-38.2%</td>
+                        </tr>
+                        <tr>
+                            <td>Traditional MVO</td>
+                            <td>1.31</td>
+                            <td>5.6%</td>
+                            <td>0.42</td>
+                            <td>-29.5%</td>
+                        </tr>
+                        <tr>
+                            <td>Single LSTM + MVO</td>
+                            <td>1.58</td>
+                            <td>9.6%</td>
+                            <td>1.12</td>
+                            <td>-22.3%</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td><strong>Dual-LSTM + MVO (Ours)</strong></td>
+                            <td><strong>2.15</strong></td>
+                            <td><strong>16.5%</strong></td>
+                            <td><strong>2.44</strong></td>
+                            <td><strong>-15.8%</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <h4>Key Findings</h4>
+                <p>
+                    Dual-LSTM + MVO 모델은 CSI 300 벤치마크 대비 <strong>Sharpe Ratio 687% 개선</strong>(0.31 → 2.44),
+                    <strong>연평균 수익률 12.3%p 상승</strong>(4.2% → 16.5%), <strong>MDD 18.9%p 개선</strong>(-34.7% → -15.8%)을 달성했습니다.
+                    수익률과 변동성을 분리하여 예측한 Dual 구조가 Single LSTM 대비 2배 이상의 Sharpe Ratio 향상을 가져왔습니다.
+                </p>
+            </div>
+
+            <h3>Prediction Accuracy</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Module</th>
+                            <th>MSE</th>
+                            <th>MAE</th>
+                            <th>R²</th>
+                            <th>Directional Accuracy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PRM (Return Prediction)</td>
+                            <td>0.00043</td>
+                            <td>0.0156</td>
+                            <td>0.127</td>
+                            <td>54.3%</td>
+                        </tr>
+                        <tr>
+                            <td>PVM (Volatility Prediction)</td>
+                            <td>0.00021</td>
+                            <td>0.0098</td>
+                            <td>0.312</td>
+                            <td>61.7%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                변동성 예측(PVM)이 수익률 예측(PRM)보다 높은 정확도를 보였습니다.
+                이는 변동성의 클러스터링 특성(volatility clustering)이 LSTM 학습에 유리하기 때문입니다.
+                방향성 예측 정확도 54.3%는 랜덤(50%)보다 유의미하게 높으며,
+                이 작은 차이가 장기 투자에서 큰 수익률 차이로 이어집니다.
+            </p>
+
+            <h3>Ablation Study</h3>
+            <p>
+                각 구성 요소의 기여도를 분석하기 위한 Ablation Study를 수행했습니다.
+            </p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Variant</th>
+                            <th>Sharpe Ratio</th>
+                            <th>Δ vs Full Model</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Full Model (Dual-LSTM + MVO)</td>
+                            <td>2.44</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>w/o PVM (Only Return Prediction)</td>
+                            <td>1.12</td>
+                            <td>-54.1%</td>
+                        </tr>
+                        <tr>
+                            <td>w/o PRM (Only Volatility Prediction)</td>
+                            <td>0.87</td>
+                            <td>-64.3%</td>
+                        </tr>
+                        <tr>
+                            <td>w/o LSTM (Traditional MVO)</td>
+                            <td>0.42</td>
+                            <td>-82.8%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Deep Learning</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">LSTM</span>
+                        <span class="skill-tag">Adam Optimizer</span>
+                        <span class="skill-tag">Early Stopping</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Analysis</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Matplotlib</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Finance</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">MVO</span>
+                        <span class="skill-tag">Sharpe Ratio</span>
+                        <span class="skill-tag">CVXPY (Optimization)</span>
+                        <span class="skill-tag">yfinance</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Development</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Jupyter Notebook</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">LaTeX</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Conclusion & Key Learnings</h2>
+
+            <h3>Research Contributions</h3>
+            <ul>
+                <li><strong>Dual-LSTM Architecture</strong>: 수익률과 변동성을 분리 예측하는 이중 모듈 구조 제안. 단일 모델 대비 예측 정확도 및 포트폴리오 성과 개선.</li>
+                <li><strong>Dynamic MVO Integration</strong>: 정적 추정치 대신 LSTM 예측값을 MVO에 입력하여 시장 변화에 적응하는 동적 포트폴리오 관리 프레임워크 구현.</li>
+                <li><strong>Empirical Validation</strong>: CSI 300 실제 데이터로 5년간 백테스팅을 수행하여 실증적 효과 검증. Sharpe Ratio 2.44 달성.</li>
+            </ul>
+
+            <h3>Limitations & Future Work</h3>
+            <ul>
+                <li><strong>Transaction Costs</strong>: 현재 모델은 거래비용을 고려하지 않음. 실제 적용 시 슬리피지, 수수료 등 반영 필요.</li>
+                <li><strong>Market Regime</strong>: 강세장/약세장 전환 시점에서의 성과 분석 필요. Regime-switching 모델 통합 검토.</li>
+                <li><strong>Alternative Data</strong>: 뉴스 감성, 소셜미디어 등 대안 데이터 활용으로 예측력 향상 가능성.</li>
+                <li><strong>Reinforcement Learning</strong>: MVO 대신 RL 기반 직접 포트폴리오 최적화(Policy Gradient) 적용 연구 계획.</li>
+            </ul>
+
+            <div class="info-box">
+                <h4>Academic Information</h4>
+                <p>
+                    <strong>Title:</strong> 强化学习在投资组合风险和利益中的应用 (Application of Reinforcement Learning in Portfolio Risk and Returns)<br>
+                    <strong>University:</strong> Fudan University, School of Management<br>
+                    <strong>Major:</strong> Statistics<br>
+                    <strong>Advisor:</strong> Prof. 朱仲义<br>
+                    <strong>Date:</strong> May 2024
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>View Project</h2>
+            <div class="cta-buttons">
+                <a href="../index.html#projects" class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Back to Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

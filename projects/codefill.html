@@ -31,7 +31,7 @@
             <h1>CodeFill - AI 코딩 학습 플랫폼</h1>
             <p class="subtitle">
                 LangGraph 기반 Multi-Agent 오케스트레이션 시스템을 활용한 개인화 코딩 학습 플랫폼.
-                RAG, Collaborative Filtering, Progressive Hint System을 통합한 풀스택 AI 서비스.
+                4-Stage Pipeline, RAG Hybrid Search, Collaborative Filtering, Progressive Hint System을 통합한 풀스택 AI 서비스.
             </p>
             <div class="project-badges">
                 <span class="badge">
@@ -39,8 +39,8 @@
                     2025
                 </span>
                 <span class="badge">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    Personal Project
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    In Development
                 </span>
                 <span class="badge">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
@@ -58,14 +58,16 @@
                 <strong>CodeFill</strong>은 LLM(Large Language Model)과 Multi-Agent 아키텍처를 활용하여
                 사용자 맞춤형 코딩 문제를 제공하고 학습 과정을 지원하는 AI 기반 교육 플랫폼입니다.
                 LangGraph StateGraph를 활용한 복잡한 대화 흐름 관리와 RAG 기반 문제 검색,
-                협업 필터링 추천 시스템을 통합한 풀스택 서비스입니다.
+                협업 필터링 추천 시스템을 통합하여 개인화된 학습 경험을 제공합니다.
             </p>
 
             <div class="info-box">
-                <h4>Project Goals</h4>
+                <h4>Project Motivation</h4>
                 <p>
-                    교육 도메인에서의 AI 적용 - 소크라테스식 교수법을 적용한 점진적 힌트 시스템,
-                    사용자 학습 이력 기반 개인화 추천, Multi-Agent 협업을 통한 학습 지원 자동화 구현.
+                    기존 코딩 학습 플랫폼은 정적인 문제 제공에 그치는 경우가 많습니다.
+                    CodeFill은 <strong>소크라테스식 교수법</strong>을 적용하여 학습자가 스스로 답을 찾아가도록 유도하고,
+                    <strong>Multi-Agent 협업</strong>을 통해 다양한 학습 시나리오에 지능적으로 대응합니다.
+                    교육 도메인에서 AI의 가능성을 실험하는 프로젝트입니다.
                 </p>
             </div>
 
@@ -75,21 +77,21 @@
                     <div class="arch-number">1</div>
                     <div class="arch-content">
                         <h4>LangGraph Multi-Agent Orchestration</h4>
-                        <p>4-Stage Pipeline(Intent→Collection→Discovery→Solving)을 통한 복잡한 대화 흐름 관리. Conditional Edges 기반 동적 라우팅과 PostgreSQL 체크포인트 영속성 구현.</p>
+                        <p>4-Stage Pipeline(Intent→Collection→Discovery→Solving)을 통한 복잡한 대화 흐름 관리. Conditional Edges 기반 동적 라우팅과 PostgreSQL 체크포인트로 상태 영속성 보장.</p>
                     </div>
                 </div>
                 <div class="arch-item">
                     <div class="arch-number">2</div>
                     <div class="arch-content">
                         <h4>RAG Pipeline with Hybrid Search</h4>
-                        <p>pgvector 기반 Vector Search와 메타데이터 필터링의 Hybrid Search. Similarity threshold(0.30) 이하 시 LLM CodeGen Fallback 전략 구현.</p>
+                        <p>pgvector 기반 Vector Search와 메타데이터 필터링의 Hybrid Search. Similarity threshold(0.30) 이하 시 LLM CodeGen Fallback 전략으로 항상 관련 문제 제공.</p>
                     </div>
                 </div>
                 <div class="arch-item">
                     <div class="arch-number">3</div>
                     <div class="arch-content">
                         <h4>Collaborative Filtering Recommendation</h4>
-                        <p>Cosine Similarity(주제 선호도) + Jaccard Similarity(주제 겹침) + Temporal Decay(시간 가중치) 기반 유사 사용자 추천. A/B Testing 통합.</p>
+                        <p>Cosine Similarity(주제 선호도) + Jaccard Similarity(주제 겹침) + Temporal Decay(시간 가중치) 기반 유사 사용자 추천. Cold Start 문제 해결 전략 포함.</p>
                     </div>
                 </div>
                 <div class="arch-item">
@@ -103,37 +105,192 @@
         </div>
     </section>
 
-    <!-- Architecture -->
+    <!-- System Architecture with Images -->
     <section class="project-content-section">
         <div class="container">
             <h2>System Architecture</h2>
             <p>
-                LangGraph Orchestrator V2를 중심으로 한 계층형 아키텍처로 설계되었습니다.
+                CodeFill은 <strong>LangGraph Orchestrator V2</strong>를 중심으로 한 계층형 Multi-Agent 아키텍처로 설계되었습니다.
                 각 Agent는 독립적인 역할을 수행하며, StateGraph를 통해 유기적으로 협업합니다.
             </p>
 
-            <div class="code-block">
-                <div class="code-header">System Architecture</div>
-                <pre><code>┌─────────────────────────────────────────────────────────────────────────┐
-│                           Frontend (Next.js 14)                         │
-├─────────────────────────────────────────────────────────────────────────┤
-│                           FastAPI Backend                               │
-├─────────────────────────────────────────────────────────────────────────┤
-│                    LangGraph Orchestrator V2                            │
-│  ┌─────────────┐  ┌─────────────────┐  ┌─────────────────────────────┐ │
-│  │ Intent Tool │→ │InfoCollection   │→ │DiscoveryGraph               │ │
-│  │ (의도 분류) │  │Graph (정보수집) │  │(RAG 검색 + CodeGen)         │ │
-│  └─────────────┘  └─────────────────┘  └─────────────────────────────┘ │
-│                                              ↓                          │
-│                         ┌─────────────────────────────────────────┐    │
-│                         │ SolvingGraph (Hint/Check/Feedback)      │    │
-│                         └─────────────────────────────────────────┘    │
-├─────────────────────────────────────────────────────────────────────────┤
-│  Supabase (PostgreSQL + pgvector)  │  Judge0 Sandbox  │  OpenRouter   │
-└─────────────────────────────────────────────────────────────────────────┘</code></pre>
+            <h3>Orchestrator V2 - 전체 파이프라인</h3>
+            <p>
+                사용자 입력은 먼저 <strong>Intent Tool</strong>에서 의도를 분류한 후,
+                목적에 따라 InfoCollectionGraph, DiscoveryGraph, SolvingGraph로 라우팅됩니다.
+            </p>
+            <div class="image-block">
+                <img src="../assets/codefill/1.png" alt="Orchestrator V2 전체 파이프라인">
+                <div class="image-caption">
+                    <strong>Figure 1.</strong> Orchestrator V2 전체 파이프라인 - User Input → Intent Tool → 4-Stage Pipeline → AI Response
+                </div>
             </div>
 
-            <h3>Multi-Agent System</h3>
+            <div class="code-block">
+                <div class="code-header">Pipeline Flow</div>
+                <pre><code>User Input
+    ↓
+┌─────────────────────────────────────────────────────────────────┐
+│                        INTENT TOOL                              │
+│  - classify_intent(): category + action 추출                    │
+│  - Categories: INFO_COLLECTION, DISCOVERY, SOLVING, GENERAL     │
+└─────────────────────────────────────────────────────────────────┘
+    ↓ (route by category)
+┌──────────────────┬───────────────────┬──────────────────────────┐
+│ INFO_COLLECTION  │     DISCOVERY     │        SOLVING           │
+│  (정보 수집)      │   (문제 탐색)      │     (풀이 지원)          │
+│                  │                   │                          │
+│ InfoCollection   │   Discovery       │     Solving              │
+│ Graph            │   Graph           │     Graph                │
+└──────────────────┴───────────────────┴──────────────────────────┘
+    ↓
+AI Response</code></pre>
+            </div>
+
+            <h3>InfoCollectionGraph - 정보 수집 단계</h3>
+            <p>
+                사용자의 학습 목표, 선호 주제, 난이도, 프로그래밍 언어 등의 정보를 자연스러운 대화를 통해 수집합니다.
+                Parse Phase에서 대화 내용을 분석하고, 부족한 정보가 있으면 Question Phase로, 모든 정보가 수집되면 Complete Phase로 진행합니다.
+            </p>
+            <div class="image-block">
+                <img src="../assets/codefill/2.png" alt="InfoCollectionGraph 상세 구조">
+                <div class="image-caption">
+                    <strong>Figure 2.</strong> InfoCollectionGraph - Parse Phase → 조건부 라우팅 → Question/Complete/Confirm Phase
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Node</th>
+                            <th>Description</th>
+                            <th>Transition</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>parse_phase</strong></td>
+                            <td>대화 내용에서 topic, difficulty, language 추출</td>
+                            <td>→ route_after_parse</td>
+                        </tr>
+                        <tr>
+                            <td><strong>route_after_parse</strong></td>
+                            <td>수집된 정보 완성도에 따라 분기</td>
+                            <td>→ question / complete / confirm</td>
+                        </tr>
+                        <tr>
+                            <td><strong>question_phase</strong></td>
+                            <td>부족한 정보에 대해 사용자에게 질문 생성</td>
+                            <td>→ respond</td>
+                        </tr>
+                        <tr>
+                            <td><strong>confirm_phase</strong></td>
+                            <td>수집된 정보 요약 및 확인 요청</td>
+                            <td>→ respond</td>
+                        </tr>
+                        <tr>
+                            <td><strong>complete_phase</strong></td>
+                            <td>정보 수집 완료, DiscoveryGraph로 전환</td>
+                            <td>→ DiscoveryGraph</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>DiscoveryGraph - 문제 탐색 단계</h3>
+            <p>
+                수집된 정보를 바탕으로 RAG 시스템을 활용하여 적합한 코딩 문제를 검색합니다.
+                유사도가 임계값(0.30) 미만이면 <strong>CodeGen Agent</strong>가 새로운 문제를 즉시 생성합니다.
+            </p>
+            <div class="image-block">
+                <img src="../assets/codefill/3.png" alt="DiscoveryGraph 상세 구조">
+                <div class="image-caption">
+                    <strong>Figure 3.</strong> DiscoveryGraph - RAG Search → Similarity Check → CodeGen Fallback → 문제 선택 및 확정
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">RAG Pipeline with CodeGen Fallback</div>
+                <pre><code># Discovery Flow
+route_discovery_intent
+    ↓
+search_problems (RAG Hybrid Search)
+    ├── Vector Search (pgvector, cosine similarity)
+    ├── Metadata Filter (topic, difficulty, language)
+    └── Similarity Threshold Check (≥ 0.30)
+    ↓
+route_2 (similarity check)
+    ├── similarity ≥ 0.30 → filter_results → handle_selection
+    └── similarity < 0.30 → generate_problem (CodeGen Agent)
+                                  ↓
+                            filter_results
+                                  ↓
+                            handle_selection
+                                  ↓
+                            confirm_problem
+                                  ↓
+                            → SolvingGraph</code></pre>
+            </div>
+
+            <h3>SolvingGraph - 풀이 지원 단계</h3>
+            <p>
+                사용자가 선택한 문제를 풀이하는 과정을 지원합니다.
+                의도에 따라 <strong>Hint Agent</strong>, <strong>Check Agent</strong>, <strong>Feedback Agent</strong>가 적절히 응답합니다.
+            </p>
+            <div class="image-block">
+                <img src="../assets/codefill/4.png" alt="SolvingGraph 상세 구조">
+                <div class="image-caption">
+                    <strong>Figure 4.</strong> SolvingGraph - Intent 분류 → Hint/Check/Feedback/Summarize Agent → Response
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Agent</th>
+                            <th>Trigger Intent</th>
+                            <th>Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Hint Agent</strong></td>
+                            <td>"힌트 줘", "모르겠어"</td>
+                            <td>4단계 Progressive Hint (10% → 40% → 70% → 90%)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Check Agent</strong></td>
+                            <td>"이거 맞아?", 코드 제출</td>
+                            <td>Judge0 Sandbox 코드 실행 및 테스트 케이스 검증</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Feedback Agent</strong></td>
+                            <td>문제 완료 후</td>
+                            <td>시간/공간 복잡도, 코드 품질, 개선점 피드백</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Summarize Agent</strong></td>
+                            <td>"정리해줘", 세션 종료</td>
+                            <td>학습 내용 요약, 유사 문제 추천</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Details -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Implementation Details</h2>
+
+            <h3>Multi-Agent System Design</h3>
+            <p>
+                10개 이상의 전문화된 Agent가 각자의 역할을 수행하며,
+                LangGraph StateGraph를 통해 상태를 공유하고 협업합니다.
+            </p>
             <div class="table-wrap">
                 <table>
                     <thead>
@@ -150,93 +307,125 @@
                             <td>사용자 의도 분류 (category + action)</td>
                         </tr>
                         <tr>
+                            <td>Collection Tool</td>
+                            <td>gpt-4o-mini</td>
+                            <td>주제/난이도/언어 정보 추출</td>
+                        </tr>
+                        <tr>
+                            <td>Question Generator</td>
+                            <td>gpt-4o-mini</td>
+                            <td>부족한 정보에 대한 자연스러운 질문 생성</td>
+                        </tr>
+                        <tr>
+                            <td>RAG Search Agent</td>
+                            <td>text-embedding-3-small</td>
+                            <td>Hybrid Search (Vector + Metadata)</td>
+                        </tr>
+                        <tr>
+                            <td>CodeGen Agent</td>
+                            <td>Claude Sonnet 3.5</td>
+                            <td>RAG 실패 시 새 문제 생성 (고품질)</td>
+                        </tr>
+                        <tr>
                             <td>Hint Agent</td>
                             <td>gpt-4o-mini</td>
                             <td>4단계 점진적 힌트 생성 (소크라테스식)</td>
+                        </tr>
+                        <tr>
+                            <td>Check Agent</td>
+                            <td>gpt-4o-mini + Judge0</td>
+                            <td>코드 실행 및 테스트 케이스 검증</td>
                         </tr>
                         <tr>
                             <td>Feedback Agent</td>
                             <td>gpt-4o-mini</td>
                             <td>풀이 완료 후 맞춤형 피드백</td>
                         </tr>
-                        <tr>
-                            <td>CodeGen Agent</td>
-                            <td>Claude Sonnet</td>
-                            <td>RAG 실패 시 새 문제 생성</td>
-                        </tr>
-                        <tr>
-                            <td>Collection Tool</td>
-                            <td>gpt-4o-mini</td>
-                            <td>주제/난이도/언어 정보 추출</td>
-                        </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- Implementation -->
-    <section class="project-content-section">
-        <div class="container">
-            <h2>Implementation Details</h2>
-
-            <h3>LangGraph StateGraph Pipeline</h3>
-            <p>
-                4-Stage Pipeline을 통해 사용자 입력을 처리합니다. 각 단계는 독립적인 Graph로 구현되어
-                Conditional Edge를 통해 동적으로 라우팅됩니다.
-            </p>
-            <div class="code-block">
-                <div class="code-header">orchestrator_v2.py</div>
-                <pre><code># 4-Stage Pipeline Architecture
-Orchestrator V2
-├── Intent Classification (의도 분류)
-│   └── category: discovery | solving | general
-├── InfoCollectionGraph (정보 수집)
-│   └── topic, difficulty, language 추출
-├── DiscoveryGraph (문제 탐색)
-│   └── RAG Search → CodeGen Fallback
-└── SolvingGraph (문제 풀이 지원)
-    └── Hint | Check | Feedback</code></pre>
             </div>
 
             <h3>RAG Hybrid Search Pipeline</h3>
             <p>
                 Vector Similarity와 메타데이터 필터링을 조합한 Hybrid Search로 관련 문제를 검색합니다.
-                유사도 임계값(0.30) 미만 시 CodeGen Agent가 새 문제를 생성합니다.
+                코드 특화 임베딩을 위해 함수/클래스 구조 추출 및 청킹 전략을 적용합니다.
             </p>
             <div class="code-block">
-                <div class="code-header">rag.py</div>
-                <pre><code>Query → Embedding → Filter (topic/difficulty) → Vector Search → Rank → Results
-                                                      ↓
-                                            (similarity < 0.30)
-                                                      ↓
-                                              CodeGen Fallback
+                <div class="code-header">embedding_service.py</div>
+                <pre><code>class EmbeddingService:
+    """코드 특화 임베딩 서비스"""
 
-# Embedding Service - 코드 구조 추출 및 청킹
-class EmbeddingService:
-    async def generate_embedding(self, text: str) -> List[float]
-    def create_problem_text_for_embedding(self, problem: Dict) -> str
-    def chunk_code(self, code: str, chunk_size: int = 500) -> List[str]
-    def _extract_code_structure(self, code: str, language: str) -> str</code></pre>
+    def __init__(self):
+        self.model = "text-embedding-3-small"  # 1536 dimensions
+        self.chunk_size = 500
+        self.similarity_threshold = 0.30
+
+    async def generate_embedding(self, text: str) -> List[float]:
+        """텍스트를 벡터로 변환"""
+        response = await openai.embeddings.create(
+            model=self.model,
+            input=text
+        )
+        return response.data[0].embedding
+
+    def create_problem_text_for_embedding(self, problem: Dict) -> str:
+        """문제 정보를 임베딩용 텍스트로 변환"""
+        components = [
+            f"Title: {problem['title']}",
+            f"Topic: {problem['topic']}",
+            f"Difficulty: {problem['difficulty']}",
+            f"Description: {problem['description']}",
+            f"Solution Approach: {self._extract_code_structure(problem['solution'])}"
+        ]
+        return "\n".join(components)
+
+    def _extract_code_structure(self, code: str, language: str) -> str:
+        """코드에서 함수/클래스 구조 추출 (시그니처 기반)"""
+        if language == "python":
+            # def, class 패턴 추출
+            patterns = re.findall(r'(def \w+\([^)]*\)|class \w+)', code)
+        elif language == "javascript":
+            patterns = re.findall(r'(function \w+\([^)]*\)|const \w+ = )', code)
+        return " ".join(patterns)</code></pre>
             </div>
 
             <h3>Collaborative Filtering</h3>
             <p>
                 유사 사용자 기반 추천 시스템으로 개인화된 문제 추천을 제공합니다.
-                A/B Testing을 통해 알고리즘 성능을 비교합니다.
+                Cold Start 문제 해결을 위해 인기도 기반 Fallback과 A/B Testing을 통합했습니다.
             </p>
             <div class="code-block">
                 <div class="code-header">collaborative_filtering.py</div>
                 <pre><code># 유사도 계산 알고리즘
-Final Score = (
-    Cosine Similarity (topic preferences) × 0.40 +
-    Jaccard Similarity (topic overlap)    × 0.20 +
-    Metadata Matching (goal/level)        × 0.30 +
-    Activity Weight (interaction count)   × 0.10
-)
+def calculate_user_similarity(user_a: UserProfile, user_b: UserProfile) -> float:
+    """
+    복합 유사도 점수 계산
+    - Cosine: 주제 선호도 벡터 유사도
+    - Jaccard: 풀이한 문제 집합 겹침
+    - Metadata: 목표/레벨 일치도
+    - Activity: 상호작용 빈도
+    """
+    cosine_sim = cosine_similarity(
+        user_a.topic_preferences,
+        user_b.topic_preferences
+    )  # 0.40 weight
 
-# Temporal Decay: 최근 상호작용에 높은 가중치 (지수 감쇠)
-# Diversity Sampling: Top-N에서 가중치 랜덤 샘플링</code></pre>
+    jaccard_sim = len(user_a.solved & user_b.solved) / \
+                  len(user_a.solved | user_b.solved)  # 0.20 weight
+
+    metadata_sim = compute_metadata_match(user_a, user_b)  # 0.30 weight
+
+    activity_weight = min(user_b.interaction_count / 100, 1.0)  # 0.10 weight
+
+    # Temporal Decay: 최근 활동에 높은 가중치
+    recency_factor = exp(-0.1 * days_since_last_activity)
+
+    return (
+        0.40 * cosine_sim +
+        0.20 * jaccard_sim +
+        0.30 * metadata_sim +
+        0.10 * activity_weight
+    ) * recency_factor</code></pre>
             </div>
 
             <h3>Progressive Hint System</h3>
@@ -246,10 +435,46 @@ Final Score = (
             </p>
             <div class="code-block">
                 <div class="code-header">hint_agent.py</div>
-                <pre><code>Level 1: 방향 힌트     (10-20% 공개) - "어떤 자료구조를 생각해보세요"
-Level 2: 접근법 힌트   (30-40% 공개) - "해시맵을 활용해보세요"
-Level 3: 구체적 힌트   (50-70% 공개) - 의사코드 수준 설명
-Level 4: 최종 힌트     (80-90% 공개) - 핵심 코드 일부 제공</code></pre>
+                <pre><code>class HintAgent:
+    """소크라테스식 점진적 힌트 에이전트"""
+
+    HINT_LEVELS = {
+        1: {
+            "disclosure": 0.10,  # 10-20% 공개
+            "style": "방향 제시",
+            "example": "어떤 자료구조를 사용하면 좋을까요?"
+        },
+        2: {
+            "disclosure": 0.40,  # 30-40% 공개
+            "style": "접근법 제시",
+            "example": "해시맵을 활용하면 O(n)에 해결할 수 있어요."
+        },
+        3: {
+            "disclosure": 0.70,  # 50-70% 공개
+            "style": "의사코드 수준",
+            "example": "for each num: if (target - num) in hashmap..."
+        },
+        4: {
+            "disclosure": 0.90,  # 80-90% 공개
+            "style": "핵심 코드",
+            "example": "거의 정답에 가까운 코드 스니펫 제공"
+        }
+    }
+
+    async def generate_hint(self, problem: Problem, level: int,
+                           user_attempts: List[str]) -> str:
+        """현재 레벨에 맞는 힌트 생성"""
+        prompt = f"""
+        문제: {problem.description}
+        정답 접근법: {problem.solution_approach}
+        사용자 시도 내용: {user_attempts}
+        현재 힌트 레벨: {level} ({self.HINT_LEVELS[level]['style']})
+        공개 비율: {self.HINT_LEVELS[level]['disclosure']}
+
+        소크라테스식으로 질문을 유도하며,
+        직접적인 답을 주지 않고 사고를 자극하는 힌트를 생성하세요.
+        """
+        return await self.llm.generate(prompt)</code></pre>
             </div>
         </div>
     </section>
@@ -276,6 +501,7 @@ Level 4: 최종 힌트     (80-90% 공개) - 핵심 코드 일부 제공</code><
                         <span class="skill-tag">FastAPI</span>
                         <span class="skill-tag">Judge0 Sandbox</span>
                         <span class="skill-tag">JWT Auth</span>
+                        <span class="skill-tag">WebSocket</span>
                     </div>
                 </div>
                 <div class="skill-category">
@@ -284,7 +510,7 @@ Level 4: 최종 힌트     (80-90% 공개) - 핵심 코드 일부 제공</code><
                         <span class="skill-tag">Supabase</span>
                         <span class="skill-tag">PostgreSQL</span>
                         <span class="skill-tag">pgvector</span>
-                        <span class="skill-tag">text-embedding-3-small</span>
+                        <span class="skill-tag">Redis (Cache)</span>
                     </div>
                 </div>
                 <div class="skill-category">
@@ -311,11 +537,11 @@ Level 4: 최종 힌트     (80-90% 공개) - 핵심 코드 일부 제공</code><
                     <tbody>
                         <tr>
                             <td>LangGraph Graphs</td>
-                            <td>4 (Intent, Collection, Discovery, Solving)</td>
+                            <td>4 (Orchestrator, InfoCollection, Discovery, Solving)</td>
                         </tr>
                         <tr>
                             <td>LLM Agents</td>
-                            <td>10+ (Hint, Feedback, CodeGen, etc.)</td>
+                            <td>10+ (Intent, Collection, Hint, Check, Feedback, CodeGen...)</td>
                         </tr>
                         <tr>
                             <td>Problem Types</td>
@@ -327,7 +553,11 @@ Level 4: 최종 힌트     (80-90% 공개) - 핵심 코드 일부 제공</code><
                         </tr>
                         <tr>
                             <td>Similarity Threshold</td>
-                            <td>0.30 (CodeGen fallback)</td>
+                            <td>0.30 (CodeGen fallback trigger)</td>
+                        </tr>
+                        <tr>
+                            <td>Hint Levels</td>
+                            <td>4 (10% → 40% → 70% → 90% disclosure)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -335,22 +565,51 @@ Level 4: 최종 힌트     (80-90% 공개) - 핵심 코드 일부 제공</code><
         </div>
     </section>
 
-    <!-- Learnings -->
+    <!-- Key Learnings -->
     <section class="project-content-section">
         <div class="container">
-            <h2>Key Learnings</h2>
+            <h2>Key Learnings & Challenges</h2>
+
+            <h3>Technical Achievements</h3>
             <ul>
-                <li><strong>Multi-Agent Orchestration</strong>: LangGraph StateGraph를 활용한 복잡한 대화 흐름 설계, Conditional Edge 기반 동적 라우팅</li>
-                <li><strong>RAG System</strong>: Hybrid Search(Vector + Filter) 구현, 코드 특화 임베딩 전략(구조 추출, 청킹), Fallback 전략</li>
-                <li><strong>Recommendation System</strong>: 협업 필터링과 콘텐츠 기반 추천의 하이브리드, Cold Start 문제 해결, A/B Testing 통합</li>
-                <li><strong>Education Domain</strong>: 소크라테스식 힌트 시스템 설계, 학습자 수준 맞춤 점진적 공개, 게이미피케이션</li>
+                <li><strong>Multi-Agent Orchestration</strong>: LangGraph StateGraph를 활용한 복잡한 대화 흐름 설계. Conditional Edge 기반 동적 라우팅으로 사용자 의도에 맞는 Agent 자동 선택.</li>
+                <li><strong>RAG System</strong>: Hybrid Search(Vector + Metadata Filter) 구현. 코드 특화 임베딩 전략(함수 시그니처 추출, 청킹)으로 검색 정확도 향상.</li>
+                <li><strong>Fallback Strategy</strong>: RAG 검색 실패 시 CodeGen Agent가 Claude Sonnet을 활용해 고품질 문제 즉시 생성. 서비스 연속성 보장.</li>
+                <li><strong>Recommendation System</strong>: 협업 필터링과 콘텐츠 기반 추천의 하이브리드. Cold Start 해결을 위한 인기도 기반 Fallback.</li>
             </ul>
+
+            <h3>Challenges & Solutions</h3>
+            <div class="architecture-list">
+                <div class="arch-item">
+                    <div class="arch-number">!</div>
+                    <div class="arch-content">
+                        <h4>Challenge: 복잡한 대화 상태 관리</h4>
+                        <p>Solution: LangGraph StateGraph + PostgreSQL Checkpoint로 대화 상태 영속화. 세션 복원 및 멀티턴 대화 지원.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">!</div>
+                    <div class="arch-content">
+                        <h4>Challenge: 코드 실행 보안</h4>
+                        <p>Solution: Judge0 Sandbox 격리 환경에서 코드 실행. 시간/메모리 제한으로 악의적 코드 방지.</p>
+                    </div>
+                </div>
+                <div class="arch-item">
+                    <div class="arch-number">!</div>
+                    <div class="arch-content">
+                        <h4>Challenge: LLM 응답 일관성</h4>
+                        <p>Solution: Structured Output(Pydantic), Few-shot Prompting, 후처리 Validation으로 응답 품질 보장.</p>
+                    </div>
+                </div>
+            </div>
 
             <div class="info-box">
                 <h4>Future Improvements</h4>
                 <p>
-                    Agentic RAG(자율적 검색 및 재검색), Multi-Modal(이미지/다이어그램 기반 문제),
-                    Real-time Collaboration(실시간 코드 리뷰), Advanced Analytics(학습 경로 최적화) 구현 예정.
+                    <strong>Agentic RAG</strong>: 검색 결과 평가 후 자율적 재검색 수행<br>
+                    <strong>Multi-Modal</strong>: 이미지/다이어그램 기반 문제 지원<br>
+                    <strong>Real-time Collaboration</strong>: 실시간 페어 프로그래밍/코드 리뷰<br>
+                    <strong>Advanced Analytics</strong>: 학습 경로 최적화, 취약점 분석 대시보드
                 </p>
             </div>
         </div>
