@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Editor</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Top Toolbar */
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .toolbar-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .toolbar-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .toolbar-title span { color: #4dabf7; }
+
+        .file-select {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid #4dabf7;
+            background: transparent;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .file-select:hover { background: rgba(77, 171, 247, 0.1); }
+
+        .toolbar-right {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary {
+            background: #374151;
+            color: white;
+        }
+
+        .btn-secondary:hover { background: #4b5563; }
+
+        .btn-primary {
+            background: #4dabf7;
+            color: white;
+        }
+
+        .btn-primary:hover { background: #339af0; }
+
+        .btn-success {
+            background: #40c057;
+            color: white;
+        }
+
+        .btn-success:hover { background: #37b24d; }
+
+        /* Edit Mode Toggle */
+        .edit-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: #374151;
+            border-radius: 13px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.active { background: #4dabf7; }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active::after { transform: translateX(24px); }
+
+        /* Main Content */
+        .main {
+            margin-top: 60px;
+            display: flex;
+            min-height: calc(100vh - 60px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid #e5e7eb;
+            padding: 20px;
+            position: fixed;
+            top: 60px;
+            bottom: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #6b7280;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .page-list {
+            list-style: none;
+        }
+
+        .page-item {
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 4px;
+            font-size: 14px;
+            color: #374151;
+            transition: all 0.2s;
+        }
+
+        .page-item:hover { background: #f3f4f6; }
+        .page-item.active { background: #dbeafe; color: #1d4ed8; font-weight: 500; }
+
+        .page-item span {
+            display: block;
+            font-size: 11px;
+            color: #9ca3af;
+            margin-top: 2px;
+        }
+
+        /* Preview Area */
+        .preview-area {
+            flex: 1;
+            margin-left: 280px;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+
+        .preview-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .preview-frame {
+            width: 100%;
+            min-height: 800px;
+            border: none;
+        }
+
+        /* Editable Styles */
+        .editing [contenteditable="true"] {
+            outline: 2px dashed #4dabf7 !important;
+            outline-offset: 2px;
+            background: rgba(77, 171, 247, 0.05) !important;
+            cursor: text;
+        }
+
+        .editing [contenteditable="true"]:focus {
+            outline: 2px solid #4dabf7 !important;
+            background: rgba(77, 171, 247, 0.1) !important;
+        }
+
+        .editing [contenteditable="true"]:hover {
+            background: rgba(77, 171, 247, 0.08) !important;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 16px 24px;
+            background: #1a1a2e;
+            color: white;
+            border-radius: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success { border-left: 4px solid #40c057; }
+        .toast.info { border-left: 4px solid #4dabf7; }
+
+        /* Instructions Panel */
+        .instructions {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #92400e;
+        }
+
+        .instructions h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #b45309;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+        }
+
+        .instructions li { margin-bottom: 4px; }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal h2 {
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .modal p {
+            color: #6b7280;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <div class="toolbar-left">
+            <div class="toolbar-title">Portfolio <span>Editor</span></div>
+            <select class="file-select" id="fileSelect">
+                <option value="index.html">index.html (메인)</option>
+                <option value="projects/adbias.html">ADBIAS</option>
+                <option value="projects/aiiv.html">AIIV</option>
+                <option value="projects/talet.html">Talet</option>
+                <option value="projects/lguplus-intern.html">LG U+</option>
+                <option value="projects/moviemania.html">MovieMania</option>
+            </select>
+        </div>
+        <div class="toolbar-right">
+            <div class="edit-toggle">
+                <span>편집 모드</span>
+                <div class="toggle-switch" id="editToggle"></div>
+            </div>
+            <button class="btn btn-secondary" onclick="resetChanges()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                초기화
+            </button>
+            <button class="btn btn-primary" onclick="downloadHTML()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                다운로드
+            </button>
+            <button class="btn btn-success" onclick="saveToFile()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                저장
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="instructions">
+                <h4>사용 방법</h4>
+                <ul>
+                    <li>편집 모드를 켜면 텍스트 클릭해서 수정 가능</li>
+                    <li>파란 점선이 표시된 영역이 편집 가능한 부분</li>
+                    <li>수정 후 "저장" 또는 "다운로드" 클릭</li>
+                </ul>
+            </div>
+
+            <h3>페이지 목록</h3>
+            <ul class="page-list" id="pageList">
+                <li class="page-item active" data-file="index.html">
+                    메인 페이지
+                    <span>index.html</span>
+                </li>
+                <li class="page-item" data-file="projects/adbias.html">
+                    ADBIAS
+                    <span>AI Research</span>
+                </li>
+                <li class="page-item" data-file="projects/aiiv.html">
+                    AIIV
+                    <span>AI Mock Interview</span>
+                </li>
+                <li class="page-item" data-file="projects/talet.html">
+                    Talet
+                    <span>Voice Cloning</span>
+                </li>
+                <li class="page-item" data-file="projects/lguplus-intern.html">
+                    LG U+ Automation
+                    <span>Internship</span>
+                </li>
+                <li class="page-item" data-file="projects/moviemania.html">
+                    MovieMania
+                    <span>Web Development</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Preview Area -->
+        <div class="preview-area">
+            <div class="preview-container">
+                <iframe id="previewFrame" class="preview-frame"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span id="toastMessage">저장되었습니다</span>
+    </div>
+
+    <!-- Save Modal -->
+    <div class="modal-overlay" id="saveModal">
+        <div class="modal">
+            <h2>변경사항 저장</h2>
+            <p>현재 편집한 내용을 저장하시겠습니까? 저장하면 원본 파일이 수정됩니다.</p>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" onclick="closeModal()">취소</button>
+                <button class="btn btn-success" onclick="confirmSave()">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentFile = 'index.html';
+        let isEditMode = false;
+        let originalContent = '';
+        let modifiedContent = {};
+
+        const frame = document.getElementById('previewFrame');
+        const editToggle = document.getElementById('editToggle');
+        const fileSelect = document.getElementById('fileSelect');
+        const pageList = document.getElementById('pageList');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFile(currentFile);
+        });
+
+        // Load file into iframe
+        function loadFile(filename) {
+            currentFile = filename;
+
+            // Update UI
+            fileSelect.value = filename;
+            document.querySelectorAll('.page-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.file === filename);
+            });
+
+            // Load content
+            fetch(filename)
+                .then(res => res.text())
+                .then(html => {
+                    originalContent = html;
+
+                    // Check if we have modified content
+                    if (modifiedContent[filename]) {
+                        html = modifiedContent[filename];
+                    }
+
+                    renderContent(html);
+                })
+                .catch(err => {
+                    console.error('Error loading file:', err);
+                    showToast('파일을 불러올 수 없습니다', 'error');
+                });
+        }
+
+        // Render content in iframe
+        function renderContent(html) {
+            const doc = frame.contentDocument || frame.contentWindow.document;
+
+            // Add editing styles if edit mode is on
+            if (isEditMode) {
+                html = makeEditable(html);
+            }
+
+            doc.open();
+            doc.write(html);
+            doc.close();
+
+            // Add edit mode class
+            if (isEditMode) {
+                doc.body.classList.add('editing');
+                setupEditableElements(doc);
+            }
+        }
+
+        // Make text elements editable
+        function makeEditable(html) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+
+            // Elements to make editable
+            const selectors = [
+                'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                'p', 'span', 'li', 'td', 'th',
+                '.hero-label', '.hero-subtitle', '.subtitle',
+                '.project-type', '.project-period', '.tech-badge', '.skill-tag',
+                '.info-value', '.badge', '.image-caption'
+            ];
+
+            selectors.forEach(selector => {
+                doc.querySelectorAll(selector).forEach(el => {
+                    // Don't make nav links or buttons editable
+                    if (!el.closest('nav') && !el.closest('.nav') &&
+                        !el.closest('a.btn') && !el.closest('button') &&
+                        !el.querySelector('a') && !el.querySelector('svg')) {
+                        el.setAttribute('contenteditable', 'true');
+                    }
+                });
+            });
+
+            // Add editing styles
+            const style = doc.createElement('style');
+            style.textContent = `
+                .editing [contenteditable="true"] {
+                    outline: 2px dashed #4dabf7 !important;
+                    outline-offset: 2px;
+                    background: rgba(77, 171, 247, 0.05) !important;
+                    cursor: text;
+                    min-height: 1em;
+                }
+                .editing [contenteditable="true"]:focus {
+                    outline: 2px solid #4dabf7 !important;
+                    background: rgba(77, 171, 247, 0.1) !important;
+                }
+                .editing [contenteditable="true"]:hover {
+                    background: rgba(77, 171, 247, 0.08) !important;
+                }
+            `;
+            doc.head.appendChild(style);
+
+            return doc.documentElement.outerHTML;
+        }
+
+        // Setup editable elements event listeners
+        function setupEditableElements(doc) {
+            doc.querySelectorAll('[contenteditable="true"]').forEach(el => {
+                el.addEventListener('input', () => {
+                    // Store modified content
+                    modifiedContent[currentFile] = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
+                });
+
+                el.addEventListener('keydown', (e) => {
+                    // Prevent Enter from creating new elements in some cases
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        const tagName = el.tagName.toLowerCase();
+                        if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span'].includes(tagName)) {
+                            e.preventDefault();
+                        }
+                    }
+                });
+            });
+        }
+
+        // Toggle edit mode
+        editToggle.addEventListener('click', () => {
+            isEditMode = !isEditMode;
+            editToggle.classList.toggle('active', isEditMode);
+
+            // Reload with edit mode
+            const doc = frame.contentDocument || frame.contentWindow.document;
+            let html = modifiedContent[currentFile] || originalContent;
+            renderContent(html);
+
+            showToast(isEditMode ? '편집 모드 활성화' : '편집 모드 비활성화', 'info');
+        });
+
+        // File select change
+        fileSelect.addEventListener('change', (e) => {
+            loadFile(e.target.value);
+        });
+
+        // Page list click
+        pageList.addEventListener('click', (e) => {
+            const item = e.target.closest('.page-item');
+            if (item) {
+                loadFile(item.dataset.file);
+            }
+        });
+
+        // Reset changes
+        function resetChanges() {
+            if (confirm('현재 페이지의 변경사항을 모두 취소하시겠습니까?')) {
+                delete modifiedContent[currentFile];
+                renderContent(originalContent);
+                showToast('변경사항이 초기화되었습니다', 'info');
+            }
+        }
+
+        // Download HTML
+        function downloadHTML() {
+            const doc = frame.contentDocument || frame.contentWindow.document;
+
+            // Remove editing attributes
+            const clone = doc.cloneNode(true);
+            clone.querySelectorAll('[contenteditable]').forEach(el => {
+                el.removeAttribute('contenteditable');
+            });
+            clone.body.classList.remove('editing');
+
+            // Remove editing styles
+            clone.querySelectorAll('style').forEach(style => {
+                if (style.textContent.includes('contenteditable')) {
+                    style.remove();
+                }
+            });
+
+            const html = '<!DOCTYPE html>\n' + clone.documentElement.outerHTML;
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = currentFile.split('/').pop();
+            a.click();
+
+            URL.revokeObjectURL(url);
+            showToast('파일이 다운로드되었습니다', 'success');
+        }
+
+        // Save to file (show modal)
+        function saveToFile() {
+            document.getElementById('saveModal').classList.add('show');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('saveModal').classList.remove('show');
+        }
+
+        // Confirm save
+        function confirmSave() {
+            closeModal();
+
+            const doc = frame.contentDocument || frame.contentWindow.document;
+
+            // Remove editing attributes
+            const clone = doc.cloneNode(true);
+            clone.querySelectorAll('[contenteditable]').forEach(el => {
+                el.removeAttribute('contenteditable');
+            });
+            clone.body.classList.remove('editing');
+
+            // Remove editing styles
+            clone.querySelectorAll('style').forEach(style => {
+                if (style.textContent.includes('contenteditable')) {
+                    style.remove();
+                }
+            });
+
+            const html = '<!DOCTYPE html>\n' + clone.documentElement.outerHTML;
+
+            // Since we can't directly save to file system from browser,
+            // we'll download and show instructions
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = currentFile.split('/').pop();
+            a.click();
+
+            URL.revokeObjectURL(url);
+
+            showToast('파일이 다운로드되었습니다. 원본 파일을 교체해주세요.', 'success');
+        }
+
+        // Show toast
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+
+            toast.className = 'toast ' + type;
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
