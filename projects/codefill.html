@@ -50,6 +50,27 @@
         </div>
     </section>
 
+    <!-- UI Screenshots -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Service UI</h2>
+            <div class="image-grid">
+                <div class="image-block full-width">
+                    <img src="../assets/codefill/ui-full.png" alt="CodeFill 전체 UI">
+                    <div class="image-caption">전체 UI - 문제 설명, 코드 편집기, AI 코딩 튜터</div>
+                </div>
+                <div class="image-block">
+                    <img src="../assets/codefill/ui-practice.png" alt="CodeFill 빈칸 채우기">
+                    <div class="image-caption">빈칸 채우기 - 코드 완성 연습</div>
+                </div>
+                <div class="image-block">
+                    <img src="../assets/codefill/architecture.png" alt="CodeFill LLM 아키텍처">
+                    <div class="image-caption">LLM Workflow Architecture</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Overview -->
     <section class="project-content-section">
         <div class="container">
@@ -126,27 +147,6 @@
                 </div>
             </div>
 
-            <div class="code-block">
-                <div class="code-header">Pipeline Flow</div>
-                <pre><code>User Input
-    ↓
-┌─────────────────────────────────────────────────────────────────┐
-│                        INTENT TOOL                              │
-│  - classify_intent(): category + action 추출                    │
-│  - Categories: INFO_COLLECTION, DISCOVERY, SOLVING, GENERAL     │
-└─────────────────────────────────────────────────────────────────┘
-    ↓ (route by category)
-┌──────────────────┬───────────────────┬──────────────────────────┐
-│ INFO_COLLECTION  │     DISCOVERY     │        SOLVING           │
-│  (정보 수집)      │   (문제 탐색)      │     (풀이 지원)          │
-│                  │                   │                          │
-│ InfoCollection   │   Discovery       │     Solving              │
-│ Graph            │   Graph           │     Graph                │
-└──────────────────┴───────────────────┴──────────────────────────┘
-    ↓
-AI Response</code></pre>
-            </div>
-
             <h3>InfoCollectionGraph - 정보 수집 단계</h3>
             <p>
                 사용자의 학습 목표, 선호 주제, 난이도, 프로그래밍 언어 등의 정보를 자연스러운 대화를 통해 수집합니다.
@@ -208,29 +208,6 @@ AI Response</code></pre>
                 <div class="image-caption">
                     <strong>Figure 3.</strong> DiscoveryGraph - RAG Search → Similarity Check → CodeGen Fallback → 문제 선택 및 확정
                 </div>
-            </div>
-
-            <div class="code-block">
-                <div class="code-header">RAG Pipeline with CodeGen Fallback</div>
-                <pre><code># Discovery Flow
-route_discovery_intent
-    ↓
-search_problems (RAG Hybrid Search)
-    ├── Vector Search (pgvector, cosine similarity)
-    ├── Metadata Filter (topic, difficulty, language)
-    └── Similarity Threshold Check (≥ 0.30)
-    ↓
-route_2 (similarity check)
-    ├── similarity ≥ 0.30 → filter_results → handle_selection
-    └── similarity < 0.30 → generate_problem (CodeGen Agent)
-                                  ↓
-                            filter_results
-                                  ↓
-                            handle_selection
-                                  ↓
-                            confirm_problem
-                                  ↓
-                            → SolvingGraph</code></pre>
             </div>
 
             <h3>SolvingGraph - 풀이 지원 단계</h3>
