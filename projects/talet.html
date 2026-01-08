@@ -51,6 +51,31 @@
         </div>
     </section>
 
+    <!-- UI/UX Design -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>UI/UX Design (Figma)</h2>
+            <div class="screenshot-gallery">
+                <figure class="screenshot-item">
+                    <img src="../assets/talet/mypage-flow.png" alt="Talet 마이페이지 플로우">
+                    <figcaption>마이페이지 - 프로필 설정, 목소리 관리, 유저 책장</figcaption>
+                </figure>
+                <figure class="screenshot-item">
+                    <img src="../assets/talet/voice-cloning-flow.png" alt="Talet 보이스클로닝 플로우">
+                    <figcaption>보이스클로닝 - AI 목소리 복제 전체 플로우</figcaption>
+                </figure>
+                <figure class="screenshot-item">
+                    <img src="../assets/talet/home-flow.png" alt="Talet 홈 화면">
+                    <figcaption>홈 - 인기 전래동화 목록 및 책장 UI</figcaption>
+                </figure>
+                <figure class="screenshot-item">
+                    <img src="../assets/talet/story-play.png" alt="Talet 동화 플레이">
+                    <figcaption>동화 플레이 - 견우와 직녀 낭독 화면</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
     <!-- My Role -->
     <section class="project-content-section">
         <div class="container">
@@ -79,38 +104,43 @@
             <h2>Technical Implementation</h2>
 
             <h3>1. Data Pipeline</h3>
-            <div class="code-block">
-                <div class="code-header">AIHub Foreign Korean Speech Dataset Processing</div>
-                <pre><code>Dataset: AIHub 외국인 한국어 발화 데이터
-- 국가별 분류: 중국, 영어권, 일본, 태국, 베트남
-- 총 데이터: 각 국가별 수천 시간 음성 데이터
-- 전처리: 16kHz WAV 변환, 노이즈 제거, 발화 구간 분할
-
-Processing Pipeline:
-Raw Audio → Noise Reduction → VAD Segmentation → Quality Filter → Training Set
-    ↓                              ↓                    ↓
-  16kHz Resample           Silent Removal        SNR > 15dB only</code></pre>
+            <div class="info-box">
+                <h4>AIHub Foreign Korean Speech Dataset</h4>
+                <p>
+                    <strong>데이터셋</strong>: AIHub 외국인 한국어 발화 데이터<br>
+                    <strong>국가별 분류</strong>: 중국, 영어권, 일본, 태국, 베트남<br>
+                    <strong>전처리</strong>: 16kHz WAV 변환, 노이즈 제거, VAD 기반 발화 구간 분할<br>
+                    <strong>품질 필터</strong>: SNR 15dB 이상만 학습에 사용
+                </p>
             </div>
 
             <h3>2. XTTS v2 Fine-tuning</h3>
-            <div class="code-block">
-                <div class="code-header">Multi-Language Model Training</div>
-                <pre><code>Base Model: Coqui XTTS v2 (Zero-shot Voice Cloning TTS)
-
-Fine-tuned Models:
-├── chinese/     → 중국인 억양 한국어
-├── english/     → 영어권 억양 한국어
-├── japanese/    → 일본인 억양 한국어
-├── thai/        → 태국인 억양 한국어
-├── vietnamese/  → 베트남인 억양 한국어
-└── original/    → 한국어 원본 (baseline)
-
-Training Config:
-- Batch Size: 16
-- Learning Rate: 1e-5 (with warmup)
-- GPT Layers: 30
-- Audio Token Max: 604
-- Text Token Max: 402</code></pre>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Target Accent</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>chinese/</code></td><td>중국인 억양</td><td>중국어 모국어 화자의 한국어</td></tr>
+                        <tr><td><code>english/</code></td><td>영어권 억양</td><td>영어권 화자의 한국어</td></tr>
+                        <tr><td><code>japanese/</code></td><td>일본인 억양</td><td>일본어 모국어 화자의 한국어</td></tr>
+                        <tr><td><code>thai/</code></td><td>태국인 억양</td><td>태국어 모국어 화자의 한국어</td></tr>
+                        <tr><td><code>vietnamese/</code></td><td>베트남인 억양</td><td>베트남어 모국어 화자의 한국어</td></tr>
+                        <tr><td><code>original/</code></td><td>한국어 원본</td><td>Baseline 모델</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box">
+                <h4>Training Configuration</h4>
+                <p>
+                    <strong>Base Model</strong>: Coqui XTTS v2 (Zero-shot Voice Cloning)<br>
+                    <strong>Batch Size</strong>: 16 | <strong>Learning Rate</strong>: 1e-5 (warmup)<br>
+                    <strong>GPT Layers</strong>: 30 | <strong>Audio Token</strong>: 604 | <strong>Text Token</strong>: 402
+                </p>
             </div>
 
             <h3>3. TTS Service Architecture</h3>
