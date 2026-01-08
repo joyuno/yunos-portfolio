@@ -137,54 +137,94 @@ const animateStats = () => {
 window.addEventListener('scroll', animateStats);
 window.addEventListener('load', animateStats);
 
-// ===== Image Gallery Lightbox (Simple Version) =====
-const galleryItems = document.querySelectorAll('.gallery-item img');
+// ===== Image Gallery Lightbox =====
+const lightboxImages = document.querySelectorAll('.gallery-item img, .screenshot-item img, .school-project-images img, .lightbox-img, .image-block img');
 
-galleryItems.forEach(img => {
-    img.style.cursor = 'pointer';
+lightboxImages.forEach(img => {
+    img.style.cursor = 'zoom-in';
 
     img.addEventListener('click', function() {
         const overlay = document.createElement('div');
+        overlay.className = 'lightbox-overlay';
         overlay.style.cssText = `
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            cursor: pointer;
+            cursor: zoom-out;
             padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         `;
 
         const enlargedImg = document.createElement('img');
         enlargedImg.src = this.src;
+        enlargedImg.alt = this.alt;
         enlargedImg.style.cssText = `
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 95%;
+            max-height: 95%;
             border-radius: 8px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
         `;
 
+        // Close button
+        const closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '&times;';
+        closeBtn.style.cssText = `
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        `;
+        closeBtn.onmouseover = () => closeBtn.style.opacity = '1';
+        closeBtn.onmouseout = () => closeBtn.style.opacity = '0.7';
+
         overlay.appendChild(enlargedImg);
+        overlay.appendChild(closeBtn);
         document.body.appendChild(overlay);
+
+        // Animate in
+        requestAnimationFrame(() => {
+            overlay.style.opacity = '1';
+            enlargedImg.style.transform = 'scale(1)';
+        });
 
         // Prevent body scroll
         document.body.style.overflow = 'hidden';
 
-        overlay.addEventListener('click', () => {
-            overlay.remove();
-            document.body.style.overflow = '';
+        const closeOverlay = () => {
+            overlay.style.opacity = '0';
+            enlargedImg.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                overlay.remove();
+                document.body.style.overflow = '';
+            }, 300);
+        };
+
+        overlay.addEventListener('click', closeOverlay);
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeOverlay();
         });
 
         // Close on ESC key
         const closeOnEsc = (e) => {
             if (e.key === 'Escape') {
-                overlay.remove();
-                document.body.style.overflow = '';
+                closeOverlay();
                 document.removeEventListener('keydown', closeOnEsc);
             }
         };
