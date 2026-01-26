@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeFill Architecture - Full System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            min-height: 100vh;
+            padding: 40px;
+            color: #fff;
+        }
+        .diagram {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.02);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .title h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4ade80, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .title p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .architecture {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .layer {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .layer-label {
+            width: 120px;
+            text-align: right;
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .layer-content {
+            flex: 1;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .box:hover {
+            transform: translateY(-2px);
+        }
+
+        .box-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        /* Frontend */
+        .frontend {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        .frontend .box-icon { background: rgba(59, 130, 246, 0.3); }
+
+        /* Backend */
+        .backend {
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(74, 222, 128, 0.1));
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+        .backend .box-icon { background: rgba(74, 222, 128, 0.3); }
+
+        /* AI/LLM */
+        .ai {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(168, 85, 247, 0.1));
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+        .ai .box-icon { background: rgba(168, 85, 247, 0.3); }
+
+        /* Database */
+        .db {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(251, 191, 36, 0.1));
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        .db .box-icon { background: rgba(251, 191, 36, 0.3); }
+
+        /* External */
+        .external {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(236, 72, 153, 0.1));
+            border: 1px solid rgba(236, 72, 153, 0.3);
+        }
+        .external .box-icon { background: rgba(236, 72, 153, 0.3); }
+
+        /* Arrows */
+        .arrows {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+        .arrow {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4ade80;
+            font-size: 20px;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4ade80;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .box-details {
+            font-size: 11px;
+            color: #888;
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="diagram">
+        <div class="title">
+            <h1>CodeFill System Architecture</h1>
+            <p>AI-Powered Adaptive Coding Learning Platform</p>
+        </div>
+
+        <div class="architecture">
+            <!-- Frontend Layer -->
+            <div class="layer">
+                <div class="layer-label">Frontend</div>
+                <div class="layer-content">
+                    <div class="box frontend">
+                        <div class="box-icon">⚛️</div>
+                        <div>
+                            <div>Next.js 14 + React 18</div>
+                            <div class="box-details">TypeScript, Tailwind CSS</div>
+                        </div>
+                    </div>
+                    <div class="box frontend">
+                        <div class="box-icon">📝</div>
+                        <div>
+                            <div>Monaco Editor</div>
+                            <div class="box-details">Code Editor</div>
+                        </div>
+                    </div>
+                    <div class="box frontend">
+                        <div class="box-icon">🎮</div>
+                        <div>
+                            <div>Phaser.js</div>
+                            <div class="box-details">Farm Game Engine</div>
+                        </div>
+                    </div>
+                    <div class="box frontend">
+                        <div class="box-icon">✨</div>
+                        <div>
+                            <div>Framer Motion</div>
+                            <div class="box-details">Animations</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrows">
+                <div class="arrow">↓</div>
+                <div class="arrow">↑</div>
+            </div>
+
+            <!-- Backend Layer -->
+            <div class="layer">
+                <div class="layer-label">Backend</div>
+                <div class="layer-content">
+                    <div class="box backend">
+                        <div class="box-icon">🚀</div>
+                        <div>
+                            <div>FastAPI</div>
+                            <div class="box-details">20 Routers, WebSocket</div>
+                        </div>
+                    </div>
+                    <div class="box backend">
+                        <div class="box-icon">🔧</div>
+                        <div>
+                            <div>35+ Services</div>
+                            <div class="box-details">RAG, Gamification, Analysis</div>
+                        </div>
+                    </div>
+                    <div class="box backend">
+                        <div class="box-icon">📊</div>
+                        <div>
+                            <div>Pydantic</div>
+                            <div class="box-details">Type Validation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrows">
+                <div class="arrow">↓</div>
+                <div class="arrow">↑</div>
+            </div>
+
+            <!-- AI/LLM Layer -->
+            <div class="layer">
+                <div class="layer-label">AI / LLM</div>
+                <div class="layer-content">
+                    <div class="box ai">
+                        <div class="box-icon">🧠</div>
+                        <div>
+                            <div>LangGraph Orchestrator</div>
+                            <div class="box-details">3-Stage Pipeline, 21 Nodes</div>
+                        </div>
+                    </div>
+                    <div class="box ai">
+                        <div class="box-icon">🤖</div>
+                        <div>
+                            <div>12 LLM Agents</div>
+                            <div class="box-details">CodeGen, Hint, Feedback...</div>
+                        </div>
+                    </div>
+                    <div class="box ai">
+                        <div class="box-icon">🎯</div>
+                        <div>
+                            <div>Intent Classifier</div>
+                            <div class="box-details">30 Intents, Hybrid (Embed+LLM)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrows">
+                <div class="arrow">↓</div>
+                <div class="arrow">↑</div>
+            </div>
+
+            <!-- Database Layer -->
+            <div class="layer">
+                <div class="layer-label">Database</div>
+                <div class="layer-content">
+                    <div class="box db">
+                        <div class="box-icon">🗄️</div>
+                        <div>
+                            <div>Supabase PostgreSQL</div>
+                            <div class="box-details">RLS, Edge Functions</div>
+                        </div>
+                    </div>
+                    <div class="box db">
+                        <div class="box-icon">🔍</div>
+                        <div>
+                            <div>pgvector</div>
+                            <div class="box-details">1536-dim Embeddings</div>
+                        </div>
+                    </div>
+                    <div class="box db">
+                        <div class="box-icon">⏱️</div>
+                        <div>
+                            <div>PG Cache</div>
+                            <div class="box-details">TTL-based Caching</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrows">
+                <div class="arrow">↓</div>
+                <div class="arrow">↑</div>
+            </div>
+
+            <!-- External Services Layer -->
+            <div class="layer">
+                <div class="layer-label">External</div>
+                <div class="layer-content">
+                    <div class="box external">
+                        <div class="box-icon">🌐</div>
+                        <div>
+                            <div>OpenRouter</div>
+                            <div class="box-details">Claude, GPT-4o, Gemini</div>
+                        </div>
+                    </div>
+                    <div class="box external">
+                        <div class="box-icon">⚡</div>
+                        <div>
+                            <div>Judge0</div>
+                            <div class="box-details">Code Execution Sandbox</div>
+                        </div>
+                    </div>
+                    <div class="box external">
+                        <div class="box-icon">📈</div>
+                        <div>
+                            <div>LangSmith</div>
+                            <div class="box-details">LLM Monitoring</div>
+                        </div>
+                    </div>
+                    <div class="box external">
+                        <div class="box-icon">🌍</div>
+                        <div>
+                            <div>Azure Translator</div>
+                            <div class="box-details">Multi-language</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">38,000+</div>
+                <div class="stat-label">Problems</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">12</div>
+                <div class="stat-label">LLM Agents</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">35+</div>
+                <div class="stat-label">Services</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">30</div>
+                <div class="stat-label">Intent Types</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">4</div>
+                <div class="stat-label">Problem Types</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

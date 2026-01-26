@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeFill Architecture - Multi-Agent Pipeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            min-height: 100vh;
+            padding: 40px;
+            color: #fff;
+        }
+        .diagram {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.02);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .title h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .title p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .pipeline {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .stage {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+        }
+
+        .stage-header {
+            width: 160px;
+            padding: 20px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .stage-header .number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .stage-header .name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .stage-header .desc {
+            font-size: 11px;
+            opacity: 0.7;
+        }
+
+        .stage-content {
+            flex: 1;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .agent-card {
+            padding: 14px 18px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            min-width: 180px;
+        }
+        .agent-card .agent-name {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .agent-card .agent-model {
+            font-size: 10px;
+            color: #888;
+            padding: 2px 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .agent-card .agent-desc {
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 6px;
+        }
+
+        /* Stage Colors */
+        .stage-intent .stage-header {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        .stage-intent .number { background: #3b82f6; color: #fff; }
+
+        .stage-discovery .stage-header {
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.3), rgba(74, 222, 128, 0.1));
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+        .stage-discovery .number { background: #4ade80; color: #000; }
+
+        .stage-conversion .stage-header {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(251, 191, 36, 0.1));
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        .stage-conversion .number { background: #fbbf24; color: #000; }
+
+        .stage-solving .stage-header {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(168, 85, 247, 0.1));
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+        .stage-solving .number { background: #a855f7; color: #fff; }
+
+        .stage-feedback .stage-header {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(236, 72, 153, 0.1));
+            border: 1px solid rgba(236, 72, 153, 0.3);
+        }
+        .stage-feedback .number { background: #ec4899; color: #fff; }
+
+        /* Arrow between stages */
+        .arrow-row {
+            display: flex;
+            align-items: center;
+            padding-left: 80px;
+        }
+        .arrow-down {
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+            margin-left: 80px;
+        }
+        .arrow-down::after {
+            content: '▼';
+            display: block;
+            color: rgba(255,255,255,0.3);
+            font-size: 10px;
+            margin-top: -5px;
+            margin-left: -4px;
+        }
+
+        /* Highlight agents */
+        .agent-card.highlight {
+            border-color: rgba(74, 222, 128, 0.5);
+            background: rgba(74, 222, 128, 0.1);
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #888;
+        }
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .legend-dot.claude { background: #d97706; }
+        .legend-dot.gpt4o { background: #10b981; }
+        .legend-dot.gpt4o-mini { background: #6ee7b7; }
+        .legend-dot.gemini { background: #3b82f6; }
+    </style>
+</head>
+<body>
+    <div class="diagram">
+        <div class="title">
+            <h1>Multi-Agent Pipeline Architecture</h1>
+            <p>12 Specialized LLM Agents with Dynamic Model Selection via OpenRouter</p>
+        </div>
+
+        <div class="pipeline">
+            <!-- Stage 1: Intent Classification -->
+            <div class="stage stage-intent">
+                <div class="stage-header">
+                    <div class="number">1</div>
+                    <div class="name">Intent</div>
+                    <div class="desc">의도 분류</div>
+                </div>
+                <div class="stage-content">
+                    <div class="agent-card">
+                        <div class="agent-name">🎯 Intent Classifier</div>
+                        <div class="agent-model">Embedding + LLM Hybrid</div>
+                        <div class="agent-desc">30가지 의도 분류, 신뢰도 기반 LLM 검증</div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-name">🛡️ Moderation</div>
+                        <div class="agent-model">OpenAI Moderation API</div>
+                        <div class="agent-desc">유해 콘텐츠 필터링</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow-row"><div class="arrow-down"></div></div>
+
+            <!-- Stage 2: Discovery -->
+            <div class="stage stage-discovery">
+                <div class="stage-header">
+                    <div class="number">2</div>
+                    <div class="name">Discovery</div>
+                    <div class="desc">문제 탐색</div>
+                </div>
+                <div class="stage-content">
+                    <div class="agent-card">
+                        <div class="agent-name">🔍 RAG Search</div>
+                        <div class="agent-model">pgvector + Metadata</div>
+                        <div class="agent-desc">38,000+ 문제 Hybrid Search</div>
+                    </div>
+                    <div class="agent-card highlight">
+                        <div class="agent-name">✨ CodeGen Agent</div>
+                        <div class="agent-model">Claude Sonnet 3.5</div>
+                        <div class="agent-desc">RAG 실패 시 새 문제 생성</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow-row"><div class="arrow-down"></div></div>
+
+            <!-- Stage 3: Conversion -->
+            <div class="stage stage-conversion">
+                <div class="stage-header">
+                    <div class="number">3</div>
+                    <div class="name">Conversion</div>
+                    <div class="desc">유형 변환</div>
+                </div>
+                <div class="stage-content">
+                    <div class="agent-card">
+                        <div class="agent-name">📝 Blank Agent</div>
+                        <div class="agent-model">Gemini Flash</div>
+                        <div class="agent-desc">빈칸 채우기 변환</div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-name">🧩 Puzzle Agent</div>
+                        <div class="agent-model">GPT-4o-mini</div>
+                        <div class="agent-desc">코드 블록 분해 (5-20개)</div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-name">💬 Guided Agent</div>
+                        <div class="agent-model">GPT-4o-mini</div>
+                        <div class="agent-desc">1대1 대화형 변환</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow-row"><div class="arrow-down"></div></div>
+
+            <!-- Stage 4: Solving Support -->
+            <div class="stage stage-solving">
+                <div class="stage-header">
+                    <div class="number">4</div>
+                    <div class="name">Solving</div>
+                    <div class="desc">풀이 지원</div>
+                </div>
+                <div class="stage-content">
+                    <div class="agent-card">
+                        <div class="agent-name">💡 Hint Agents (×3)</div>
+                        <div class="agent-model">GPT-4o-mini</div>
+                        <div class="agent-desc">유형별 4단계 점진적 힌트</div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-name">🎓 Guided Tutor</div>
+                        <div class="agent-model">GPT-4o</div>
+                        <div class="agent-desc">1대1 소크라테스식 튜터링</div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-name">💭 Chat Agent</div>
+                        <div class="agent-model">Claude Sonnet</div>
+                        <div class="agent-desc">자유로운 질문 응답</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow-row"><div class="arrow-down"></div></div>
+
+            <!-- Stage 5: Feedback -->
+            <div class="stage stage-feedback">
+                <div class="stage-header">
+                    <div class="number">5</div>
+                    <div class="name">Feedback</div>
+                    <div class="desc">피드백 생성</div>
+                </div>
+                <div class="stage-content">
+                    <div class="agent-card">
+                        <div class="agent-name">📊 Feedback Agent</div>
+                        <div class="agent-model">GPT-4o-mini</div>
+                        <div class="agent-desc">종합 피드백, 5단계 등급</div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-name">📈 Analysis Agent</div>
+                        <div class="agent-model">GPT-4o-mini</div>
+                        <div class="agent-desc">ELO/BKT 계산, 약점 분석</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot claude"></div>
+                Claude Sonnet 3.5
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot gpt4o"></div>
+                GPT-4o
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot gpt4o-mini"></div>
+                GPT-4o-mini
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot gemini"></div>
+                Gemini Flash
+            </div>
+        </div>
+    </div>
+</body>
+</html>
