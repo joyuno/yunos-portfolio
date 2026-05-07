@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>terasys-apm - On-Premise APM | Yunho Jang</title>
+    <title>OmniTrace - 보안 추적 APM 플랫폼 | Yunho Jang</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -28,26 +28,39 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                 Career
             </a>
-            <span class="hero-label">Terasys · 보안 솔루션 · APM · ML/LLM</span>
-            <h1>terasys-apm — On-Premise APM Platform</h1>
+            <span class="hero-label">Terasys · APM · OTel · AI 추론</span>
+            <h1>
+                <img src="../assets/omnitrace/logo.png" alt="OmniTrace logo" style="height: 1em; vertical-align: -0.15em; margin-right: 0.4em;">
+                OmniTrace
+            </h1>
             <p class="subtitle">
-                테라시스 자체 APM 솔루션. OpenTelemetry + ClickHouse 위에 ML 2-Layer 이상 탐지와 자사 LLM 파인튜닝 모델을 통합한 2금융권용 자체 제품.
+                테라시스가 직접 설계한 OTel 표준 기반 온프레미스 APM 플랫폼.
+                빅데이터와 AI 추론을 결합해 애플리케이션 성능 저하부터 보안 위협 징후까지 실시간으로 탐지합니다.
             </p>
             <div class="project-badges">
                 <span class="badge">2026.02 ~ 현재</span>
-                <span class="badge">MVP · 2금융권 도입 검토 중</span>
-                <span class="badge">풀스택 + ML/LLM 담당</span>
+                <span class="badge">2금융권 도입 검토 중</span>
+                <span class="badge">풀스택 + ML/LLM</span>
                 <span class="badge">3인 팀</span>
             </div>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem;">
+                <a href="https://terasys.kr/#/solutions/omnitrace/ommitrace-ai" target="_blank" class="project-link">
+                    제품 페이지 보기 (terasys.kr)
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </p>
         </div>
     </section>
 
-    <!-- Overview -->
+    <!-- Why -->
     <section class="project-content-section">
         <div class="container">
-            <h2>Project Overview</h2>
+            <h2>왜 OmniTrace인가</h2>
             <p>
-                자사 자체 APM 제품 신규 사업 라인. OpenTelemetry 위에서 On-Premise APM을 자체 구축하고, ML 이상 탐지와 자사 LLM 기반 자연어 쿼리 기능을 통합합니다. 2금융권 도입 검토 단계의 MVP입니다.
+                오늘날의 보안 환경은 온프레미스에서 클라우드까지 그 경계가 무너지고 있으며, 관리해야 할 보안 데이터는 기하급수적으로 늘어나고 있습니다. 기존의 통합로그분석이나 보안관제 시스템은 파편화된 위협 대응과 성능의 한계로 인해 갈수록 고도화되는 사이버 공격을 방어하는 데 어려움을 겪고 있습니다.
+            </p>
+            <p>
+                OmniTrace는 <strong>OpenTelemetry 표준 + 빅데이터 + AI 추론</strong>이 결합된 애플리케이션 성능 모니터링 및 위협 징후 탐지 플랫폼입니다. 성능 가시성과 보안 가시성을 단일 플랫폼에서 통합 제공합니다.
             </p>
         </div>
     </section>
@@ -62,7 +75,7 @@
                 <li><strong>자사 LLM Text-to-SQL 기능</strong> — 자연어 쿼리를 ClickHouse SQL로 변환하는 보유 기능.</li>
                 <li><strong>React 어드민 UI 메인 개발</strong> — MVVM 리팩토링, 커스텀 위젯 빌더, 쿼리 탐색기, X-view 시점 분석, SSE 실시간 대시보드, 2K UI 최적화.</li>
                 <li><strong>Go 백엔드</strong> — 핸들러 / 스토어 / 쿼리 / 알림 / SSO 인증, Clean Architecture 적용.</li>
-                <li><strong>Self-hosted runner CI/CD</strong> — 폐쇄망 배포 환경 대응, SSH 의존 제거, Nginx HTTPS, ClickHouse 처리량 약 4배 향상 (background_pool_size 4→16).</li>
+                <li><strong>Self-hosted runner CI/CD</strong> — 폐쇄망 배포 환경 대응, Nginx HTTPS, ClickHouse 처리량 약 4배 향상 (background_pool_size 4→16).</li>
                 <li><strong>OTel 자바 자동계측 데모</strong> — 결제 / 주문 마이크로서비스 시연 환경.</li>
             </ul>
         </div>
@@ -73,8 +86,8 @@
         <div class="container">
             <h2>Key Technical Decisions</h2>
             <ul class="feature-list">
-                <li><strong>OpenTelemetry</strong> — 벤더 종속 회피, 자동 계측 풍부, 사실상 산업 표준.</li>
-                <li><strong>ClickHouse</strong> — traces/metrics/logs 단일 OLAP, 컬럼 압축, 고속 집계.</li>
+                <li><strong>OpenTelemetry 표준</strong> — 벤더 종속 회피, 자동 계측 풍부, 사실상 산업 표준.</li>
+                <li><strong>ClickHouse 빅데이터 OLAP</strong> — traces / metrics / logs 단일 OLAP, 컬럼 압축, 고속 집계.</li>
                 <li><strong>사내 DGX + Qwen2.5-14B 파인튜닝</strong> — On-Premise 환경 요구, 외부 API 의존 최소화.</li>
                 <li><strong>MVVM + Clean Architecture</strong> — 컴포넌트 / 뷰모델 / 서비스 분리로 테스트 용이.</li>
                 <li><strong>Self-hosted runner</strong> — 폐쇄망 배포 환경 대응.</li>
