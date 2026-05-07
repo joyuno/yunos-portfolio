@@ -31,7 +31,7 @@
             <span class="hero-label">Terasys · SIEM 연동 소명처리 · Multi-Tenant</span>
             <h1>tr-box — 멀티테넌트 SIEM 연동 소명처리 시스템</h1>
             <p class="subtitle">
-                SIEM과 양방향 연동되는 멀티테넌트 소명처리 시스템. 보안 알람 케이스 관리, 자동 소명 워크플로우, 자체 호스팅 LLM 자동 소견 생성, 다단계 결재, 100% 감사 추적을 단일 플랫폼에서 제공합니다.
+                멀티테넌트 지원 SIEM 연동 소명처리 시스템. 보안 알람 케이스 관리, 자동 소명 워크플로우, 자체 호스팅 LLM 자동 소견 생성, 다단계 결재, 100% 감사 추적을 단일 플랫폼에서 제공합니다.
             </p>
             <div class="project-badges">
                 <span class="badge">2026.04 ~ 현재</span>
@@ -47,7 +47,7 @@
         <div class="container">
             <h2>Project Overview</h2>
             <p>
-                <strong>tr-box</strong>는 멀티테넌트를 지원하는 SIEM 연동 소명처리 시스템입니다. SIEM이 생성한 보안 알람을 양방향으로 동기화하여 케이스로 가져오고, 자동 소명 메일 발송 → 다단계 결재 → 자체 호스팅 LLM 자동 소견 생성 → matplotlib PDF 보고서 → 100% 감사 추적까지 단일 플랫폼에서 처리합니다. 2금융권의 중앙회 / 조합회 / 은행 조직 구조에 맞춘 멀티테넌트 아키텍처로 한 인스턴스가 다수 조직을 수용합니다.
+                <strong>tr-box</strong>는 멀티테넌트를 지원하는 SIEM 연동 소명처리 시스템입니다. SIEM에서 들어온 보안 알람을 케이스로 관리하고, 자동 소명 메일 발송 → 다단계 결재 → 자체 호스팅 LLM 자동 소견 생성 → matplotlib PDF 보고서 → 100% 감사 추적까지 단일 플랫폼에서 처리합니다. 2금융권의 중앙회 / 조합회 / 은행 조직 구조에 맞춘 멀티테넌트 아키텍처로 한 인스턴스가 다수 조직을 수용합니다.
             </p>
         </div>
     </section>
@@ -59,7 +59,6 @@
             <ul class="feature-list">
                 <li><strong>소명 워크플로우 (단독)</strong> — 자동 분류, 메일 발송, 다단계 결재, 위임, 만료 알림.</li>
                 <li><strong>멀티테넌트 아키텍처 (단독)</strong> — 중앙회 / 조합회 / 은행 트리 구조, site_guid 라우팅, 임직원 CSV 업로드 + 테넌트 자동 라우팅.</li>
-                <li><strong>SIEM 양방향 연동 (단독)</strong> — 알람 수집 + 결재 결과 푸시 + 티켓 메모 동기화.</li>
                 <li><strong>SSO 인증 + 직급-역할 매핑 자동 계정 등록</strong>.</li>
                 <li><strong>자체 호스팅 LLM 자동 소견</strong> — 소명 보고서 종합 소견 자동 생성.</li>
                 <li><strong>matplotlib PDF 보고서</strong> — 차트 곡선화, 페이지 오버플로우 방지.</li>
@@ -76,7 +75,6 @@
             <ul class="feature-list">
                 <li><strong>users ⊥ tenants 직교 멀티테넌트 모델</strong> — 헤더 기반 런타임 권한 전환으로 JWT 재발급 없이 tenant 전환.</li>
                 <li><strong>케이스 상태 FSM 강제 경유</strong> — 직접 status 변경 차단으로 비정상 전이 방지.</li>
-                <li><strong>SIEM 커넥터 추상화 (BaseConnector)</strong> — 신규 SIEM은 상속만으로 통합 가능.</li>
                 <li><strong>LLM On-Premise 자체 호스팅</strong> — 보안 운영 데이터 외부 송출 차단.</li>
                 <li><strong>Self-hosted Runner</strong> — 폐쇄망 / 내부 IP 환경 대응.</li>
             </ul>
