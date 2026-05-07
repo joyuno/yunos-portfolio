@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>terasys-apm - On-Premise APM | Yunho Jang</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#skills">Skills</a></li>
+                <li><a href="../index.html#career">Career</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <a href="../index.html#career" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Career
+            </a>
+            <span class="hero-label">Terasys · 보안 솔루션 · APM · ML/LLM</span>
+            <h1>terasys-apm — On-Premise APM Platform</h1>
+            <p class="subtitle">
+                테라시스 자체 APM 솔루션. OpenTelemetry + ClickHouse 위에 ML 2-Layer 이상 탐지와 자사 LLM 파인튜닝 모델을 통합한 2금융권용 자체 제품.
+            </p>
+            <div class="project-badges">
+                <span class="badge">2026.02 ~ 현재</span>
+                <span class="badge">MVP · 2금융권 도입 검토 중</span>
+                <span class="badge">풀스택 + ML/LLM 담당</span>
+                <span class="badge">3인 팀</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Project Overview</h2>
+            <p>
+                자사 자체 APM 제품 신규 사업 라인. OpenTelemetry 위에서 On-Premise APM을 자체 구축하고, ML 이상 탐지와 자사 LLM 기반 자연어 쿼리 기능을 통합합니다. 2금융권 도입 검토 단계의 MVP입니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- My Contributions -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>My Contributions</h2>
+            <ul class="feature-list">
+                <li><strong>ML 2-Layer 이상 탐지 엔진 (단독)</strong> — z-score 임계값 + 분산 보정 + 이상 발생 밀도 heatmap.</li>
+                <li><strong>자사 LLM 파인튜닝 통합</strong> — 사내 DGX 서버에서 Qwen2.5-14B 파인튜닝 모델 추론 통합.</li>
+                <li><strong>자사 LLM Text-to-SQL 기능</strong> — 자연어 쿼리를 ClickHouse SQL로 변환하는 보유 기능.</li>
+                <li><strong>React 어드민 UI 메인 개발</strong> — MVVM 리팩토링, 커스텀 위젯 빌더, 쿼리 탐색기, X-view 시점 분석, SSE 실시간 대시보드, 2K UI 최적화.</li>
+                <li><strong>Go 백엔드</strong> — 핸들러 / 스토어 / 쿼리 / 알림 / SSO 인증, Clean Architecture 적용.</li>
+                <li><strong>Self-hosted runner CI/CD</strong> — 폐쇄망 배포 환경 대응, SSH 의존 제거, Nginx HTTPS, ClickHouse 처리량 약 4배 향상 (background_pool_size 4→16).</li>
+                <li><strong>OTel 자바 자동계측 데모</strong> — 결제 / 주문 마이크로서비스 시연 환경.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Key Decisions -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Key Technical Decisions</h2>
+            <ul class="feature-list">
+                <li><strong>OpenTelemetry</strong> — 벤더 종속 회피, 자동 계측 풍부, 사실상 산업 표준.</li>
+                <li><strong>ClickHouse</strong> — traces/metrics/logs 단일 OLAP, 컬럼 압축, 고속 집계.</li>
+                <li><strong>사내 DGX + Qwen2.5-14B 파인튜닝</strong> — On-Premise 환경 요구, 외부 API 의존 최소화.</li>
+                <li><strong>MVVM + Clean Architecture</strong> — 컴포넌트 / 뷰모델 / 서비스 분리로 테스트 용이.</li>
+                <li><strong>Self-hosted runner</strong> — 폐쇄망 배포 환경 대응.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Tech Stack</h2>
+            <div class="tech-stack-grid">
+                <div class="tech-group">
+                    <h4>Backend</h4>
+                    <p>Go · Python (ML/LLM)</p>
+                </div>
+                <div class="tech-group">
+                    <h4>Frontend</h4>
+                    <p>React · TypeScript</p>
+                </div>
+                <div class="tech-group">
+                    <h4>Data</h4>
+                    <p>ClickHouse · OpenTelemetry · OTel Collector (OCB)</p>
+                </div>
+                <div class="tech-group">
+                    <h4>AI / ML</h4>
+                    <p>Qwen2.5-14B (fine-tuned) · PyTorch</p>
+                </div>
+                <div class="tech-group">
+                    <h4>Infra / DevOps</h4>
+                    <p>Docker · Nginx · GitHub Actions (self-hosted)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오연(五緣) - 사주 기반 1일 1매칭 | Yunho Jang</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#skills">Skills</a></li>
+                <li><a href="../index.html#career">Career</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Projects
+            </a>
+            <span class="hero-label">Personal · AI Product · Mobile</span>
+            <h1>오연(五緣) — 사주 기반 1일 1매칭 소개팅 앱</h1>
+            <p class="subtitle">
+                매일 오후 5~6시, 사주 궁합이 가장 좋은 단 한 명을 추천. 겉/속/성격 3축 + LLM 자연어 해설.
+                Flutter 단일 코드베이스로 iOS·Android·Web을 동시에 지원하며, 먹·한지·인장 모티프로 사주의 문화적 무게를 UI로 전달합니다.
+            </p>
+            <div class="project-badges">
+                <span class="badge">2025 - 현재</span>
+                <span class="badge">Flutter Multi-platform</span>
+                <span class="badge">사주 도메인 풀 구현</span>
+                <span class="badge">LLM 자연어 해설</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Overview</h2>
+            <p>
+                무한 스와이프 매칭의 피로감을 거부한 1일 1매칭 모델로 설계한 사주 기반 소개팅 앱입니다.
+                천간 / 지지 / 지장간 / 60갑자 / 오행 상생상극 / 대운까지 사주 도메인을 백엔드에 풀 구현하고,
+                Anthropic Claude API로 "왜 잘 맞는가"를 자연어로 설명합니다.
+                만 19세 인증 · 계정 삭제 · 신고/차단 · 프로필 사진 수동 심사 등 앱스토어 정책을 사전 준수했습니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Key Features</h2>
+            <ul class="feature-list">
+                <li><strong>1일 1매칭 모델</strong> — 매일 17~18시 알고리즘 기반 단 한 명 자동 추천. 무한 스와이프 거부.</li>
+                <li><strong>다축 궁합 분석</strong> — 겉궁합 / 속궁합(육체적·정신적) / 성격궁합 0~100점 + 주(柱)별 상세.</li>
+                <li><strong>사주 도메인 풀 구현</strong> — 천간 10 / 지지 12 / 지장간 / 60갑자 / 오행 상생상극 / 대운(10년 단위) / 입춘 보정.</li>
+                <li><strong>LLM 자연어 해설</strong> — Anthropic Claude API로 단순 점수가 아닌 "왜 잘 맞는가"를 사람의 언어로 설명.</li>
+                <li><strong>실시간 1:1 채팅</strong> — 상호 좋아요 후 WebSocket 기반 활성화.</li>
+                <li><strong>지역 기반 매칭</strong> — 서울 25구 + 경기/인천 인접 구 단위.</li>
+                <li><strong>개인정보 안전 설계</strong> — 연락처 차단을 SHA256 해시로 처리해 원본 비저장.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- UI / Design Handoff -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>UI / Design Handoff</h2>
+            <p>
+                먹빛(ink) · 한지(paper) · 적인주(cinnabar) · 비취(jade) · 금사(gold) · 청람(indigo) 6개 컬러 토큰과 한자 인장 모티프로 디자인 시스템을 구성했습니다.
+                Apple SD Gothic Neo 타이포 (Display 56 / H1 36 / Body 22). 8페이지 디자인 핸드오프 PDF로 산출.
+            </p>
+            <div class="screenshot-gallery">
+                <figure class="screenshot-item">
+                    <img src="../assets/oyeon/01_cover.png" alt="오연 표지" class="lightbox-img">
+                    <figcaption>표지 — 프로젝트 메타 + 컬러 토큰 미리보기</figcaption>
+                </figure>
+                <figure class="screenshot-item">
+                    <img src="../assets/oyeon/02_userflow.png" alt="13 화면 유저 플로우" class="lightbox-img">
+                    <figcaption>13 화면 유저 플로우 다이어그램</figcaption>
+                </figure>
+                <figure class="screenshot-item">
+                    <img src="../assets/oyeon/03_screens_03_진입.png" alt="진입 화면" class="lightbox-img">
+                    <figcaption>진입 화면 — 스플래시·온보딩</figcaption>
+                </figure>
+                <figure class="screenshot-item">
+                    <img src="../assets/oyeon/03_screens_04_메인.png" alt="메인 화면" class="lightbox-img">
+                    <figcaption>메인 화면 — 오늘의 인연 + 매칭 흐름</figcaption>
+                </figure>
+                <figure class="screenshot-item">
+                    <img src="../assets/oyeon/03_screens_05_사주.png" alt="사주 분석" class="lightbox-img">
+                    <figcaption>사주 분석 — 사주 카드 + 궁합 결과</figcaption>
+                </figure>
+                <figure class="screenshot-item">
+                    <img src="../assets/oyeon/03_screens_06_프로필.png" alt="프로필" class="lightbox-img">
+                    <figcaption>프로필 — 사용자 정보 + 사진 등록</figcaption>
+                </figure>
+                <figure class="screenshot-item">
+                    <img src="../assets/oyeon/03_screens_07_성격.png" alt="성격검사" class="lightbox-img">
+                    <figcaption>성격검사 — 5카테고리 50문항 + 우선순위 5문항</figcaption>
+                </figure>
+                <figure class="screenshot-item">
+                    <img src="../assets/oyeon/04_design_system.png" alt="디자인 시스템" class="lightbox-img">
+                    <figcaption>디자인 시스템 — 컬러 / 타이포 / 한자 인장 모티프</figcaption>
+                </figure>
+            </div>
+            <p style="margin-top: 1.5rem;">
+                <a href="../assets/oyeon/oyeon_uiux.pdf" target="_blank" class="project-link">
+                    UI/UX 기획안 PDF 보기
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Tech Stack</h2>
+            <div class="tech-stack-grid">
+                <div class="tech-group">
+                    <h4>Backend</h4>
+                    <p>FastAPI · SQLAlchemy · PostgreSQL · WebSocket · JWT · slowapi</p>
+                </div>
+                <div class="tech-group">
+                    <h4>Frontend</h4>
+                    <p>Flutter (iOS / Android / Web) · Provider · web_socket_channel · Phosphor Icons</p>
+                </div>
+                <div class="tech-group">
+                    <h4>AI / ML</h4>
+                    <p>Anthropic Claude API (claude-sonnet-4)</p>
+                </div>
+                <div class="tech-group">
+                    <h4>Infra / Tools</h4>
+                    <p>Docker Compose · 자체 디자인 시스템 (먹·한지·인장)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

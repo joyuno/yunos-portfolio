@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tr-box - SIEM Post-Processing | Yunho Jang</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#skills">Skills</a></li>
+                <li><a href="../index.html#career">Career</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <a href="../index.html#career" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Career
+            </a>
+            <span class="hero-label">Terasys · 보안 솔루션 · SIEM Post-Processing</span>
+            <h1>tr-box — SIEM Post-Processing Platform</h1>
+            <p class="subtitle">
+                SIEM이 만드는 보안 알람의 "그 다음 수십 시간"을 자동화. 케이스 관리·소명 자동화·LLM 자동 소견·다단계 결재·100% 감사 추적을 멀티테넌트 아키텍처 위에서 제공.
+            </p>
+            <div class="project-badges">
+                <span class="badge">2026.04 ~ 현재</span>
+                <span class="badge">MVP 완성 · 2금융권 도입 검토 중</span>
+                <span class="badge">풀스택 메인 개발자</span>
+                <span class="badge">중앙회/조합회/은행 분리</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Project Overview</h2>
+            <p>
+                SIEM이 알람을 만든 "그 다음"을 자동화합니다. 알람 분류 → 소명 메일 → 다단계 결재 → LLM 자동 소견 → PDF 보고서 → 감사 추적까지 단일 플랫폼으로 통합하고, 2금융권의 중앙회 / 조합회 / 은행 조직 구조에 맞춘 멀티테넌트 아키텍처로 한 인스턴스가 다수 조직을 수용합니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- My Contributions -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>My Contributions</h2>
+            <ul class="feature-list">
+                <li><strong>소명 워크플로우 (단독)</strong> — 자동 분류, 메일 발송, 다단계 결재, 위임, 만료 알림.</li>
+                <li><strong>멀티테넌트 아키텍처 (단독)</strong> — 중앙회 / 조합회 / 은행 트리 구조, site_guid 라우팅, 임직원 CSV 업로드 + 테넌트 자동 라우팅.</li>
+                <li><strong>SIEM 양방향 연동 (단독)</strong> — 알람 수집 + 결재 결과 푸시 + 티켓 메모 동기화.</li>
+                <li><strong>SSO 인증 + 직급-역할 매핑 자동 계정 등록</strong>.</li>
+                <li><strong>자체 호스팅 LLM 자동 소견</strong> — 소명 보고서 종합 소견 자동 생성.</li>
+                <li><strong>matplotlib PDF 보고서</strong> — 차트 곡선화, 페이지 오버플로우 방지.</li>
+                <li><strong>React 어드민 UI</strong> — 카드 드래그 방식 예외 정책, 다크모드, 권한별 대시보드.</li>
+                <li><strong>인프라</strong> — Self-hosted Runner CD + Docker Compose HA + Nginx HTTPS.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Key Decisions -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Key Technical Decisions</h2>
+            <ul class="feature-list">
+                <li><strong>users ⊥ tenants 직교 멀티테넌트 모델</strong> — 헤더 기반 런타임 권한 전환으로 JWT 재발급 없이 tenant 전환.</li>
+                <li><strong>케이스 상태 FSM 강제 경유</strong> — 직접 status 변경 차단으로 비정상 전이 방지.</li>
+                <li><strong>SIEM 커넥터 추상화 (BaseConnector)</strong> — 신규 SIEM은 상속만으로 통합 가능.</li>
+                <li><strong>LLM On-Premise 자체 호스팅</strong> — 보안 운영 데이터 외부 송출 차단.</li>
+                <li><strong>Self-hosted Runner</strong> — 폐쇄망 / 내부 IP 환경 대응.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>Tech Stack</h2>
+            <div class="tech-stack-grid">
+                <div class="tech-group">
+                    <h4>Backend</h4>
+                    <p>Python · FastAPI · SQLAlchemy · Alembic · Celery</p>
+                </div>
+                <div class="tech-group">
+                    <h4>Frontend</h4>
+                    <p>React · TypeScript · Ant Design · shadcn · TanStack Query · Zustand</p>
+                </div>
+                <div class="tech-group">
+                    <h4>Data</h4>
+                    <p>PostgreSQL · Redis</p>
+                </div>
+                <div class="tech-group">
+                    <h4>AI / Auth</h4>
+                    <p>자체 호스팅 LLM · SSO 인증</p>
+                </div>
+                <div class="tech-group">
+                    <h4>Infra / DevOps</h4>
+                    <p>Docker (HA Compose) · Nginx · GitHub Actions (self-hosted)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
