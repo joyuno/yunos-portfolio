@@ -713,10 +713,17 @@ tr:last-child td { border-bottom: 0; }
 }
 
 /* Print / PDF */
+@page { size: A4; margin: 14mm 13mm; }
+
 @media print {
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .nav, .back-link, .cta-section { display: none; }
-    body { background: #fff; font-size: 11pt; }
+    body { background: #fff; font-size: 11pt; line-height: 1.65; }
+    .container { max-width: none; padding: 0; }
     .wf-bar { animation: none; }
-    .project-content-section, .work-item, .screenshot-item, .layers, .flow { break-inside: avoid; }
-    a { color: inherit; }
+    .intro { padding-top: 0; }
+    .project-hero { padding-top: 0; }
+    .work-item, .screenshot-item, .arch-item, .feature-list li, .layer, .flow, .waterfall, .formula, .info-box, tr, .school-project-images { break-inside: avoid; }
+    h2, h3 { break-after: avoid; }
+    .footer { display: none; }
 }
