@@ -469,6 +469,7 @@ img { max-width: 100%; display: block; }
 
 /* Images */
 .image-block { margin: 22px 0; }
+.image-block img { cursor: zoom-in; }
 
 .image-block img,
 .image-block iframe {
@@ -723,7 +724,7 @@ tr:last-child td { border-bottom: 0; }
     .wf-bar { animation: none; }
     .intro { padding-top: 0; }
     .project-hero { padding-top: 0; }
-    .work-item, .screenshot-item, .arch-item, .feature-list li, .layer, .flow, .waterfall, .formula, .info-box, tr, .school-project-images { break-inside: avoid; }
+    .work-item, .screenshot-item, .image-block, .arch-item, .feature-list li, .layer, .flow, .waterfall, .formula, .info-box, tr, .school-project-images { break-inside: avoid; }
     h2, h3 { break-after: avoid; }
     .flow { flex-wrap: nowrap; }
     .flow > li { flex: 1 1 0; min-width: 0; padding: 10px; font-size: 12.5px; }

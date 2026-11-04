@@ -64,6 +64,10 @@
     <section class="project-content-section">
         <div class="container">
             <h2>제품 화면</h2>
+            <figure class="image-block">
+                <img src="../assets/omnitrace/apm_overview.png" alt="OmniTrace APM 개요 화면" class="lightbox-img">
+                <figcaption class="image-caption">APM 개요 화면입니다. 액티브 트랜잭션, 서비스 상태, 요청량·에러율·P95 추이, 서비스별 TOP5, Apdex를 한 화면에서 봅니다. 화면의 서비스와 수치는 데모 데이터입니다.</figcaption>
+            </figure>
             <div class="screenshot-gallery">
                 <figure class="screenshot-item">
                     <img src="../assets/omnitrace/1.png" alt="OTel 표준 기반 On-Premise 아키텍처" class="lightbox-img">
@@ -185,14 +189,36 @@
     <section class="project-content-section">
         <div class="container">
             <h2>AI 어시스턴트 개발 내용</h2>
+            <figure class="image-block">
+                <img src="../assets/omnitrace/assistant_chat.png" alt="AI 어시스턴트 대화 화면" class="lightbox-img">
+                <figcaption class="image-caption">AI 어시스턴트 전용 화면입니다. 왼쪽에 사용자별 대화 기록이 있고, 처음 쓰는 사람도 바로 물어볼 수 있게 추천 질문을 보여 줍니다.</figcaption>
+            </figure>
             <ul class="feature-list">
                 <li><strong>전용 화면과 스트리밍</strong>어시스턴트 전용 페이지를 만들고, 다른 메뉴로 이동해도 답변 스트리밍이 끊기지 않게 했습니다. 대화는 사용자별로 PostgreSQL에 저장하고, 답변 아래에는 결과 표(30행까지와 총건수)와 좋아요·싫어요 피드백을 붙였습니다.</li>
                 <li><strong>구조화 라우터</strong>LLM이 의도와 조회 조건을 JSON으로 함께 내도록 라우터를 바꿨습니다. 조건이 모호하면 되묻고, 형식이 깨지면 기존 분류기로 넘어갑니다. 답변을 실행하지 않고 라우팅 결과만 확인하는 API도 만들어 평가에 썼습니다.</li>
                 <li><strong>SQL 생성</strong>LLM이 먼저 SQL을 만들고 EXPLAIN으로 검증한 뒤, 실패하면 미리 만든 템플릿으로 넘어갑니다. "X 초과 목록"처럼 임계값을 묻는 질문에는 근거 수치 컬럼이 함께 나오게 규칙을 넣었습니다.</li>
                 <li><strong>위젯과 대시보드 생성</strong>질문에 맞는 출력 방식을 자동으로 고르고, 여러 위젯을 대시보드로 묶어 줍니다. 비슷한 대시보드가 이미 있으면 RAG로 찾아 거기에 추가하도록 권합니다. 위젯을 만들 때 실제 스키마와 지식 카드를 근거로 넣어 없는 컬럼을 쓰지 않게 했습니다.</li>
                 <li><strong>복합 질문</strong>한 문장에 여러 의도가 있으면 나눠서 순서대로 답합니다.</li>
-                <li><strong>어시스턴트 자체 관측</strong>라우팅, SQL 생성, 답변 단계를 gen_ai 스팬으로 내보내 OmniTrace에서 직접 추적합니다. 질문과 답변은 ClickHouse에 압축해 90일 보관하고, 분석 화면에서 사용자별 이용 내역을 볼 수 있습니다.</li>
             </ul>
+        </div>
+    </section>
+
+    <!-- Assistant observability -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>AI 옵저빌리티</h2>
+            <p>
+                어시스턴트의 라우팅, SQL 생성, 답변 단계를 gen_ai 스팬으로 내보내 OmniTrace에서 직접 추적합니다.
+                질문과 답변은 ClickHouse에 압축해 90일 보관하고, 분석 화면에서 사용자별 이용 내역을 볼 수 있습니다.
+            </p>
+            <figure class="image-block">
+                <img src="../assets/omnitrace/ai_observability.png" alt="AI 옵저빌리티 요약 화면" class="lightbox-img">
+                <figcaption class="image-caption">호출 수, 토큰, 지연, 에러율을 요약하고, 지연 SLO 초과와 트래픽 급변을 이벤트로 띄웁니다. 라우팅 분류 분포와 모델별 호출량도 함께 봅니다. 화면의 수치는 데모 트래픽입니다.</figcaption>
+            </figure>
+            <figure class="image-block">
+                <img src="../assets/omnitrace/ai_conversation_detail.png" alt="대화별 상세 화면" class="lightbox-img">
+                <figcaption class="image-caption">대화 한 건을 펼치면 단계별 소요 시간, 표준 gen_ai 속성, 답변, 실행한 SQL까지 확인합니다. 답변이 이상할 때 어느 단계에서 틀렸는지 여기서 찾습니다.</figcaption>
+            </figure>
         </div>
     </section>
 
@@ -205,6 +231,10 @@
                 "API가 3초 걸렸을 때 사용자는 어떤 화면이었나"를 한 화면에서 확인할 수 있습니다.
                 풀스크린샷 대신 화면을 노드 트리로 재구성해, 앱과 네트워크 부담을 줄이고 개인정보 노출을 막았습니다.
             </p>
+            <figure class="image-block">
+                <img src="../assets/omnitrace/session_replay.png" alt="세션 리플레이 플레이어 화면" class="lightbox-img" style="width: auto; max-width: 100%;">
+                <figcaption class="image-caption">왼쪽 세션 목록, 가운데 재생 화면과 이벤트 마커, 오른쪽 이벤트 타임라인입니다. 데모 앱 세션을 재생한 화면입니다.</figcaption>
+            </figure>
             <ol class="flow">
                 <li><b>SDK 캡처</b><span>화면 뷰 트리와 스타일을 수집</span></li>
                 <li><b>증분 전송</b><span>키프레임과 바뀐 노드만 전송</span></li>
