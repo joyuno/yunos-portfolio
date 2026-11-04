@@ -725,5 +725,7 @@ tr:last-child td { border-bottom: 0; }
     .project-hero { padding-top: 0; }
     .work-item, .screenshot-item, .arch-item, .feature-list li, .layer, .flow, .waterfall, .formula, .info-box, tr, .school-project-images { break-inside: avoid; }
     h2, h3 { break-after: avoid; }
+    .flow { flex-wrap: nowrap; }
+    .flow > li { flex: 1 1 0; min-width: 0; padding: 10px; font-size: 12.5px; }
     .footer { display: none; }
 }
