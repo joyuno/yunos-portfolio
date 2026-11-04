@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LG U+ MVNO 업무 자동화 | Yunho Jang</title>
+    <title>LG U+ MVNO 업무 자동화 | 장윤호</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" aria-label="주요 메뉴">
         <div class="container nav-inner">
             <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
             <ul class="nav-links">
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#skills">Skills</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="../index.html#career">경력</a></li>
+                <li><a href="../index.html#projects">프로젝트</a></li>
+                <li class="nav-optional"><a href="../index.html#skills">기술</a></li>
+                <li><a href="../index.html#contact">연락처</a></li>
+                <li class="nav-optional"><a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">블로그</a></li>
             </ul>
         </div>
     </nav>
@@ -25,13 +28,13 @@
         <div class="container">
             <a href="../index.html#projects" class="back-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                Projects
+                프로젝트
             </a>
             <span class="hero-label">Data Engineering / Automation</span>
             <h1>LG U+ MVNO 업무 자동화</h1>
             <p class="subtitle">
                 LG U+ MVNO 영업1팀 단순 반복 업무 자동화 프로젝트.
-                경쟁사 요금제 변동 이슈 분석, 뉴스/커뮤니티 감성 분석, GitHub Actions 자동 메일 송부 시스템 구축.
+                매일 손으로 하던 경쟁사 요금제 조사를 수집, 엑셀 리포트, 메일 발송까지 자동화해 하루 2시간 걸리던 일을 15분으로 줄였습니다.
             </p>
             <div class="project-badges">
                 <span class="badge">
@@ -57,16 +60,15 @@
             <p>
                 LG U+ MVNO 영업1팀에서 사무 인턴으로 근무하며 <strong>경쟁사 요금제 변동 이슈 분석</strong>,
                 <strong>뉴스 감성 분석</strong>, <strong>커뮤니티 여론 분석</strong> 업무를 자동화했습니다.
-                기존 수작업으로 수 시간이 소요되던 단순 반복 업무를 Python 기반 자동화 시스템으로 대체하여
-                업무 효율성을 대폭 개선했습니다.
+                팀원이 모두 비개발 직무였고 요금제 조사는 사무보조 업무라 자동화를 고민하는 사람이 없었습니다.
+                처음 업무를 맡을 때부터 자동화할 수 있다고 보고, 남는 시간에 틈틈이 만들어 하루 2시간 걸리던 일을 15분으로 줄였습니다.
+                사무보조 인원이 줄면 이 일이 선임들 몫이 될 것 같아 선임들에게 넘기자고 제안했고, 비개발자도 계속 쓸 수 있게 사용 가이드를 만들어 전달했습니다.
             </p>
 
             <div class="info-box">
                 <h4>Business Impact</h4>
                 <p>
-                    매일 아침 수동으로 진행하던 경쟁사 요금제 조사를 자동화하여
-                    GitHub Actions 기반 매일 자동 실행 및 이메일 리포트 발송 시스템 구축.
-                    업무 시간 절감 및 데이터 정확성 향상.
+                    매일 아침 손으로 하던 경쟁사 요금제 조사를 수집, Pandas 엑셀 리포트, 메일 발송까지 자동화했습니다. 하루 2시간 걸리던 일이 15분으로 줄었습니다.
                 </p>
             </div>
 
@@ -82,8 +84,8 @@
                 <div class="arch-item">
                     <div class="arch-number">2</div>
                     <div class="arch-content">
-                        <h4>Daily Automated Report System</h4>
-                        <p>GitHub Actions로 매일 오전 7:30(KST) 자동 실행, 크롤링 결과를 Excel로 정리하여 담당자에게 이메일 자동 발송.</p>
+                        <h4>매일 리포트 자동 발송</h4>
+                        <p>크롤링 결과를 Excel로 정리해 담당자에게 메일로 보냅니다. 인턴 종료 후에는 개인 저장소로 옮겨 GitHub Actions로 매일 오전 7:30에 돌도록 정리했습니다.</p>
                     </div>
                 </div>
                 <div class="arch-item">
@@ -164,37 +166,6 @@
             </div>
 
             <h3>Data Processing Pipeline</h3>
-            <div class="code-block">
-                <div class="code-header">MoyoplanScraper - Core Logic</div>
-                <pre><code>class MoyoplanScraper:
-    def __init__(self, search_terms=None):
-        self.search_terms = search_terms or DEFAULT_SEARCH_TERMS
-        self.driver = setup_chrome_driver()
-
-    def scrape_search_term(self, search_term: str):
-        """검색어별 요금제 데이터 수집"""
-        url = f'{BASE_URL}?searchText={search_term}&sorting=fee_asc'
-        self.driver.get(url)
-        scroll_to_bottom(self.driver)
-
-        # 페이지네이션 처리
-        for page in range(1, total_pages + 1):
-            soup = BeautifulSoup(self.driver.page_source, 'html.parser')
-            data = extract_plan_data(soup, search_term)
-            self.scraped_data.extend(data)
-
-        return self.scraped_data
-
-    def process_dataframe(self, df):
-        """데이터 정제 및 피벗 테이블 생성"""
-        df['데이터크기_범주'] = df.apply(categorize_data_size, axis=1)
-        pivot_df = df.pivot_table(
-            index='통신사이름',
-            columns='데이터크기_범주',
-            values=['프로모션가격', '할인개월수', '원가']
-        )
-        return pivot_df</code></pre>
-            </div>
 
             <h3>Output Format</h3>
             <div class="table-wrap">
@@ -239,65 +210,14 @@
     <!-- Automation -->
     <section class="project-content-section">
         <div class="container">
-            <h2>GitHub Actions Automation</h2>
+            <h2>매일 자동 실행 (인턴 종료 후 정리)</h2>
             <p>
-                크롤링 작업을 GitHub Actions로 자동화하여 매일 정해진 시간에 실행되도록 구성했습니다.
+                인턴을 마친 뒤 크롤러를 개인 저장소로 옮겨, GitHub Actions로 매일 정해진 시간에 실행되도록 구성했습니다.
                 수집된 데이터는 Excel 파일로 생성되어 담당자에게 이메일로 자동 발송됩니다.
             </p>
 
-            <div class="code-block">
-                <div class="code-header">.github/workflows/daily-crawl.yml</div>
-                <pre><code>name: Run Moyoplan Daily
-
-on:
-  schedule:
-    - cron: '30 22 * * *'  # UTC 22:30 = KST 07:30
-  workflow_dispatch:        # 수동 실행 지원
-
-jobs:
-  run-script:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run crawler
-        env:
-          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
-          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-        run: python moyo_프로모션조사_구문.py</code></pre>
-            </div>
 
             <h3>Email Report</h3>
-            <div class="code-block">
-                <div class="code-header">Email Sending with Gmail SMTP</div>
-                <pre><code>def send_email_report(excel_filename):
-    msg = EmailMessage()
-    msg['Subject'] = f"프로모션_{today}"
-    msg['From'] = SENDER_EMAIL
-    msg['To'] = RECEIVER_EMAIL
-    msg.set_content(f"25년 {today} 프로모션 현황입니다.")
-
-    # Excel 파일 첨부
-    with open(excel_filename, "rb") as f:
-        msg.add_attachment(f.read(),
-            maintype="application",
-            subtype="vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            filename=excel_filename)
-
-    # Gmail SMTP로 발송
-    with smtplib.SMTP("smtp.gmail.com", 587) as conn:
-        conn.starttls()
-        conn.login(SENDER_EMAIL, EMAIL_PASSWORD)
-        conn.send_message(msg)</code></pre>
-            </div>
         </div>
     </section>
 
@@ -312,37 +232,6 @@ jobs:
                 HuggingFace의 fine-tuned 감성 분석 모델로 긍정적인 뉴스를 자동 추출합니다.
             </p>
 
-            <div class="code-block">
-                <div class="code-header">News Collection & Analysis</div>
-                <pre><code># Naver API로 뉴스 수집
-def get_news(keyword, start, display):
-    url = f"https://openapi.naver.com/v1/search/news.json"
-    headers = {
-        'X-Naver-Client-Id': client_id,
-        'X-Naver-Client-Secret': client_secret
-    }
-    response = requests.get(url, headers=headers, params={
-        'query': keyword, 'display': display, 'sort': 'date'
-    })
-    return response.json()
-
-# TF-IDF로 유사 기사 필터링
-def filter_similar_articles(articles, threshold=0.8):
-    vectorizer = TfidfVectorizer()
-    tfidf_matrix = vectorizer.fit_transform(descriptions)
-    sim_matrix = cosine_similarity(tfidf_matrix)
-    # Greedy 방식으로 중복 제거
-    ...
-
-# 감성 분석 (HuggingFace)
-model = AutoModelForSequenceClassification.from_pretrained(
-    "alsgyu/sentiment-analysis-fine-tuned-model"
-)
-def analyze_sentiment(text):
-    inputs = tokenizer(text, return_tensors="pt", truncation=True)
-    outputs = model(**inputs)
-    return torch.softmax(outputs.logits, dim=-1)[0][2].item()  # 긍정 점수</code></pre>
-            </div>
 
             <h3>Community Sentiment Monitoring</h3>
             <p>
@@ -350,25 +239,6 @@ def analyze_sentiment(text):
                 KOTE(Korean Online Text Emotion) 모델로 44개 감정 라벨을 분류합니다.
             </p>
 
-            <div class="code-block">
-                <div class="code-header">Community Crawler with Emotion Analysis</div>
-                <pre><code># 뽐뿌 게시판 크롤링
-keywords = ["이야기", "마블", "헬모", "아이즈", "유모바일", ...]
-base_url = 'https://www.ppomppu.co.kr/zboard/zboard.php?id=phone'
-
-for page in range(start_page, end_page + 1):
-    soup = BeautifulSoup(response.text, 'html.parser')
-    for row in table.find_all("tr"):
-        if keyword_pattern.search(span_text):
-            # 게시글 상세 내용 수집
-            ...
-
-# KOTE 감정 분석 모델
-model = AutoModelForSequenceClassification.from_pretrained(
-    "searle-j/kote_for_easygoing_people"
-)
-# 44개 감정 라벨: 기쁨, 슬픔, 분노, 놀람, 혐오, 두려움, ...</code></pre>
-            </div>
         </div>
     </section>
 
@@ -418,7 +288,7 @@ model = AutoModelForSequenceClassification.from_pretrained(
         <div class="container">
             <h2>Results & Impact</h2>
             <ul>
-                <li><strong>업무 자동화</strong>: 매일 2-3시간 소요되던 수동 조사 업무를 완전 자동화</li>
+                <li><strong>업무 자동화</strong>: 하루 2시간 걸리던 수동 조사를 15분으로 단축</li>
                 <li><strong>데이터 정확성</strong>: 수동 입력 오류 제거, 일관된 데이터 포맷 유지</li>
                 <li><strong>실시간 모니터링</strong>: 경쟁사 가격 변동 및 프로모션 즉시 감지</li>
                 <li><strong>의사결정 지원</strong>: 데이터 기반 요금제 전략 수립에 기여</li>
@@ -456,7 +326,7 @@ model = AutoModelForSequenceClassification.from_pretrained(
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+            <p>&copy; 2026 장윤호</p>
         </div>
     </footer>
 

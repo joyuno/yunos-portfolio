@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADBIAS (논문) | Yunho Jang</title>
+    <title>ADBIAS (논문) | 장윤호</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" aria-label="주요 메뉴">
         <div class="container nav-inner">
             <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
             <ul class="nav-links">
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#skills">Skills</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="../index.html#career">경력</a></li>
+                <li><a href="../index.html#projects">프로젝트</a></li>
+                <li class="nav-optional"><a href="../index.html#skills">기술</a></li>
+                <li><a href="../index.html#contact">연락처</a></li>
+                <li class="nav-optional"><a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">블로그</a></li>
             </ul>
         </div>
     </nav>
@@ -25,13 +28,13 @@
         <div class="container">
             <a href="../index.html#projects" class="back-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                Projects
+                프로젝트
             </a>
             <span class="hero-label">AI Research</span>
             <h1>ADBIAS (논문)</h1>
             <p class="subtitle">
                 Multi-LLM 편향 조정을 통한 자동 에세이 채점 프레임워크.
-                4개의 LLM 채점 편향을 MFRM으로 정량화하고, Meta-LLM을 통해 편향 조정 평가 수행. ACL 2025 제출.
+                4개 LLM의 채점 편향을 MFRM으로 정량화하고, 채점 근거를 함께 보고 판단하는 메타모델로 편향을 줄였습니다. 2025년 국제 학회 제출.
             </p>
             <div class="project-badges">
                 <span class="badge">
@@ -44,7 +47,7 @@
                 </span>
                 <span class="badge">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                    ACL 2025 Submission
+                    국제 학회 제출 (2025)
                 </span>
             </div>
         </div>
@@ -212,19 +215,6 @@
                 </p>
             </div>
 
-            <div class="code-block">
-                <div class="code-header">MFRM.py - PyTorch Implementation</div>
-                <pre><code>class MFRM(nn.Module):
-    def __init__(self, N_person, N_trait, N_rater, N_strat, K_max):
-        # Essay ability (θ)
-        self.person_trait = nn.Embedding(N_person * N_trait, 1)
-
-        # Rater severity (β)
-        self.rater_set_trait = nn.Embedding(N_rater * N_strat, 1)
-
-        # Category threshold (τ)
-        self.threshold_raw = nn.Embedding(N_strat, K_max)</code></pre>
-            </div>
         </div>
     </section>
 
@@ -439,7 +429,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+            <p>&copy; 2026 장윤호</p>
         </div>
     </footer>
 

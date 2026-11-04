@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소명 처리 시스템 | 장윤호</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="nav" aria-label="주요 메뉴">
+        <div class="container nav-inner">
+            <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="../index.html#career">경력</a></li>
+                <li><a href="../index.html#projects">프로젝트</a></li>
+                <li class="nav-optional"><a href="../index.html#skills">기술</a></li>
+                <li><a href="../index.html#contact">연락처</a></li>
+                <li class="nav-optional"><a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">블로그</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <a href="../index.html#career" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                경력
+            </a>
+            <span class="hero-label">테라시스 · 보안 관제 연동 · 멀티테넌트</span>
+            <h1>소명 처리 시스템</h1>
+            <p class="subtitle">
+                보안 관제(SIEM)에서 알람이 오면 당사자에게 소명을 받고, 다단계 결재와 보고서 발행, 감사 기록까지 한 플랫폼에서 처리하는 멀티테넌트 시스템입니다.
+            </p>
+            <div class="project-badges">
+                <span class="badge">2026.04 ~ 현재</span>
+                <span class="badge">풀스택 메인 개발</span>
+                <span class="badge">MVP 완성 · 2금융권 도입 검토</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-content-section">
+        <div class="container">
+            <h2>처리 흐름</h2>
+            <p>알람 하나가 들어와 소명이 끝날 때까지의 순서입니다.</p>
+            <ol class="flow">
+                <li><b>알람 수신</b><span>보안 관제 알람을 케이스로 등록하고 자동 분류</span></li>
+                <li><b>소명 요청</b><span>당사자에게 소명 요청 메일을 자동 발송</span></li>
+                <li><b>다단계 결재</b><span>위임과 만료 알림을 포함한 결재 진행</span></li>
+                <li><b>리포트 발행</b><span>자체 호스팅 LLM으로 소명 리포트 작성과 다국어 번역</span></li>
+                <li><b>감사 기록</b><span>모든 상태 변경을 감사 로그로 보존</span></li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="project-content-section">
+        <div class="container">
+            <h2>맡은 일</h2>
+            <ul class="feature-list">
+                <li><strong>멀티테넌트 모델</strong>상위 기관 아래 여러 하위 기관이 있는 조직 구조에 맞춰 테넌트 트리를 만들었습니다. 사용자와 테넌트를 분리해, 토큰을 다시 발급하지 않고도 요청 헤더로 테넌트를 바꿀 수 있습니다. 임직원 CSV를 올리면 소속 테넌트로 자동 배정됩니다.</li>
+                <li><strong>소명 워크플로우</strong>자동 분류, 메일 발송, 다단계 결재, 위임, 만료 알림을 구현했습니다. 케이스 상태는 상태 기계를 거쳐서만 바뀌게 해 비정상 전이를 막았습니다.</li>
+                <li><strong>비동기 처리와 중복 차단</strong>메일 발송과 리포트 생성은 Celery로 비동기 처리하고, 같은 요청이 두 번 들어오면 409로 막았습니다. LLM 호출 오류는 원인별 HTTP 응답으로 나눠 화면에서 구분되게 했습니다.</li>
+                <li><strong>LLM 리포트와 번역</strong>보안 운영 데이터가 밖으로 나가지 않도록 자체 호스팅 LLM으로 소명 리포트를 발행하고 다국어로 번역합니다. 보고서 PDF는 matplotlib 차트를 넣어 생성합니다.</li>
+                <li><strong>인증과 관리 화면</strong>SSO 로그인과 직급별 역할 자동 매핑, 권한별 대시보드와 예외 정책 관리 화면을 React로 만들었습니다.</li>
+                <li><strong>배포</strong>폐쇄망 서버에 self-hosted runner로 배포하고, Docker Compose와 Nginx HTTPS로 운영 환경을 구성했습니다.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="project-content-section">
+        <div class="container">
+            <h2>기술 스택</h2>
+            <div class="tech-stack-grid">
+                <div class="tech-group"><h4>백엔드</h4><p>Python · FastAPI · SQLAlchemy · Alembic · Celery</p></div>
+                <div class="tech-group"><h4>프론트엔드</h4><p>React · TypeScript · Ant Design · TanStack Query · Zustand</p></div>
+                <div class="tech-group"><h4>데이터</h4><p>PostgreSQL · Redis</p></div>
+                <div class="tech-group"><h4>AI · 인증</h4><p>자체 호스팅 LLM · SSO</p></div>
+                <div class="tech-group"><h4>운영</h4><p>Docker Compose · Nginx · GitHub Actions(self-hosted)</p></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 장윤호</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

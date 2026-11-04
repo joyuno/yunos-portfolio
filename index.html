@@ -3,468 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yunho Jang | AI Engineer</title>
+    <title>장윤호 | AI Engineer</title>
+    <meta name="description" content="기획부터 배포까지 LLM 서비스를 만드는 AI 엔지니어 장윤호의 포트폴리오">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" aria-label="주요 메뉴">
         <div class="container nav-inner">
             <a href="#" class="nav-logo">yunho<span>.</span></a>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#career">Career</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#career">경력</a></li>
+                <li><a href="#projects">프로젝트</a></li>
+                <li class="nav-optional"><a href="#skills">기술</a></li>
+                <li><a href="#contact">연락처</a></li>
+                <li class="nav-optional"><a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">블로그</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="container hero-with-photo">
-            <div class="hero-text">
-                <span class="hero-label">AI Engineer</span>
+    <main>
+        <header class="intro">
+            <div class="container">
                 <h1>장윤호</h1>
-                <p class="hero-subtitle">
-                    AI 제품을 빠르게 프로토타이핑하는 것에 관심이 있는 엔지니어입니다.
-                </p>
-            <div class="hero-links">
-                <a href="https://github.com/joyuno" target="_blank">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    GitHub
-                </a>
-                <a href="mailto:joy981017@gmail.com">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    Email
-                </a>
-                <a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                    Blog
-                </a>
-            </div>
-            </div>
-            <div class="hero-photo">
-                <img src="assets/profile/profile.png" alt="장윤호 프로필 사진">
-            </div>
-        </div>
-    </section>
+                <p class="role">기획부터 배포까지 LLM 서비스를 만드는 AI 엔지니어입니다. 지금은 테라시스에서 온프레미스 APM 플랫폼의 AI 어시스턴트와 소명 처리 시스템을 만들고 있습니다.</p>
+                <div class="intro-links">
+                    <a href="https://github.com/joyuno" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">개발 블로그</a>
+                    <a href="https://joyuno.github.io/ai-tech-digest/" target="_blank" rel="noopener noreferrer">AI Tech Digest</a>
+                    <a href="mailto:joy981017@gmail.com">joy981017@gmail.com</a>
+                </div>
 
-    <!-- About -->
-    <section id="about" class="section">
-        <div class="container">
-            <div class="section-title">About</div>
-            <div class="about-content">
+                <section class="waterfall" aria-labelledby="wf-title">
+                    <div class="waterfall-head">
+                        <h2 id="wf-title">한눈에 보는 작업 기간</h2>
+                        <ul class="legend">
+                            <li style="--c: var(--work)">회사 업무</li>
+                            <li style="--c: var(--product)">제품 개발</li>
+                            <li style="--c: var(--research)">연구·학업</li>
+                        </ul>
+                    </div>
+                    <div class="wf-axis" aria-hidden="true">
+                        <span></span>
+                        <div class="wf-ticks">
+                            <span style="--x: 0%">2022</span>
+                            <span style="--x: 20%">2023</span>
+                            <span style="--x: 40%">2024</span>
+                            <span style="--x: 60%">2025</span>
+                            <span style="--x: 80%">2026</span>
+                        </div>
+                    </div>
+                    <!-- 막대 위치: 2022.01 = 0%, 1년 = 20%. 월을 모르는 항목은 연 단위(빗금). -->
+                    <ol class="wf-rows">
+                        <li class="wf-row">
+                            <a class="wf-name" href="projects/lepons.html">Lepons<small>2026.07 ~ 진행 중</small></a>
+                            <div class="wf-track"><span class="wf-bar ongoing" style="--s: 90%; --w: 7.5%; --c: var(--product); --i: 0"></span></div>
+                        </li>
+                        <li class="wf-row">
+                            <a class="wf-name" href="projects/sohmyeong.html">소명 처리 시스템<small>2026.04 ~ 진행 중</small></a>
+                            <div class="wf-track"><span class="wf-bar ongoing" style="--s: 85%; --w: 12.5%; --c: var(--work); --i: 1"></span></div>
+                        </li>
+                        <li class="wf-row">
+                            <a class="wf-name" href="projects/oyeon.html">오연<small>2026.04 ~ 진행 중</small></a>
+                            <div class="wf-track"><span class="wf-bar ongoing" style="--s: 85%; --w: 12.5%; --c: var(--product); --i: 2"></span></div>
+                        </li>
+                        <li class="wf-row">
+                            <a class="wf-name" href="projects/omnitrace.html">OmniTrace AI 어시스턴트<small>2026.02 ~ 진행 중</small></a>
+                            <div class="wf-track"><span class="wf-bar ongoing" style="--s: 81.7%; --w: 15.8%; --c: var(--work); --i: 3"></span></div>
+                        </li>
+                        <li class="wf-row">
+                            <a class="wf-name" href="projects/codefill.html">CodeFill<small>2025</small></a>
+                            <div class="wf-track"><span class="wf-bar approx" style="--s: 60%; --w: 20%; --c: var(--product); --i: 4"></span></div>
+                        </li>
+                        <li class="wf-row">
+                            <a class="wf-name" href="projects/talet.html">Talet<small>2025</small></a>
+                            <div class="wf-track"><span class="wf-bar approx" style="--s: 60%; --w: 20%; --c: var(--product); --i: 5"></span></div>
+                        </li>
+                        <li class="wf-row">
+                            <a class="wf-name" href="projects/adbias.html">ADBIAS 논문<small>2025</small></a>
+                            <div class="wf-track"><span class="wf-bar approx" style="--s: 60%; --w: 20%; --c: var(--research); --i: 6"></span></div>
+                        </li>
+                        <li class="wf-row">
+                            <a class="wf-name" href="projects/lguplus-intern.html">LG U+ 인턴<small>2024.08 ~ 2025.07</small></a>
+                            <div class="wf-track"><span class="wf-bar" style="--s: 51.7%; --w: 20%; --c: var(--work); --i: 7"></span></div>
+                        </li>
+                        <li class="wf-row">
+                            <a class="wf-name" href="projects/thesis.html">졸업논문<small>2024</small></a>
+                            <div class="wf-track"><span class="wf-bar approx" style="--s: 40%; --w: 10%; --c: var(--research); --i: 8"></span></div>
+                        </li>
+                        <li class="wf-row">
+                            <a class="wf-name" href="projects/school-projects.html">학부 데이터 분석<small>2022 ~ 2024</small></a>
+                            <div class="wf-track"><span class="wf-bar approx" style="--s: 0%; --w: 50%; --c: var(--research); --i: 9"></span></div>
+                        </li>
+                    </ol>
+                    <p class="wf-note">빗금 막대는 연 단위로만 기록된 기간입니다. 항목을 누르면 상세 페이지로 이동합니다.</p>
+                </section>
+            </div>
+        </header>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2>소개</h2>
                 <div class="about-text">
-                    <p>
-                        제품을 빠르게 만들어 보고, MVP 단계까지 구현하는 과정에서 데이터 분석과 AI 도입을 담당합니다. ML / LLM / Multi-Agent 기반 서비스를 만들고, LangGraph 기반 학습 플랫폼(CodeFill), 사주 소개팅 앱(오연), AI 모의면접(IMSAM) 등 다양한 프로토타입을 만들어 왔습니다.
-                    </p>
-                    <p>
-                        현재 테라시스에서 APM(Application Performance Monitoring)과 소명 처리 시스템(tr-box)을 개발하고 있고, 이전에는 LG U+ 사무 알바 업무를 자동화하여 리포트 형식으로 받을 수 있게 CI 단계까지 구축했습니다. Multi-LLM을 활용하여 에세이 채점 편향을 줄이는 ADBIAS 프레임워크 논문을 작성한 경험이 있습니다.
-                    </p>
-                </div>
-                <div class="about-info">
-                    <div class="info-item">
-                        <span class="info-label">Focus</span>
-                        <span class="info-value">LLM, Multi-Agent, AI Product</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Experience</span>
-                        <span class="info-value">Terasys (2026 ~) · LG U+ Intern (2025)</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Location</span>
-                        <span class="info-value">Seoul, Korea</span>
-                    </div>
+                    <p>필요한 기능을 직접 정의하고, 프로토타입을 만들고, 품질을 숫자로 확인한 뒤 배포까지 가져가는 방식으로 일합니다. 테라시스에서는 외부 API를 쓸 수 없는 폐쇄망 고객 환경에 맞춰, 사내 GPU 서버의 자체 호스팅 LLM으로 자연어 질문을 ClickHouse SQL·RAG·대시보드 위젯으로 바꿔 답하는 AI 어시스턴트를 만들었습니다.</p>
+                    <p>복단대학교에서 통계학을 전공했고, LLM 채점 편향을 줄이는 ADBIAS 논문 작업에 참여했습니다. 업무 밖에서는 여러 PC와 원격 VM의 AI 코딩 세션을 한 창에서 다루는 데스크톱 앱 Lepons를 혼자 만들고 있습니다.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills -->
-    <section id="skills" class="section">
-        <div class="container">
-            <div class="section-title">Skills</div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>AI / ML</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">Transformers</span>
-                        <span class="skill-tag">LangGraph</span>
-                        <span class="skill-tag">Multi-Agent</span>
-                        <span class="skill-tag">RAG</span>
-                        <span class="skill-tag">Fine-Tuning</span>
-                        <span class="skill-tag">TTS / STT</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Backend</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">Go</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Spring Boot</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Frontend</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Next.js</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">Flutter</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>DB</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">ClickHouse</span>
-                        <span class="skill-tag">Redis</span>
-                        <span class="skill-tag">Supabase</span>
-                        <span class="skill-tag">VectorDB</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools / Infra</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Nginx</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">GCP</span>
-                        <span class="skill-tag">GitHub Actions</span>
-                        <span class="skill-tag">OpenTelemetry</span>
-                    </div>
-                </div>
+        <section id="career" class="section">
+            <div class="container">
+                <h2>경력</h2>
+                <p class="section-lead">(주)테라시스, 2026.02 ~ 재직 중</p>
+                <ol class="work-list">
+                    <li class="work-item">
+                        <div class="work-when"><strong>2026.02 ~ 현재</strong>테라시스</div>
+                        <div class="work-body">
+                            <h3><span class="kind" style="--c: var(--work)"></span><a href="projects/omnitrace.html">OmniTrace AI 어시스턴트</a></h3>
+                            <p class="what">OpenTelemetry 기반 온프레미스 APM 플랫폼</p>
+                            <p>운영자가 자연어로 물으면 의도를 분류해 SQL 조회, 지식베이스 검색(RAG), 대시보드 위젯 생성으로 나눠 답하는 AI 어시스턴트를 만들었습니다. 자체 호스팅한 Gemma 4 위에 지식 카드 59장의 RAG 문서 라이브러리를 구축하고, 골든셋과 LLM 채점기로 답변을 채점하는 시스템을 만들어 근거 기반 답변 통과율 93.4%를 확인했습니다.</p>
+                            <ul class="stack">
+                                <li>Python · FastAPI</li><li>Gemma 4</li><li>Qdrant · BGE-M3</li><li>ClickHouse</li><li>React</li><li>Go</li><li>OpenTelemetry</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-when"><strong>2026.04 ~ 현재</strong>테라시스</div>
+                        <div class="work-body">
+                            <h3><span class="kind" style="--c: var(--work)"></span><a href="projects/sohmyeong.html">소명 처리 시스템</a></h3>
+                            <p class="what">보안 알람 소명·결재·보고를 한곳에서 처리하는 멀티테넌트 시스템</p>
+                            <p>보안 관제에서 알람이 오면 당사자에게 소명을 받고, 다단계 결재와 보고서 발행까지 처리하는 시스템을 풀스택으로 개발했습니다. 상위 기관과 하위 기관이 나뉜 조직 구조에 맞춘 멀티테넌트 모델, Celery 비동기 처리와 중복 요청 차단, 자체 호스팅 LLM을 이용한 소명 리포트 발행과 다국어 번역을 맡았습니다.</p>
+                            <ul class="stack">
+                                <li>Python · FastAPI</li><li>Celery · Redis</li><li>PostgreSQL</li><li>React · TypeScript</li><li>SSO</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-when"><strong>2024.08 ~ 2025.07</strong>LG U+ 인턴</div>
+                        <div class="work-body">
+                            <h3><span class="kind" style="--c: var(--work)"></span><a href="projects/lguplus-intern.html">MVNO 요금제 조사 자동화</a></h3>
+                            <p class="what">MVNO 영업팀 반복 업무 자동화</p>
+                            <p>매일 손으로 하던 경쟁사 요금제 조사를 수집, 엑셀 리포트, 메일 발송까지 자동화해 하루 2시간 걸리던 일을 15분으로 줄였습니다. 비개발 직무인 선임들이 계속 쓸 수 있도록 사용 가이드를 만들어 넘겼습니다.</p>
+                            <ul class="stack">
+                                <li>Python</li><li>Selenium</li><li>Pandas</li><li>BigQuery 조회</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Career -->
-    <section id="career" class="section">
-        <div class="container">
-            <div class="section-title">Career</div>
-            <div class="projects-list">
-                <!-- OmniTrace -->
-                <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-type">APM · OTel · AI 어시스턴트</span>
-                        <h3>OmniTrace — 보안 추적 APM 플랫폼</h3>
-                        <span class="project-period">2026.02 ~ 현재</span>
-                    </div>
-                    <div class="project-content">
-                        <p>
-                            테라시스가 직접 설계한 OTel 표준 기반 온프레미스 APM 플랫폼. 빅데이터와 AI 추론을 결합해 애플리케이션 성능 저하부터 보안 위협 징후까지 실시간으로 탐지합니다. 2금융권 도입 검토 중. 풀스택 + ML/LLM 통합 담당.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">OpenTelemetry</span>
-                            <span class="tech-badge">ClickHouse</span>
-                            <span class="tech-badge">Go</span>
-                            <span class="tech-badge">React</span>
-                            <span class="tech-badge">AI 어시스턴트</span>
-                            <span class="tech-badge">On-Premise</span>
+        <section id="projects" class="section">
+            <div class="container">
+                <h2>프로젝트</h2>
+                <ol class="work-list">
+                    <li class="work-item pending" id="lepons">
+                        <div class="work-when"><strong>2026.07 ~ 현재</strong></div>
+                        <div class="work-body">
+                            <h3><span class="kind" style="--c: var(--product)"></span><a href="projects/lepons.html">Lepons</a></h3>
+                            <p>1.8.0 정식 버전 공개 후 내용을 채웁니다.</p>
                         </div>
-                        <a href="projects/omnitrace.html" class="project-link">
-                            View Details
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- tr-box -->
-                <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-type">SIEM 연동 소명처리 · Multi-Tenant</span>
-                        <h3>tr-box — 멀티테넌트 SIEM 연동 소명처리 시스템</h3>
-                        <span class="project-period">2026.04 ~ 현재</span>
-                    </div>
-                    <div class="project-content">
-                        <p>
-                            멀티테넌트 지원 SIEM 연동 소명처리 시스템. 보안 알람 케이스 관리, 자동 소명 워크플로우, 자체 호스팅 LLM 자동 소견 생성, 다단계 결재, 100% 감사 추적을 중앙회/조합회/은행 분리 멀티테넌트 아키텍처 위에서 제공합니다. 2금융권 도입 검토 중 (MVP 완성). 풀스택 메인 개발자.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Multi-tenant</span>
-                            <span class="tech-badge">FastAPI</span>
-                            <span class="tech-badge">React</span>
-                            <span class="tech-badge">PostgreSQL</span>
-                            <span class="tech-badge">SSO</span>
-                            <span class="tech-badge">LLM</span>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-when"><strong>2026.04 ~ 현재</strong>1인 개발</div>
+                        <div class="work-body">
+                            <h3><span class="kind" style="--c: var(--product)"></span><a href="projects/oyeon.html">오연(五緣)</a></h3>
+                            <p class="what">사주 궁합 기반 1일 1매칭 소개팅 앱</p>
+                            <p>매일 사주 궁합이 가장 잘 맞는 한 명을 추천합니다. 천간·지지·오행 상생상극·대운까지 사주 계산을 직접 구현하고, Claude API로 궁합 해설을 만들었습니다. Flutter 하나로 iOS·Android·웹을 개발해 스토어 출시 준비까지 진행했습니다.</p>
+                            <ul class="stack">
+                                <li>Flutter</li><li>FastAPI</li><li>PostgreSQL</li><li>Claude API</li>
+                            </ul>
                         </div>
-                        <a href="projects/tr-box.html" class="project-link">
-                            View Details
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-when"><strong>2025</strong>3인 팀</div>
+                        <div class="work-body">
+                            <h3><span class="kind" style="--c: var(--product)"></span><a href="projects/codefill.html">CodeFill</a></h3>
+                            <p class="what">LangGraph 멀티 에이전트 코딩 학습 플랫폼</p>
+                            <p>사용자 메시지의 의도를 분류해 정보 수집, 문제 탐색, 풀이 지원 파이프라인으로 보내는 학습 플랫폼입니다. LangGraph 오케스트레이터와 에이전트 설계, pgvector RAG, 평가 코드, LangSmith 모니터링, FastAPI 백엔드를 맡았습니다.</p>
+                            <ul class="stack">
+                                <li>LangGraph</li><li>FastAPI</li><li>pgvector</li><li>LangSmith</li><li>Next.js</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-when"><strong>2025</strong>5인 팀</div>
+                        <div class="work-body">
+                            <h3><span class="kind" style="--c: var(--research)"></span><a href="projects/adbias.html">ADBIAS 논문</a></h3>
+                            <p class="what">여러 LLM의 에세이 채점 편향을 줄이는 프레임워크</p>
+                            <p>LLM 4종의 채점 편향을 MFRM으로 정량화했습니다. 채점 근거를 만드는 모델과 그 근거를 함께 보고 판단하는 메타모델 구조를 제안하고 검증해, 편향 분산을 57.9% 줄였습니다. 2025년 국제 학회에 제출했습니다.</p>
+                            <ul class="stack">
+                                <li>Python</li><li>Multi-LLM</li><li>MFRM</li><li>QWK</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-when"><strong>2025</strong>팀 · AI/ML 리드</div>
+                        <div class="work-body">
+                            <h3><span class="kind" style="--c: var(--product)"></span><a href="projects/talet.html">Talet</a></h3>
+                            <p class="what">다문화 가정을 위한 AI 전래동화 낭독 iOS 앱</p>
+                            <p>외국인 한국어 발화 데이터로 XTTS v2를 파인튜닝해, 부모님 목소리로 전래동화를 읽어 주는 보이스 클로닝을 만들었습니다.</p>
+                            <ul class="stack">
+                                <li>PyTorch</li><li>XTTS v2</li><li>FastAPI</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-when"><strong>2024</strong>복단대학교</div>
+                        <div class="work-body">
+                            <h3><span class="kind" style="--c: var(--research)"></span><a href="projects/thesis.html">Dual-LSTM 포트폴리오 최적화</a></h3>
+                            <p class="what">통계학과 졸업논문</p>
+                            <p>Dual-LSTM으로 수익률과 변동성을 예측해 평균-분산 최적화에 넣는 동적 포트폴리오 모델입니다. CSI 300 지수에서 Sharpe Ratio 2.44를 기록했습니다.</p>
+                            <ul class="stack">
+                                <li>PyTorch</li><li>LSTM</li><li>CVXPY</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="work-item">
+                        <div class="work-when"><strong>2022 ~ 2024</strong>복단대학교</div>
+                        <div class="work-body">
+                            <h3><span class="kind" style="--c: var(--research)"></span><a href="projects/school-projects.html">학부 데이터 분석 프로젝트</a></h3>
+                            <p class="what">회귀·군집·연관규칙 분석 7건</p>
+                            <p>Boston Housing, Instacart, 상하이 지하철 등 공개 데이터로 회귀분석, 클러스터링, 연관규칙 분석을 했습니다.</p>
+                            <ul class="stack">
+                                <li>Python</li><li>Pandas</li><li>scikit-learn</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projects -->
-    <section id="projects" class="section">
-        <div class="container">
-            <div class="section-title">Projects</div>
-            <div class="projects-list">
-                <!-- 오연 -->
-                <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-type">Personal · AI Product</span>
-                        <h3>오연(五緣) — 사주 기반 1일 1매칭</h3>
-                        <span class="project-period">2026.04 ~ 현재</span>
-                    </div>
-                    <div class="project-content">
-                        <p>
-                            매일 오후 5~6시, 사주 궁합이 가장 좋은 단 한 명을 추천하는 1일 1매칭 소개팅 앱. 천간/지지/지장간/60갑자/오행 상생상극/대운까지 사주 도메인을 풀 구현하고 Anthropic Claude API로 자연어 궁합 해설을 생성. Flutter 단일 코드베이스로 iOS/Android/Web 동시 지원.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Flutter</span>
-                            <span class="tech-badge">FastAPI</span>
-                            <span class="tech-badge">PostgreSQL</span>
-                            <span class="tech-badge">Claude API</span>
-                            <span class="tech-badge">사주 도메인</span>
-                        </div>
-                        <a href="projects/oyeon.html" class="project-link">
-                            View Details
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- CodeFill -->
-                <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-type">AI / Multi-Agent System</span>
-                        <h3>CodeFill - AI 코딩 학습 플랫폼</h3>
-                        <span class="project-period">2025</span>
-                    </div>
-                    <div class="project-content">
-                        <p>
-                            LangGraph 기반 Multi-Agent 오케스트레이션 시스템을 활용한 개인화 코딩 학습 플랫폼. 4-Stage Pipeline(Intent→Collection→Discovery→Solving), RAG Hybrid Search, Collaborative Filtering 추천, Progressive Hint System 구현.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">LangGraph</span>
-                            <span class="tech-badge">FastAPI</span>
-                            <span class="tech-badge">RAG</span>
-                            <span class="tech-badge">pgvector</span>
-                            <span class="tech-badge">Next.js</span>
-                        </div>
-                        <a href="projects/codefill.html" class="project-link">
-                            View Details
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- ADBIAS -->
-                <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-type">AI Research</span>
-                        <h3>ADBIAS(논문)</h3>
-                        <span class="project-period">2025</span>
-                    </div>
-                    <div class="project-content">
-                        <p>
-                            Multi-LLM 편향 조정을 통한 자동 에세이 채점 프레임워크. 4개의 LLM(GPT-4o, Claude, Gemini, LLaMA)의 채점 편향을 MFRM으로 정량화하고, Meta-LLM을 통해 편향 조정 평가를 수행. ACL 2025 제출.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Multi-LLM</span>
-                            <span class="tech-badge">AES</span>
-                            <span class="tech-badge">QWK</span>
-                            <span class="tech-badge">MFRM</span>
-                        </div>
-                        <a href="projects/adbias.html" class="project-link">
-                            View Details
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- AIIV - AI Mock Interview -->
-                <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-type">AI Product(Vibe Code)</span>
-                        <h3>IMSAM - AI 모의 인터뷰</h3>
-                        <span class="project-period">2025</span>
-                    </div>
-                    <div class="project-content">
-                        <p>
-                            AI 기반 실시간 모의면접 서비스. SSE 스트리밍 파이프라인(STT→LLM→TTS), RAG 기반 자기소개서 분석, 음성 분석(말 속도/유창성/자신감 점수) 기능 구현.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Next.js</span>
-                            <span class="tech-badge">TypeScript</span>
-                            <span class="tech-badge">Supabase</span>
-                            <span class="tech-badge">OpenAI Imbedding</span>
-                            <span class="tech-badge">RAG</span>
-                        </div>
-                        <a href="projects/aiiv.html" class="project-link">
-                            View Details
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Talet - AI Voice Cloning -->
-                <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-type">TTS / Voice Cloning</span>
-                        <h3>Talet - AI 전래동화 낭독</h3>
-                        <span class="project-period">2025</span>
-                    </div>
-                    <div class="project-content">
-                        <p>
-                            다문화 가정을 위한 AI 음성 전래동화 서비스. AIHub 외국인 한국어 발화 데이터로 XTTS v2 모델을 파인튜닝하여 부모님 목소리로 한국 전래동화를 들려주는 보이스 클로닝 기능 구현.(IOS)
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">PyTorch</span>
-                            <span class="tech-badge">XTTS v2</span>
-                            <span class="tech-badge">FastAPI</span>
-                            <span class="tech-badge">Fine-Tuning</span>
-                        </div>
-                        <a href="projects/talet.html" class="project-link">
-                            View Details
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- LG U+ Internship -->
-                <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-type">Data Engineering</span>
-                        <h3>LG U+ MVNO 업무 자동화</h3>
-                        <span class="project-period">2025</span>
-                    </div>
-                    <div class="project-content">
-                        <p>
-                            LG U+ MVNO 영업1팀 단순 반복 업무 자동화. 경쟁사 요금제 변동 이슈 분석, 뉴스/커뮤니티 감성 분석, GitHub Actions 자동 메일 송부 시스템 구축.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Selenium</span>
-                            <span class="tech-badge">HuggingFace</span>
-                            <span class="tech-badge">GitHub Actions</span>
-                        </div>
-                        <a href="projects/lguplus-intern.html" class="project-link">
-                            View Details
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- MovieMania -->
-                <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-type">Web Development</span>
-                        <h3>MovieMania- 영화 커뮤니티</h3>
-                        <span class="project-period">2021</span>
-                    </div>
-                    <div class="project-content">
-                        <p>
-                            Spring Boot 기반 영화 커뮤니티 웹 애플리케이션. 자유게시판, 영화 리뷰 게시판, 시사회 신청/추첨 기능 구현. Spring Security를 활용한 사용자 인증 및 권한 관리.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Java</span>
-                            <span class="tech-badge">Spring Boot</span>
-                            <span class="tech-badge">MyBatis</span>
-                            <span class="tech-badge">JavaScript</span>
-                            <span class="tech-badge">JSP</span>
-                        </div>
-                        <a href="projects/moviemania.html" class="project-link">
-                            View Details
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Graduation Thesis -->
-                <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-type">Deep Learning / Finance</span>
-                        <h3>Dual-LSTM 포트폴리오 최적화</h3>
-                        <span class="project-period">2024</span>
-                    </div>
-                    <div class="project-content">
-                        <p>
-                            복단대학교 통계학과 졸업논문. Dual-LSTM 신경망으로 수익률/변동성을 예측하고 MVO에 입력하여 동적 포트폴리오 최적화. CSI 300 지수에서 Sharpe Ratio 2.44 달성.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">PyTorch</span>
-                            <span class="tech-badge">LSTM</span>
-                            <span class="tech-badge">MVO</span>
-                            <span class="tech-badge">Pandas</span>
-                            <span class="tech-badge">CVXPY</span>
-                        </div>
-                        <a href="projects/thesis.html" class="project-link">
-                            View Details
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Academic Projects -->
-                <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-type">Data Analysis</span>
-                        <h3>Academic Projects</h3>
-                        <span class="project-period">2022 - 2024</span>
-                    </div>
-                    <div class="project-content">
-                        <p>
-                            대학 재학 중 수행한 데이터 분석 프로젝트 모음. 회귀분석, 클러스터링, 연관규칙 분석 등 다양한 ML 기법 적용. Boston Housing, Instacart, 상하이 지하철 등 7개 프로젝트.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Pandas</span>
-                            <span class="tech-badge">Scikit-learn</span>
-                            <span class="tech-badge">K-Means</span>
-                            <span class="tech-badge">PCA</span>
-                        </div>
-                        <a href="projects/school-projects.html" class="project-link">
-                            View Details
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
+        <section id="skills" class="section">
+            <div class="container">
+                <h2>기술</h2>
+                <dl class="skills">
+                    <div><dt>LLM · AI</dt><dd>LangGraph, RAG(하이브리드 검색), LLM 평가(골든셋 · LLM 채점기), LoRA 파인튜닝, PyTorch, Transformers, TTS</dd></div>
+                    <div><dt>백엔드</dt><dd>Python, FastAPI, Celery, Go, Java</dd></div>
+                    <div><dt>프론트엔드</dt><dd>React, Next.js, TypeScript, Flutter, Electron</dd></div>
+                    <div><dt>데이터</dt><dd>PostgreSQL, ClickHouse, Redis, Qdrant, pgvector, Supabase</dd></div>
+                    <div><dt>도구 · 운영</dt><dd>Docker, Nginx, Linux, Git, GitHub Actions, OpenTelemetry, Claude Code · Codex</dd></div>
+                </dl>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section">
-        <div class="container">
-            <div class="section-title">Contact</div>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <h4>Email</h4>
-                    <p><a href="mailto:joy981017@gmail.com">joy981017@gmail.com</a></p>
-                </div>
-                <div class="contact-item">
-                    <h4>GitHub</h4>
-                    <p><a href="https://github.com/joyuno" target="_blank">github.com/joyuno</a></p>
-                </div>
-                <div class="contact-item">
-                    <h4>Blog</h4>
-                    <p><a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">joyuno.github.io</a></p>
-                </div>
-                <div class="contact-item">
-                    <h4>Location</h4>
-                    <p>Seoul, Korea</p>
-                </div>
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>연락처</h2>
+                <ul class="contact-list">
+                    <li><span>이메일</span><a href="mailto:joy981017@gmail.com">joy981017@gmail.com</a></li>
+                    <li><span>GitHub</span><a href="https://github.com/joyuno" target="_blank" rel="noopener noreferrer">github.com/joyuno</a></li>
+                    <li><span>블로그</span><a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">joyuno.github.io</a></li>
+                    <li><span>위치</span>서울</li>
+                </ul>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+            <p>&copy; 2026 장윤호</p>
         </div>
     </footer>
 

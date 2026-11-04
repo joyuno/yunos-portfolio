@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniTrace - 보안 추적 APM 플랫폼 | Yunho Jang</title>
+    <title>OmniTrace AI 어시스턴트 | 장윤호</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" aria-label="주요 메뉴">
         <div class="container nav-inner">
             <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
             <ul class="nav-links">
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#skills">Skills</a></li>
-                <li><a href="../index.html#career">Career</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">Blog</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="../index.html#career">경력</a></li>
+                <li><a href="../index.html#projects">프로젝트</a></li>
+                <li class="nav-optional"><a href="../index.html#skills">기술</a></li>
+                <li><a href="../index.html#contact">연락처</a></li>
+                <li class="nav-optional"><a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">블로그</a></li>
             </ul>
         </div>
     </nav>
@@ -27,35 +28,34 @@
         <div class="container">
             <a href="../index.html#career" class="back-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                Career
+                경력
             </a>
-            <span class="hero-label">Terasys · APM · OTel · AI 어시스턴트</span>
-            <h1>
-                <img src="../assets/omnitrace/logo.png" alt="OmniTrace logo" style="height: 1em; vertical-align: -0.15em; margin-right: 0.4em;">
-                OmniTrace
-            </h1>
+            <span class="hero-label">테라시스 · 온프레미스 APM · AI 어시스턴트</span>
+            <h1>OmniTrace AI 어시스턴트</h1>
             <p class="subtitle">
-                테라시스가 직접 설계한 OTel 표준 기반 온프레미스 APM 플랫폼.
-                빅데이터와 AI 추론을 결합해 애플리케이션 성능 저하부터 보안 위협 징후까지 실시간으로 탐지합니다.
+                OpenTelemetry 기반 온프레미스 APM 플랫폼 OmniTrace에서, 운영자가 자연어로 묻고 실제 데이터로 답을 받는 AI 어시스턴트를 만들었습니다.
+                외부 API를 쓸 수 없는 폐쇄망 고객 환경이라 자체 호스팅한 Gemma 4를 쓰고, 그 위에 RAG 문서 라이브러리와 채점 시스템까지 직접 구축했습니다.
             </p>
             <div class="project-badges">
                 <span class="badge">2026.02 ~ 현재</span>
-                <span class="badge">2금융권 도입 검토 중</span>
-                <span class="badge">풀스택 + ML/LLM</span>
-                <span class="badge">3인 팀</span>
+                <span class="badge">LLM 레이어 담당</span>
+                <span class="badge">팀 프로젝트</span>
+                <span class="badge">고객사 POC 진행</span>
             </div>
         </div>
     </section>
 
-    <!-- Why -->
+    <!-- Overview -->
     <section class="project-content-section">
         <div class="container">
-            <h2>왜 OmniTrace인가</h2>
+            <h2>무엇을 만들었나</h2>
             <p>
-                오늘날의 보안 환경은 온프레미스에서 클라우드까지 그 경계가 무너지고 있으며, 관리해야 할 보안 데이터는 기하급수적으로 늘어나고 있습니다. 기존의 통합로그분석이나 보안관제 시스템은 파편화된 위협 대응과 성능의 한계로 인해 갈수록 고도화되는 사이버 공격을 방어하는 데 어려움을 겪고 있습니다.
+                APM 화면은 데이터가 많지만, 원하는 숫자를 찾으려면 대시보드와 쿼리를 직접 다뤄야 합니다.
+                AI 어시스턴트는 "지난주 크래시가 많았던 화면이 어디야?" 같은 질문을 받아 의도를 분류하고,
+                ClickHouse SQL 조회, 지식베이스 검색, 대시보드 위젯 생성 중 맞는 도구로 답합니다.
             </p>
             <p>
-                OmniTrace는 <strong>OpenTelemetry 표준 + 빅데이터 + AI 추론</strong>이 결합된 애플리케이션 성능 모니터링 및 위협 징후 탐지 플랫폼입니다. 성능 가시성과 보안 가시성을 단일 플랫폼에서 통합 제공합니다.
+                OTel Collector와 ClickHouse 수집 인프라는 팀과 함께 구축했고, 그 위의 LLM 레이어(의도 라우팅, Text-to-SQL, 근거 주입, RAG 문서 라이브러리, 채점 시스템, PII 마스킹)를 맡았습니다.
             </p>
         </div>
     </section>
@@ -63,7 +63,7 @@
     <!-- Service UI -->
     <section class="project-content-section">
         <div class="container">
-            <h2>Service UI</h2>
+            <h2>제품 화면</h2>
             <div class="screenshot-gallery">
                 <figure class="screenshot-item">
                     <img src="../assets/omnitrace/1.png" alt="OTel 표준 기반 On-Premise 아키텍처" class="lightbox-img">
@@ -99,32 +99,98 @@
         </div>
     </section>
 
-    <!-- My Contributions -->
+    <!-- Architecture -->
     <section class="project-content-section">
         <div class="container">
-            <h2>My Contributions</h2>
+            <h2>AI 어시스턴트 구조</h2>
+            <p>질문 하나가 화면에서 출발해 답변으로 돌아오기까지 거치는 계층입니다.</p>
+            <div class="layers">
+                <div class="layer"><div class="layer-name">화면<small>React</small></div>
+                    <ul class="layer-nodes"><li class="mine">AI 어시스턴트 페이지<small>SSE 스트리밍으로 답변·SQL·위젯을 순서대로 표시</small></li></ul></div>
+                <div class="layer"><div class="layer-name">오케스트레이션<small>FastAPI</small></div>
+                    <ul class="layer-nodes"><li class="mine">파괴적 요청 거부</li><li class="mine">잡담 분리</li><li class="mine">의도 라우터<small>조회 · 집계 · 시계열 · RUM · 지식 · 위젯 등 9개 범주</small></li></ul></div>
+                <div class="layer"><div class="layer-name">도구</div>
+                    <ul class="layer-nodes"><li class="mine">Text-to-SQL<small>SELECT 전용 검사 후 실행</small></li><li class="mine">스키마 가이드</li><li class="mine">모바일 RUM 분석</li><li class="mine">지식베이스 검색</li><li class="mine">위젯 생성<small>EXPLAIN으로 SQL 검증</small></li></ul></div>
+                <div class="layer"><div class="layer-name">검색(RAG)</div>
+                    <ul class="layer-nodes"><li class="mine">BGE-M3 dense + BM25 sparse</li><li class="mine">Qdrant 하이브리드 검색<small>RRF로 결합</small></li><li class="mine">지식 카드 59장<small>SQL 예시 · 런북 · 지표 정의</small></li><li class="mine">키워드 폴백<small>벡터 검색을 못 쓸 때</small></li></ul></div>
+                <div class="layer"><div class="layer-name">데이터</div>
+                    <ul class="layer-nodes"><li>ClickHouse<small>traces · logs · metrics · RUM</small></li><li>PostgreSQL<small>대화 기록</small></li></ul></div>
+                <div class="layer"><div class="layer-name">LLM 서빙<small>사내 GPU</small></div>
+                    <ul class="layer-nodes"><li>Gemma 4 (26B MoE, 4bit)<small>llama.cpp · RTX 5090 한 장</small></li><li>사내 게이트웨이<small>OpenAI 호환 API</small></li></ul></div>
+                <p class="layers-note"><i></i>표시가 있는 칸이 직접 만든 부분입니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RAG library -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>RAG 문서 라이브러리</h2>
+            <p>
+                모델은 제품의 스키마와 지표 정의를 모르면 그럴듯한 SQL과 설명을 지어냅니다.
+                그래서 답변 근거로 넣을 지식 카드 59장을 같은 형식으로 만들고, 관리 화면에서 고치면 바로 검색에 반영되게 했습니다.
+            </p>
+            <div class="table-wrap"><table>
+                <thead><tr><th>카드 종류</th><th>수</th><th>쓰임</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>SQL 예시</strong></td><td>32장</td><td>크래시, 프리즈, 세션 같은 지표별 질문과 SQL 쌍. Text-to-SQL의 few-shot으로 들어갑니다.</td></tr>
+                    <tr><td><strong>런북</strong></td><td>15장</td><td>장애 대응과 보안 점검 절차. 어떻게 대응할지 묻는 질문의 근거가 됩니다.</td></tr>
+                    <tr><td><strong>지표 정의</strong></td><td>12장</td><td>p95, Apdex, crash-free처럼 운영자가 묻는 용어의 정의입니다.</td></tr>
+                </tbody>
+            </table></div>
             <ul class="feature-list">
-                <li><strong>ML 2-Layer 이상 탐지 엔진 (단독)</strong> — z-score 임계값 + 분산 보정 + 이상 발생 밀도 heatmap.</li>
-                <li><strong>자사 LLM 파인튜닝 통합</strong> — 사내 DGX 서버에서 Qwen2.5-14B 파인튜닝 모델 추론 통합.</li>
-                <li><strong>자사 LLM Text-to-SQL 기능</strong> — 자연어 쿼리를 ClickHouse SQL로 변환하는 보유 기능.</li>
-                <li><strong>React 어드민 UI 메인 개발</strong> — MVVM 리팩토링, 커스텀 위젯 빌더, 쿼리 탐색기, X-view 시점 분석, SSE 실시간 대시보드, 2K UI 최적화.</li>
-                <li><strong>Go 백엔드</strong> — 핸들러 / 스토어 / 쿼리 / 알림 / SSO 인증, Clean Architecture 적용.</li>
-                <li><strong>Self-hosted runner CI/CD</strong> — 폐쇄망 배포 환경 대응, Nginx HTTPS, ClickHouse 처리량 약 4배 향상 (background_pool_size 4→16).</li>
-                <li><strong>OTel 자바 자동계측 데모</strong> — 결제 / 주문 마이크로서비스 시연 환경.</li>
+                <li><strong>하이브리드 검색</strong>BGE-M3 임베딩과 BM25를 Qdrant에서 RRF로 합칩니다. 벡터 검색을 쓸 수 없을 때는 키워드 검색으로 넘어가서, 검색 장애가 답변 전체를 막지 않습니다.</li>
+                <li><strong>현장 용어 연결</strong>사용자가 실제로 쓰는 표현을 카드에 별칭으로 넣어, 공식 용어를 몰라도 맞는 카드를 찾게 했습니다.</li>
+                <li><strong>채점 결과로 보강</strong>QA와 채점에서 틀린 질문을 근거로 빠진 카드를 찾아 추가했습니다.</li>
             </ul>
         </div>
     </section>
 
-    <!-- Key Decisions -->
+    <!-- Evaluation -->
     <section class="project-content-section">
         <div class="container">
-            <h2>Key Technical Decisions</h2>
+            <h2>채점 시스템</h2>
+            <p>
+                프롬프트나 도구를 바꿀 때마다 좋아졌는지 나빠졌는지를 숫자로 보려고 채점 시스템을 직접 만들었습니다. 답변이 실제 근거에 기반했는지 보는 항목의 통과율은 93.4%였습니다.
+                처음 만든 골든셋은 단일 질문 SQL 생성에서 금방 100%가 나와 더 이상 차이를 보여 주지 못했습니다.
+                그래서 멀티턴 대화, 지시어가 섞인 질문, 여러 의도가 한 번에 들어간 질문으로 평가셋을 넓혔습니다.
+            </p>
+            <ol class="flow">
+                <li><b>검증 실행</b><span>질문 뱅크와 고정 대화 흐름을 실제 모델로 실행</span></li>
+                <li><b>자동 채점</b><span>정해진 규칙 6개와 LLM 채점기로 축별 통과율 산출</span></li>
+                <li><b>채점기 보정</b><span>축마다 사람이 3~5개만 라벨해 채점기가 믿을 만한지 확인</span></li>
+                <li><b>회귀 확인</b><span>수정 전후 결과를 비교해 나빠진 항목을 찾고 다시 고침</span></li>
+            </ol>
+            <p>
+                같은 답변을 다시 채점하면 점수가 흔들리는 문제는 채점 결과 캐시와 라우팅 결정성으로 줄였고, 품질 회귀 감지와 라벨링 화면도 함께 만들었습니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Grounding -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>틀린 답을 막는 장치</h2>
             <ul class="feature-list">
-                <li><strong>OpenTelemetry 표준</strong> — 벤더 종속 회피, 자동 계측 풍부, 사실상 산업 표준.</li>
-                <li><strong>ClickHouse 빅데이터 OLAP</strong> — traces / metrics / logs 단일 OLAP, 컬럼 압축, 고속 집계.</li>
-                <li><strong>사내 DGX + Qwen2.5-14B 파인튜닝</strong> — On-Premise 환경 요구, 외부 API 의존 최소화.</li>
-                <li><strong>MVVM + Clean Architecture</strong> — 컴포넌트 / 뷰모델 / 서비스 분리로 테스트 용이.</li>
-                <li><strong>Self-hosted runner</strong> — 폐쇄망 배포 환경 대응.</li>
+                <li><strong>조회 결과가 없으면 지어내지 않기</strong>SQL 결과가 0건이면 기간을 넓혀 한 번 다시 조회하고, 그래도 없으면 "데이터 없음"을 근거로 답합니다. 행이 없는데 숫자를 만들어 내던 답변을 이 경로로 막았습니다.</li>
+                <li><strong>답변 속 숫자 대조</strong>답변에 나온 숫자가 실제 조회 결과에 있는지 검사하는 가드를 넣었습니다.</li>
+                <li><strong>도메인 가드레일</strong>APM과 관계없는 질문, 데이터 삭제·변경 요청은 3단계로 걸러 거절합니다.</li>
+                <li><strong>멀티턴 맥락</strong>"그 서비스", "아까 거"처럼 앞 대화를 가리키는 말을 풀어서, 직전 조회를 이어받아 다음 SQL을 만듭니다.</li>
+                <li><strong>개인정보 마스킹</strong>대화 로그를 저장할 때 개인정보를 가려서 ClickHouse에 남깁니다.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Other contributions -->
+    <section class="project-content-section">
+        <div class="container">
+            <h2>그 밖에 맡은 일</h2>
+            <ul class="feature-list">
+                <li><strong>모바일 RUM</strong>모바일 SDK 수집 데이터를 세션 → 화면 → 액션 트리로 보여 주고, 앱 요청과 백엔드 요청을 하나의 트레이스 워터폴로 이어 붙였습니다.</li>
+                <li><strong>세션 리플레이</strong>앱 화면을 와이어프레임으로 재구성해 재생하고, 반복 이미지는 한 번만 전송하도록 줄였습니다. 픽셀 이미지를 아예 보내지 않는 모드도 만들었습니다.</li>
+                <li><strong>긴 대화 활용</strong>256K 컨텍스트에 맞춰 대화 기록을 5턴에서 24턴까지 넣도록 늘리고, 라우터는 최근 8턴만 보도록 나눴습니다. 호출 설정 8가지는 관리 화면에서 재시작 없이 바꿀 수 있습니다.</li>
+                <li><strong>이상 탐지</strong>3계층 이상 탐지 엔진 중 z-score 레이어를 구현했습니다.</li>
+                <li><strong>배포</strong>팀이 구성한 Docker Compose 환경에서 바뀐 서비스만 다시 배포하는 CI/CD 로직, 서버 배포 가이드, 로그 로테이션, ClickHouse 디스크 이전을 맡았고 HAProxy Collector 이중화 구성에 참여했습니다.</li>
             </ul>
         </div>
     </section>
@@ -132,36 +198,20 @@
     <!-- Tech Stack -->
     <section class="project-content-section">
         <div class="container">
-            <h2>Tech Stack</h2>
+            <h2>기술 스택</h2>
             <div class="tech-stack-grid">
-                <div class="tech-group">
-                    <h4>Backend</h4>
-                    <p>Go · Python (ML/LLM)</p>
-                </div>
-                <div class="tech-group">
-                    <h4>Frontend</h4>
-                    <p>React · TypeScript</p>
-                </div>
-                <div class="tech-group">
-                    <h4>Data</h4>
-                    <p>ClickHouse · OpenTelemetry · OTel Collector (OCB)</p>
-                </div>
-                <div class="tech-group">
-                    <h4>AI / ML</h4>
-                    <p>Qwen2.5-14B (fine-tuned) · PyTorch</p>
-                </div>
-                <div class="tech-group">
-                    <h4>Infra / DevOps</h4>
-                    <p>Docker · Nginx · GitHub Actions (self-hosted)</p>
-                </div>
+                <div class="tech-group"><h4>LLM · AI</h4><p>Gemma 4 · BGE-M3 · BM25 · Qdrant · LoRA</p></div>
+                <div class="tech-group"><h4>백엔드</h4><p>Python · FastAPI · Go</p></div>
+                <div class="tech-group"><h4>프론트엔드</h4><p>React · TypeScript</p></div>
+                <div class="tech-group"><h4>데이터</h4><p>ClickHouse · PostgreSQL · OpenTelemetry</p></div>
+                <div class="tech-group"><h4>운영</h4><p>Docker Compose · Nginx · GitHub Actions(self-hosted)</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+            <p>&copy; 2026 장윤호</p>
         </div>
     </footer>
 

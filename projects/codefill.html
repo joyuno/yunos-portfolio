@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeFill - AI 코딩 학습 플랫폼 | Yunho Jang</title>
+    <title>CodeFill - AI 코딩 학습 플랫폼 | 장윤호</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" aria-label="주요 메뉴">
         <div class="container nav-inner">
             <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
             <ul class="nav-links">
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#skills">Skills</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="../index.html#career">경력</a></li>
+                <li><a href="../index.html#projects">프로젝트</a></li>
+                <li class="nav-optional"><a href="../index.html#skills">기술</a></li>
+                <li><a href="../index.html#contact">연락처</a></li>
+                <li class="nav-optional"><a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">블로그</a></li>
             </ul>
         </div>
     </nav>
@@ -25,7 +28,7 @@
         <div class="container">
             <a href="../index.html#projects" class="back-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                Projects
+                프로젝트
             </a>
             <span class="hero-label">AI / Multi-Agent System / EdTech</span>
             <h1>CodeFill - AI 기반 적응형 코딩 학습 플랫폼</h1>
@@ -244,74 +247,36 @@
     <!-- System Architecture -->
     <section class="project-content-section">
         <div class="container">
-            <h2>System Architecture</h2>
+            <h2>시스템 구조</h2>
             <p>
-                CodeFill은 <strong>계층형 Multi-Agent 아키텍처</strong>로 설계되었습니다.
-                사용자 요청은 Intent 분류를 거쳐 적절한 Agent로 라우팅되고,
-                각 Agent는 독립적인 역할을 수행하며 상태를 공유합니다.
+                사용자 요청은 의도 분류를 거쳐 알맞은 에이전트로 라우팅되고, 각 에이전트는 자기 역할만 처리하면서 대화 상태를 공유합니다.
+                화면부터 외부 서비스까지 계층별로 나누면 다음과 같습니다.
             </p>
-
-            <h3>전체 시스템 구성도</h3>
-            <div class="image-block">
-                <iframe src="../assets/codefill/diagrams/architecture-full.html" style="width:100%; height:600px; border:1px solid #333; border-radius:8px;"></iframe>
-                <div class="image-caption">
-                    <strong>Figure 1.</strong> CodeFill 전체 시스템 아키텍처 - Frontend(Next.js 14) → Backend(FastAPI, 20 Routers) → LangGraph(12 Agents) → External Services
-                </div>
+            <div class="layers">
+                <div class="layer"><div class="layer-name">프론트엔드</div>
+                    <ul class="layer-nodes"><li>Next.js 14 · React 18<small>TypeScript · Tailwind CSS</small></li><li>Monaco Editor<small>코드 편집기</small></li><li>Phaser.js<small>농장 게임 화면</small></li></ul></div>
+                <div class="layer"><div class="layer-name">백엔드</div>
+                    <ul class="layer-nodes"><li class="mine">FastAPI<small>라우터 20개 · WebSocket</small></li><li>서비스 35개 이상<small>RAG · 게이미피케이션 · 분석</small></li></ul></div>
+                <div class="layer"><div class="layer-name">AI · LLM</div>
+                    <ul class="layer-nodes"><li class="mine">LangGraph 오케스트레이터<small>정보 수집 · 문제 탐색 · 풀이 지원 그래프</small></li><li class="mine">LLM 에이전트 12개<small>문제 생성 · 변환 · 힌트 · 피드백</small></li><li class="mine">의도 분류기<small>임베딩 + LLM 하이브리드</small></li></ul></div>
+                <div class="layer"><div class="layer-name">데이터</div>
+                    <ul class="layer-nodes"><li>Supabase PostgreSQL</li><li class="mine">pgvector<small>10,000+ 문제 임베딩 검색</small></li><li>PG 캐시<small>TTL 기반</small></li></ul></div>
+                <div class="layer"><div class="layer-name">외부 서비스</div>
+                    <ul class="layer-nodes"><li>OpenRouter<small>Claude · GPT-4o · Gemini</small></li><li>Judge0<small>코드 실행 샌드박스</small></li><li class="mine">LangSmith<small>LLM 호출 모니터링</small></li><li>Azure Translator</li></ul></div>
+                <p class="layers-note"><i></i>표시가 있는 칸이 직접 맡은 부분입니다. AWS 배포와 CI/CD는 팀원이 구성했습니다.</p>
             </div>
 
-            <h3>Multi-Agent Pipeline</h3>
-            <p>
-                사용자 입력은 <strong>Intent Classifier</strong>에서 의도를 분류한 후,
-                문제 검색/생성 → 유형 변환 → 풀이 지원 → 피드백 생성의 파이프라인을 거칩니다.
-            </p>
+            <h3>에이전트 파이프라인</h3>
+            <p>의도 분류 다음부터 한 문제를 풀고 피드백을 받기까지 다섯 단계를 거칩니다.</p>
+            <ol class="flow">
+                <li><b>탐색</b><span>RAG로 맞는 문제를 찾고, 없으면 새 문제 생성</span></li>
+                <li><b>변환</b><span>빈칸 · 퍼즐 · 대화형 중 고른 유형으로 변환</span></li>
+                <li><b>풀이 지원</b><span>사용자 풀이를 보고 단계별 힌트와 질문 응답</span></li>
+                <li><b>검증</b><span>Judge0로 제출 코드를 테스트케이스에 실행</span></li>
+                <li><b>피드백</b><span>종합 피드백, ELO · XP 계산, 다음 문제 추천</span></li>
+            </ol>
 
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Stage</th>
-                            <th>Agents</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>1. Discovery</strong></td>
-                            <td>RAG Search, CodeGen</td>
-                            <td>사용자 요청에 맞는 문제 검색. 없으면 새 문제 생성</td>
-                        </tr>
-                        <tr>
-                            <td><strong>2. Conversion</strong></td>
-                            <td>Blank, Puzzle, Guided Agent</td>
-                            <td>원본 문제를 선택한 유형(빈칸/퍼즐/대화형)으로 변환</td>
-                        </tr>
-                        <tr>
-                            <td><strong>3. Solving</strong></td>
-                            <td>Hint, Chat, Tutor Agent</td>
-                            <td>풀이 과정 지원: 힌트 제공, 질문 응답, 단계별 가이드</td>
-                        </tr>
-                        <tr>
-                            <td><strong>4. Validation</strong></td>
-                            <td>Code Validator + Judge0</td>
-                            <td>제출 코드 실행 및 테스트케이스 검증</td>
-                        </tr>
-                        <tr>
-                            <td><strong>5. Feedback</strong></td>
-                            <td>Feedback, Analysis Agent</td>
-                            <td>풀이 완료 후 종합 피드백, ELO/XP 계산, 다음 추천</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h3>Agent 상세 구조</h3>
-            <div class="image-block">
-                <iframe src="../assets/codefill/diagrams/architecture-agents.html" style="width:100%; height:500px; border:1px solid #333; border-radius:8px;"></iframe>
-                <div class="image-caption">
-                    <strong>Figure 2.</strong> Multi-Agent Pipeline - 5단계 처리 흐름 (Intent → Discovery → Conversion → Solving → Feedback)
-                </div>
-            </div>
-
+            <h3>에이전트별 역할</h3>
             <div class="table-wrap">
                 <table>
                     <thead>
@@ -376,14 +341,7 @@
                 </table>
             </div>
 
-            <h3>Data Flow & Services</h3>
-            <div class="image-block">
-                <iframe src="../assets/codefill/diagrams/architecture-services.html" style="width:100%; height:500px; border:1px solid #333; border-radius:8px;"></iframe>
-                <div class="image-caption">
-                    <strong>Figure 3.</strong> 백엔드 서비스 구조 - 35+ 서비스 (Core, AI, Gamification, Analysis, Session, External)
-                </div>
-            </div>
-
+            <h3>백엔드 서비스 묶음</h3>
             <div class="table-wrap">
                 <table>
                     <thead>
@@ -433,7 +391,7 @@
     <!-- Implementation Details -->
     <section class="project-content-section">
         <div class="container">
-            <h2>Implementation Details</h2>
+            <h2>구현 내용</h2>
 
             <h3>1. LangGraph 파이프라인 오케스트레이터</h3>
             <p>
@@ -441,95 +399,12 @@
                 InfoCollectionGraph(정보 수집), DiscoveryGraph(문제 탐색), SolvingGraph(풀이 지원) 중
                 적절한 파이프라인으로 라우팅됩니다.
             </p>
-            <div class="code-block">
-                <div class="code-header">orchestrator.py - LangGraph Pipeline Router</div>
-                <pre><code>class Orchestrator:
-    """LangGraph 기반 파이프라인 오케스트레이터"""
-
-    async def process(self, message: str, state: State) -> State:
-        # 1. Intent Classification (category + action)
-        intent_result = await self.intent_tool.classify(
-            message=message,
-            conversation_history=state.get("history", [])
-        )
-
-        # 2. Route to appropriate pipeline
-        route = self._determine_route(intent_result, state)
-
-        if route == "INFO_COLLECTION":
-            # 정보 수집: topic / difficulty / language
-            return await self.info_collection_graph.invoke(state)
-        elif route == "DISCOVERY":
-            # 문제 탐색: RAG + CodeGen
-            return await self.discovery_graph.invoke(state)
-        elif route == "SOLVING":
-            # 풀이 지원: Hint / Review / Check
-            return await self.solving_graph.invoke(state)
-        else:  # GENERAL
-            # 직접 응답: 인사, 감사 등
-            return await self.generate_response(intent_result)
-
-    def _determine_route(self, intent: IntentResult, state: State) -> str:
-        # 문제 탐색 요청인데 필요 정보 부족
-        if intent.category == "discovery" and not state.has_required_info:
-            return "INFO_COLLECTION"
-        # 문제가 선택된 상태에서 풀이 관련 요청
-        if state.current_problem and intent.category == "solving":
-            return "SOLVING"
-        # 문제 탐색 요청
-        if intent.category == "discovery":
-            return "DISCOVERY"
-        return "GENERAL"</code></pre>
-            </div>
 
             <h3>2. 문제 유형 변환 시스템</h3>
             <p>
                 원본 문제(솔루션 포함)를 사용자가 선택한 유형으로 변환합니다.
                 각 Agent는 원본 코드의 구조를 100% 유지하며 학습에 최적화된 형태로 변환합니다.
             </p>
-            <div class="code-block">
-                <div class="code-header">problem_converter.py - 유형별 변환</div>
-                <pre><code>class ProblemConverter:
-    """문제 유형 변환 오케스트레이터"""
-
-    async def convert(
-        self,
-        problem: BaseProblem,
-        target_type: ProblemType,
-        user_level: str
-    ) -> ConvertedProblem:
-
-        if target_type == ProblemType.BLANK:
-            # 빈칸 채우기: 핵심 코드 부분만 빈칸으로
-            # 규칙: 변수명/매직넘버 빈칸 금지, 알고리즘 핵심만
-            return await self.blank_agent.convert(
-                problem,
-                blank_count=self._calc_blank_count(user_level)
-            )
-
-        elif target_type == ProblemType.PUZZLE:
-            # 퍼즐: 논리적 단위로 블록화 (5-20개)
-            # fixed_start(import, def) + blocks + fixed_end(return)
-            return await self.puzzle_agent.convert(
-                problem,
-                block_count_range=(5, 20)
-            )
-
-        elif target_type == ProblemType.GUIDED:
-            # 1대1 대화형: 개념 → 변수 → 접근법 → 스타터 코드
-            return await self.guided_agent.convert(
-                problem,
-                hint_detail_level=self._get_hint_level(user_level)
-            )
-
-        else:  # IMPLEMENTATION
-            # 직접 구현: 문제 설명 + 테스트케이스만 제공
-            return ConvertedProblem(
-                description=problem.description,
-                test_cases=problem.test_cases,
-                starter_code=self._generate_function_signature(problem)
-            )</code></pre>
-            </div>
 
             <h3>3. 유형별 사용자 풀이 기반 힌트 시스템</h3>
             <p>
@@ -537,45 +412,6 @@
                 사용자의 현재 풀이 상태(빈칸 답안, 블록 배치, 코드 진행상황)를 분석하여
                 유형별 전문 Hint Agent가 맞춤형 힌트를 제공합니다.
             </p>
-            <div class="code-block">
-                <div class="code-header">hint_agent.py - 유형별 사용자 풀이 기반 힌트</div>
-                <pre><code>class HintAgent:
-    """사용자 풀이 기반 맞춤형 힌트 에이전트"""
-
-    async def generate_hint(
-        self,
-        problem: Problem,
-        problem_type: str,  # blank, puzzle, guided
-        user_attempts: List[str],
-        current_state: dict  # 현재 빈칸 답안 또는 블록 배치
-    ) -> HintResponse:
-        """문제 유형과 현재 풀이 상태를 분석하여 맞춤형 힌트 생성"""
-
-        # 사용자 풀이 상태 분석
-        analysis = await self._analyze_user_state(
-            problem=problem,
-            problem_type=problem_type,
-            current_state=current_state,
-            user_attempts=user_attempts
-        )
-
-        # 유형별 맞춤 힌트 생성
-        if problem_type == "blank":
-            # 빈칸: 틀린 빈칸 위치, 오답 패턴 분석
-            hint = await self._generate_blank_hint(problem, analysis)
-        elif problem_type == "puzzle":
-            # 퍼즐: 블록 배치 순서, 들여쓰기 오류 분석
-            hint = await self._generate_puzzle_hint(problem, analysis)
-        else:  # guided
-            # 대화형: 진행 단계, 막힌 부분 분석
-            hint = await self._generate_guided_hint(problem, analysis)
-
-        return HintResponse(
-            hint=hint,
-            focus_area=analysis.problem_area,
-            suggestion=analysis.next_step
-        )</code></pre>
-            </div>
 
             <h3>4. AI Coach 약점 분석 시스템</h3>
             <p>
@@ -583,126 +419,12 @@
                 <strong>Bayesian Knowledge Tracing</strong>으로 26개 토픽별 숙달도를 추적합니다.
                 AI Coach가 강점/약점을 분석하여 맞춤형 학습 경로와 개선 액션을 제안합니다.
             </p>
-            <div class="code-block">
-                <div class="code-header">analysis_service.py - AI Coach 분석 시스템</div>
-                <pre><code>class AnalysisService:
-    """AI Coach 학습 분석 - ELO + BKT + 맞춤 추천"""
-
-    MASTERY_THRESHOLD = {
-        'strength': 0.70,  # 강점 토픽: 숙련도 70% 이상
-        'weakness': 0.50,  # 약점 토픽: 숙련도 50% 미만
-    }
-
-    async def generate_analysis_report(self, user_id: str) -> AnalysisReport:
-        """종합 학습 분석 리포트 생성"""
-
-        # 1. Developer Stats 계산
-        stats = await self._calculate_developer_stats(user_id)
-        # Overall Score, Level, Solved, Accuracy, Streak
-
-        # 2. ELO 성장 추이 (토픽별)
-        elo_history = await self._get_elo_growth(user_id)
-
-        # 3. BKT 기반 토픽별 숙련도 (26개 토픽)
-        topic_mastery = await self._calculate_topic_mastery(user_id)
-
-        strengths = [t for t, m in topic_mastery.items() if m >= 0.70]
-        weaknesses = [t for t, m in topic_mastery.items() if m < 0.50]
-
-        # 4. AI Coach 맞춤 인사이트 생성
-        ai_insights = await self.analysis_agent.generate(
-            stats=stats,
-            topic_mastery=topic_mastery,
-            recent_history=await self._get_recent_history(user_id, limit=10),
-            hint_usage=await self._get_hint_independence(user_id)
-        )
-
-        return AnalysisReport(
-            developer_stats=stats,
-            elo_growth=elo_history,
-            strength_topics=strengths,   # Graph 92%, Queue 92%...
-            weakness_topics=weaknesses,  # greedy 11%, 수학 11%...
-            learning_path=ai_insights.learning_path,
-            recommended_actions=ai_insights.actions,
-            caution_patterns=ai_insights.patterns,
-            wrong_problems=await self._get_wrong_problems(user_id)
-        )</code></pre>
-            </div>
 
             <h3>5. 게이미피케이션 시스템</h3>
             <p>
                 문제 풀이로 씨앗/골드를 획득하고, 농장을 꾸미며,
                 뱃지와 미션을 통해 학습 동기를 지속적으로 유지합니다.
             </p>
-            <div class="code-block">
-                <div class="code-header">gamification_service.py - 보상 시스템</div>
-                <pre><code>class GamificationService:
-    """게이미피케이션 통합 서비스"""
-
-    # XP 계산 (기본 + 보너스)
-    XP_BASE = {
-        'easy': 10, 'medium': 20,
-        'hard': 35, 'very_hard': 50
-    }
-    XP_BONUS = {
-        'no_hint': 1.5,        # 힌트 미사용 50% 보너스
-        'first_try': 1.3,      # 첫 시도 정답 30% 보너스
-        'fast_solve': 1.2,     # 빠른 풀이 20% 보너스
-        'streak_7': 1.1        # 7일 연속 10% 보너스
-    }
-
-    # 씨앗 보상 (랜덤 드롭)
-    SEED_DROP_RATE = {
-        'common': 0.7,    # 일반 씨앗 70%
-        'rare': 0.25,     # 희귀 씨앗 25%
-        'epic': 0.05      # 에픽 씨앗 5%
-    }
-
-    async def process_solve_reward(
-        self,
-        user: User,
-        problem: Problem,
-        solve_result: SolveResult
-    ) -> RewardResult:
-        """문제 풀이 완료 시 보상 처리"""
-
-        # 1. XP 계산
-        base_xp = self.XP_BASE[problem.difficulty]
-        multiplier = 1.0
-
-        if solve_result.hints_used == 0:
-            multiplier *= self.XP_BONUS['no_hint']
-        if solve_result.attempts == 1:
-            multiplier *= self.XP_BONUS['first_try']
-        if solve_result.time_spent < problem.avg_solve_time * 0.5:
-            multiplier *= self.XP_BONUS['fast_solve']
-
-        xp_earned = int(base_xp * multiplier)
-
-        # 2. 씨앗 드롭 (확률 기반)
-        seed_awarded = self._roll_seed_drop(problem.difficulty)
-
-        # 3. 뱃지 체크
-        new_badges = await self.badge_service.check_badges(
-            user, solve_result
-        )
-
-        # 4. 미션 진행도 업데이트
-        mission_updates = await self.mission_service.update_progress(
-            user, problem, solve_result
-        )
-
-        # 5. 레벨업 체크
-        level_up = self._check_level_up(user, xp_earned)
-
-        return RewardResult(
-            xp_earned=xp_earned,
-            seed_awarded=seed_awarded,
-            new_badges=new_badges,
-            mission_updates=mission_updates,
-            level_up=level_up
-        )</code></pre>
-            </div>
         </div>
     </section>
 
@@ -904,7 +626,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+            <p>&copy; 2026 장윤호</p>
         </div>
     </footer>
 

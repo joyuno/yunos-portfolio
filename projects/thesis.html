@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graduation Thesis - 강화학습 기반 포트폴리오 최적화 | Yunho Jang</title>
+    <title>Graduation Thesis - 강화학습 기반 포트폴리오 최적화 | 장윤호</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" aria-label="주요 메뉴">
         <div class="container nav-inner">
             <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
             <ul class="nav-links">
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#skills">Skills</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="../index.html#career">경력</a></li>
+                <li><a href="../index.html#projects">프로젝트</a></li>
+                <li class="nav-optional"><a href="../index.html#skills">기술</a></li>
+                <li><a href="../index.html#contact">연락처</a></li>
+                <li class="nav-optional"><a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">블로그</a></li>
             </ul>
         </div>
     </nav>
@@ -25,7 +28,7 @@
         <div class="container">
             <a href="../index.html#projects" class="back-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                Projects
+                프로젝트
             </a>
             <span class="hero-label">Undergraduate Thesis / Deep Learning</span>
             <h1>Dual-LSTM 기반 포트폴리오 최적화 모델</h1>
@@ -113,76 +116,39 @@
                 제안하는 프레임워크는 크게 세 가지 모듈로 구성됩니다:
                 <strong>데이터 전처리 모듈</strong>, <strong>Dual-LSTM 예측 모듈</strong>, 그리고 <strong>MVO 최적화 모듈</strong>.
             </p>
-            <div class="code-block">
-                <div class="code-header">Framework Architecture</div>
-                <pre><code>┌─────────────────────────────────────────────────────────────────────────┐
-│                        Data Preprocessing Module                         │
-│  ┌─────────────┐   ┌─────────────────┐   ┌─────────────────────────┐   │
-│  │ Raw OHLCV   │ → │ Feature Eng.    │ → │ Sequence Generation     │   │
-│  │ Data        │   │ (Returns, Vol)  │   │ (Sliding Window: 20d)   │   │
-│  └─────────────┘   └─────────────────┘   └─────────────────────────┘   │
-├─────────────────────────────────────────────────────────────────────────┤
-│                         Dual-LSTM Prediction Module                      │
-│  ┌─────────────────────────────┐   ┌─────────────────────────────┐     │
-│  │        PRM (LSTM)           │   │        PVM (LSTM)           │     │
-│  │  Input: Price sequence      │   │  Input: Volatility seq.     │     │
-│  │  Output: Expected Return    │   │  Output: Expected Vol.      │     │
-│  │  Hidden: 64 units, 2 layers │   │  Hidden: 64 units, 2 layers │     │
-│  └─────────────────────────────┘   └─────────────────────────────┘     │
-│                    ↓                              ↓                      │
-│            μ (Expected Return)         σ² (Expected Variance)           │
-├─────────────────────────────────────────────────────────────────────────┤
-│                        MVO Optimization Module                           │
-│  ┌─────────────────────────────────────────────────────────────────┐   │
-│  │  Objective: max Sharpe Ratio = (μᵖ - rᶠ) / σᵖ                  │   │
-│  │  Subject to: Σwᵢ = 1, wᵢ ≥ 0                                   │   │
-│  │  Output: Optimal Weights w* = (w₁, w₂, ..., wₙ)                │   │
-│  └─────────────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────────────┘</code></pre>
-            </div>
-
+<div class="layers">
+                    <div class="layer"><div class="layer-name">데이터 전처리</div>
+                        <ul class="layer-nodes"><li>원본 OHLCV 데이터</li><li>특성 생성<small>수익률 · 변동성</small></li><li>시퀀스 생성<small>20일 슬라이딩 윈도우</small></li></ul></div>
+                    <div class="layer"><div class="layer-name">Dual-LSTM 예측</div>
+                        <ul class="layer-nodes"><li>PRM (LSTM)<small>가격 시퀀스 → 기대 수익률 μ</small></li><li>PVM (LSTM)<small>변동성 시퀀스 → 기대 분산 σ²</small></li></ul></div>
+                    <div class="layer"><div class="layer-name">MVO 최적화</div>
+                        <ul class="layer-nodes"><li>목적함수<small>Sharpe Ratio = (μ<sub>p</sub> − r<sub>f</sub>) / σ<sub>p</sub> 최대화</small></li><li>제약조건<small>Σw<sub>i</sub> = 1, w<sub>i</sub> ≥ 0</small></li><li>출력<small>최적 비중 w* = (w<sub>1</sub>, …, w<sub>n</sub>)</small></li></ul></div>
+                    <p class="layers-note">두 LSTM 모두 은닉 유닛 64개, 2층입니다.</p>
+                </div>
             <h3>LSTM Model Architecture</h3>
             <p>
                 LSTM은 순환 신경망(RNN)의 장기 의존성 문제를 해결하기 위해 설계된 아키텍처입니다.
                 Cell State와 Gate 메커니즘을 통해 장기간의 시계열 패턴을 효과적으로 학습합니다.
             </p>
-            <div class="code-block">
-                <div class="code-header">LSTM Cell Equations</div>
-                <pre><code># Forget Gate: 이전 정보 중 버릴 정보 결정
-fₜ = σ(Wf · [hₜ₋₁, xₜ] + bf)
-
-# Input Gate: 새로운 정보 중 저장할 정보 결정
-iₜ = σ(Wi · [hₜ₋₁, xₜ] + bi)
-C̃ₜ = tanh(Wc · [hₜ₋₁, xₜ] + bc)
-
-# Cell State Update
-Cₜ = fₜ * Cₜ₋₁ + iₜ * C̃ₜ
-
-# Output Gate: 출력할 정보 결정
-oₜ = σ(Wo · [hₜ₋₁, xₜ] + bo)
-hₜ = oₜ * tanh(Cₜ)</code></pre>
-            </div>
-
+<div class="formula"><dl>
+                    <div><dt>f<sub>t</sub> = σ(W<sub>f</sub>·[h<sub>t−1</sub>, x<sub>t</sub>] + b<sub>f</sub>)</dt><dd>Forget gate: 이전 정보 중 버릴 정보를 정합니다.</dd></div>
+                    <div><dt>i<sub>t</sub> = σ(W<sub>i</sub>·[h<sub>t−1</sub>, x<sub>t</sub>] + b<sub>i</sub>)</dt><dd>Input gate: 새 정보 중 저장할 정보를 정합니다.</dd></div>
+                    <div><dt>C̃<sub>t</sub> = tanh(W<sub>c</sub>·[h<sub>t−1</sub>, x<sub>t</sub>] + b<sub>c</sub>)</dt><dd>저장 후보 값</dd></div>
+                    <div><dt>C<sub>t</sub> = f<sub>t</sub> ∗ C<sub>t−1</sub> + i<sub>t</sub> ∗ C̃<sub>t</sub></dt><dd>셀 상태 갱신</dd></div>
+                    <div><dt>o<sub>t</sub> = σ(W<sub>o</sub>·[h<sub>t−1</sub>, x<sub>t</sub>] + b<sub>o</sub>)</dt><dd>Output gate: 내보낼 정보를 정합니다.</dd></div>
+                    <div><dt>h<sub>t</sub> = o<sub>t</sub> ∗ tanh(C<sub>t</sub>)</dt><dd>은닉 상태 출력</dd></div>
+                </dl></div>
             <h3>Mean-Variance Optimization (MVO)</h3>
             <p>
                 Markowitz의 MVO는 주어진 위험 수준에서 기대 수익률을 최대화하거나,
                 주어진 수익률 수준에서 위험을 최소화하는 최적 포트폴리오를 구성합니다.
             </p>
-            <div class="code-block">
-                <div class="code-header">Optimization Formulation</div>
-                <pre><code># Portfolio Return
-μᵖ = Σ wᵢ · μᵢ = w'μ
-
-# Portfolio Variance
-σ²ᵖ = Σᵢ Σⱼ wᵢwⱼσᵢⱼ = w'Σw
-
-# Sharpe Ratio Maximization
-max   (w'μ - rf) / √(w'Σw)
-s.t.  Σwᵢ = 1 (fully invested)
-      wᵢ ≥ 0  (no short selling)
-      wᵢ ≤ 0.1 (diversification constraint)</code></pre>
-            </div>
-
+<div class="formula"><dl>
+                    <div><dt>μ<sub>p</sub> = Σ w<sub>i</sub>μ<sub>i</sub> = w′μ</dt><dd>포트폴리오 기대 수익률</dd></div>
+                    <div><dt>σ<sub>p</sub><sup>2</sup> = Σ<sub>i</sub>Σ<sub>j</sub> w<sub>i</sub>w<sub>j</sub>σ<sub>ij</sub> = w′Σw</dt><dd>포트폴리오 분산</dd></div>
+                    <div><dt>max (w′μ − r<sub>f</sub>) / √(w′Σw)</dt><dd>Sharpe Ratio 최대화</dd></div>
+                    <div><dt>Σw<sub>i</sub> = 1, 0 ≤ w<sub>i</sub> ≤ 0.1</dt><dd>전액 투자, 공매도 없음, 종목당 최대 10%</dd></div>
+                </dl></div>
             <h3>Dual-LSTM Integration</h3>
             <p>
                 본 연구의 핵심 기여는 수익률 예측(PRM)과 변동성 예측(PVM)을 분리된 LSTM 모듈로 구현하여
@@ -265,27 +231,14 @@ s.t.  Σwᵢ = 1 (fully invested)
             </div>
 
             <h3>Model Configuration</h3>
-            <div class="code-block">
-                <div class="code-header">Hyperparameters</div>
-                <pre><code># LSTM Configuration
-HIDDEN_SIZE = 64
-NUM_LAYERS = 2
-DROPOUT = 0.2
-SEQUENCE_LENGTH = 20
-
-# Training Configuration
-BATCH_SIZE = 32
-LEARNING_RATE = 0.001
-EPOCHS = 100
-OPTIMIZER = Adam
-EARLY_STOPPING_PATIENCE = 10
-
-# Portfolio Constraints
-MAX_WEIGHT = 0.10  # 개별 종목 최대 비중 10%
-MIN_STOCKS = 10    # 최소 10개 종목 보유
-RISK_FREE_RATE = 0.02  # 무위험 이자율 2%</code></pre>
-            </div>
-
+<div class="table-wrap"><table>
+                    <thead><tr><th>구분</th><th>설정</th></tr></thead>
+                    <tbody>
+                        <tr><td>LSTM</td><td>은닉 64 · 2층 · dropout 0.2 · 시퀀스 길이 20</td></tr>
+                        <tr><td>학습</td><td>batch 32 · learning rate 0.001 · 100 epoch · Adam · early stopping 10</td></tr>
+                        <tr><td>포트폴리오 제약</td><td>종목당 최대 10% · 최소 10종목 · 무위험 이자율 2%</td></tr>
+                    </tbody>
+                </table></div>
             <h3>Evaluation Metrics</h3>
             <div class="architecture-list">
                 <div class="arch-item">
@@ -552,7 +505,7 @@ RISK_FREE_RATE = 0.02  # 무위험 이자율 2%</code></pre>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+            <p>&copy; 2026 장윤호</p>
         </div>
     </footer>
 

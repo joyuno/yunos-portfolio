@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talet - AI 전래동화 낭독 | Yunho Jang</title>
+    <title>Talet - AI 전래동화 낭독 | 장윤호</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" aria-label="주요 메뉴">
         <div class="container nav-inner">
             <a href="../index.html" class="nav-logo">yunho<span>.</span></a>
             <ul class="nav-links">
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#skills">Skills</a></li>
-                <li><a href="../index.html#projects">Projects</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="../index.html#career">경력</a></li>
+                <li><a href="../index.html#projects">프로젝트</a></li>
+                <li class="nav-optional"><a href="../index.html#skills">기술</a></li>
+                <li><a href="../index.html#contact">연락처</a></li>
+                <li class="nav-optional"><a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">블로그</a></li>
             </ul>
         </div>
     </nav>
@@ -25,7 +28,7 @@
         <div class="container">
             <a href="../index.html#projects" class="back-link">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                Projects
+                프로젝트
             </a>
             <span class="hero-label">TTS / Voice Cloning</span>
             <h1>Talet - AI 전래동화 낭독</h1>
@@ -183,72 +186,10 @@
             <h2>Implementation Details</h2>
 
             <h3>TTS Synthesis Parameters</h3>
-            <div class="code-block">
-                <div class="code-header">tts_service.py - Optimized Parameters</div>
-                <pre><code>class TTSConfig:
-    # TTS 하이퍼파라미터 (한국어 음성 품질 최적화)
-    TTS_TEMPERATURE = 0.35      # 낮은 값 = 안정적인 발음
-    TTS_LENGTH_PENALTY = 1.0    # 발화 길이 페널티
-    TTS_REPETITION_PENALTY = 8.0 # 반복 방지 (높은 값)
-    TTS_TOP_K = 50              # 토큰 샘플링 범위
-    TTS_TOP_P = 0.4             # Nucleus sampling
-
-    # 한국어 텍스트 처리
-    KO_CHAR_LIMIT = 200         # 청크당 최대 글자 수
-    SYNTHESIS_LANGUAGE = "ko"   # 합성 언어 코드</code></pre>
-            </div>
 
             <h3>Voice Cloning with Custom Speaker</h3>
-            <div class="code-block">
-                <div class="code-header">tts_service.py - Custom Voice Synthesis</div>
-                <pre><code>def synthesize_with_custom_voice(self, text: str, speaker_audio_path: Path,
-                               user_languages: List[str], role: str = None) -> Optional[bytes]:
-    """사용자 음성 파일을 사용한 맞춤 음성 합성"""
-
-    # 사용자 모국어 기반으로 최적의 파인튜닝 모델 선택
-    selected_country = self.select_country_by_user_languages(user_languages, role)
-    model = self.models[selected_country]
-
-    # XTTS Zero-shot Voice Cloning
-    outputs = model.model.synthesize(
-        text=text,
-        config=model.model.config,
-        speaker_wav=[str(speaker_audio_path)],  # 사용자 음성 (3-10초)
-        language="ko",
-        temperature=0.35,
-        repetition_penalty=8.0,
-        top_k=50,
-        top_p=0.4
-    )
-
-    # 24kHz WAV 출력
-    return wav_to_bytes(outputs['wav'], sample_rate=24000)</code></pre>
-            </div>
 
             <h3>Fairy Tale Processing</h3>
-            <div class="code-block">
-                <div class="code-header">Dynamic Role Parsing</div>
-                <pre><code>def parse_fairy_tale_text(self, text: str) -> List[Tuple[str, str]]:
-    """동화 텍스트 파싱: [역할] 대사 형식을 동적으로 파싱"""
-    dialogues = []
-
-    for line in text.strip().split("\n"):
-        # [역할] 대사 패턴 매칭
-        match = re.match(r"^\[([^\]]+)\]\s*(.+)", line)
-        if match:
-            role, dialogue_text = match.groups()
-            dialogues.append((role.strip(), dialogue_text.strip()))
-        else:
-            # 역할 태그 없으면 해설자로 처리
-            dialogues.append(("해설자", line))
-
-    return dialogues
-
-# Example Input:
-# [해설자] 옛날 옛적에 견우와 직녀가 살았습니다.
-# [견우] 직녀야, 보고 싶었어.
-# [직녀] 나도 많이 보고 싶었어요.</code></pre>
-            </div>
         </div>
     </section>
 
@@ -302,35 +243,15 @@
             </div>
 
             <h3>API Request/Response Example</h3>
-            <div class="code-block">
-                <div class="code-header">POST /synthesize/fairy_tale</div>
-                <pre><code>Request (multipart/form-data):
-{
-    "fairy_tale_text": "[해설자] 옛날 옛적에...\n[견우] 직녀야!",
-    "user_profile": {
-        "nickname": "수아맘",
-        "gender": "woman",
-        "languages": ["VIETNAMESE", "KOREAN"]
-    },
-    "fairy_tale_name": "견우와직녀",
-    "merge_output": true,
-    "speaker_audio": (binary file, 3-10s WAV)
-}
-
-Response:
-{
-    "success": true,
-    "message": "동화 음성 합성이 완료되었습니다 (15개 파일)",
-    "audio_files": [
-        "/static/audio/견우와직녀_해설자_수아맘_001.wav",
-        "/static/audio/견우와직녀_견우_수아맘_002.wav",
-        ...
-    ],
-    "merged_audio_url": "/static/audio/fairy_tale_견우와직녀_20241103.wav",
-    "total_duration": 45.3
-}</code></pre>
-            </div>
-        </div>
+<div class="table-wrap"><table>
+                    <thead><tr><th>요청 항목</th><th>내용</th></tr></thead>
+                    <tbody>
+                        <tr><td>동화 본문</td><td><code>[역할] 대사</code> 형식의 텍스트. 역할별로 나눠 합성합니다.</td></tr>
+                        <tr><td>사용자 프로필</td><td>닉네임, 성별, 사용 언어(예: 베트남어·한국어). 언어에 맞는 파인튜닝 모델을 고릅니다.</td></tr>
+                        <tr><td>목소리 샘플</td><td>3~10초 WAV 파일</td></tr>
+                        <tr><td>응답</td><td>역할별 음성 파일 목록, 하나로 합친 음성 파일, 전체 재생 시간</td></tr>
+                    </tbody>
+                </table></div>        </div>
     </section>
 
     <!-- Tech Stack -->
@@ -426,7 +347,7 @@ Response:
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Yunho Jang. All rights reserved.</p>
+            <p>&copy; 2026 장윤호</p>
         </div>
     </footer>
 
