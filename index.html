@@ -28,7 +28,7 @@
         <header class="intro">
             <div class="container">
                 <h1>장윤호</h1>
-                <p class="role">기획부터 배포까지 LLM 서비스를 만드는 AI 엔지니어입니다. 지금은 테라시스에서 온프레미스 APM 플랫폼의 AI 어시스턴트와 소명 처리 시스템을 만들고 있습니다.</p>
+                <p class="role">기획부터 배포까지 LLM 서비스를 만드는 AI 엔지니어입니다. 지금은 테라시스에서 온프레미스 APM 플랫폼의 AI 어시스턴트와 소명 처리 시스템을 개발하고 있습니다.</p>
                 <div class="intro-links">
                     <a href="https://github.com/joyuno" target="_blank" rel="noopener noreferrer">GitHub</a>
                     <a href="https://joyuno.github.io" target="_blank" rel="noopener noreferrer">개발 블로그</a>
@@ -107,8 +107,8 @@
             <div class="container">
                 <h2>소개</h2>
                 <div class="about-text">
-                    <p>필요한 기능을 직접 정의하고, 프로토타입을 만들고, 품질을 숫자로 확인한 뒤 배포까지 가져가는 방식으로 일합니다. 테라시스에서는 외부 API를 쓸 수 없는 폐쇄망 고객 환경에 맞춰, 사내 GPU 서버의 자체 호스팅 LLM으로 자연어 질문을 ClickHouse SQL·RAG·대시보드 위젯으로 바꿔 답하는 AI 어시스턴트를 만들었습니다.</p>
-                    <p>복단대학교에서 통계학을 전공했고, LLM 채점 편향을 줄이는 ADBIAS 논문 작업에 참여했습니다. 업무 밖에서는 여러 PC와 원격 VM의 AI 코딩 세션을 한 창에서 다루는 데스크톱 앱 Lepons를 혼자 만들고 있습니다.</p>
+                    <p>필요한 기능을 직접 정의하고 프로토타입을 만들어 품질을 숫자로 확인한 뒤 배포까지 가져가는 방식으로 일합니다. 테라시스에서는 외부 API를 쓸 수 없는 폐쇄망 고객 환경에 맞춰 AI 어시스턴트를 구현했습니다. 사내 GPU 서버의 자체 호스팅 LLM이 자연어 질문을 ClickHouse SQL·RAG·대시보드 위젯으로 바꿔 답합니다.</p>
+                    <p>복단대학교에서 통계학을 전공했고 LLM 채점 편향을 줄이는 ADBIAS 논문 작업에 참여했습니다. 업무 밖에서는 여러 PC와 원격 VM의 AI 코딩 세션을 한 창에서 다루는 데스크톱 앱 Lepons를 혼자 만들고 있습니다.</p>
                 </div>
             </div>
         </section>
@@ -123,7 +123,7 @@
                         <div class="work-body">
                             <h3><span class="kind" style="--c: var(--work)"></span><a href="projects/omnitrace.html">OmniTrace AI 어시스턴트</a></h3>
                             <p class="what">OpenTelemetry 기반 온프레미스 APM 플랫폼</p>
-                            <p>운영자가 자연어로 물으면 의도를 분류해 SQL 조회, 지식베이스 검색(RAG), 대시보드 위젯 생성으로 나눠 답하는 AI 어시스턴트를 만들었습니다. 자체 호스팅한 Gemma 4 위에 지식 카드 59장의 RAG 문서 라이브러리를 구축하고, 골든셋과 LLM 채점기로 답변을 채점하는 시스템을 만들어 근거 기반 답변 통과율 93.4%를 확인했습니다.</p>
+                            <p>운영자가 자연어로 물으면 의도를 분류해 SQL 조회, 지식베이스 검색(RAG), 대시보드 위젯 생성으로 나눠 답하는 AI 어시스턴트를 만들었습니다. 자체 호스팅한 Gemma 4 위에 지식 카드 59장의 RAG 문서 라이브러리를 구축했습니다. 골든셋과 LLM 채점기로 답변을 채점하는 시스템도 붙여 근거 기반 답변 통과율 93.4%를 확인했습니다.</p>
                             <ul class="stack">
                                 <li>Python · FastAPI</li><li>Gemma 4</li><li>Qdrant · BGE-M3</li><li>ClickHouse</li><li>React</li><li>Go</li><li>OpenTelemetry</li>
                             </ul>
@@ -134,7 +134,7 @@
                         <div class="work-body">
                             <h3><span class="kind" style="--c: var(--work)"></span><a href="projects/sohmyeong.html">소명 처리 시스템</a></h3>
                             <p class="what">보안 알람 소명·결재·보고를 한곳에서 처리하는 멀티테넌트 시스템</p>
-                            <p>보안 관제에서 알람이 오면 당사자에게 소명을 받고, 다단계 결재와 보고서 발행까지 처리하는 시스템을 풀스택으로 개발했습니다. 상위 기관과 하위 기관이 나뉜 조직 구조에 맞춘 멀티테넌트 모델, Celery 비동기 처리와 중복 요청 차단, 자체 호스팅 LLM을 이용한 소명 리포트 발행과 다국어 번역을 맡았습니다.</p>
+                            <p>보안 관제에서 알람이 오면 당사자에게 소명을 받고 다단계 결재와 보고서 발행까지 처리하는 시스템을 풀스택으로 개발했습니다. 상위 기관과 하위 기관이 나뉜 조직 구조에 맞춘 멀티테넌트 모델, Celery 비동기 처리와 중복 요청 차단, 자체 호스팅 LLM을 이용한 소명 리포트 발행과 다국어 번역을 맡았습니다.</p>
                             <ul class="stack">
                                 <li>Python · FastAPI</li><li>Celery · Redis</li><li>PostgreSQL</li><li>React · TypeScript</li><li>SSO</li>
                             </ul>
@@ -145,7 +145,7 @@
                         <div class="work-body">
                             <h3><span class="kind" style="--c: var(--work)"></span><a href="projects/lguplus-intern.html">MVNO 요금제 조사 자동화</a></h3>
                             <p class="what">MVNO 영업팀 반복 업무 자동화</p>
-                            <p>매일 손으로 하던 경쟁사 요금제 조사를 수집, 엑셀 리포트, 메일 발송까지 자동화해 하루 2시간 걸리던 일을 15분으로 줄였습니다. 비개발 직무인 선임들이 계속 쓸 수 있도록 사용 가이드를 만들어 넘겼습니다.</p>
+                            <p>매일 손으로 하던 경쟁사 요금제 조사를 수집, 엑셀 리포트, 메일 발송까지 자동화해 하루 2시간 걸리던 일을 15분으로 줄였습니다. 비개발 직무인 선임들이 계속 쓸 수 있도록 사용 가이드를 써서 넘겼습니다.</p>
                             <ul class="stack">
                                 <li>Python</li><li>Selenium</li><li>Pandas</li><li>BigQuery 조회</li>
                             </ul>
@@ -171,7 +171,7 @@
                         <div class="work-body">
                             <h3><span class="kind" style="--c: var(--product)"></span><a href="projects/oyeon.html">오연(五緣)</a></h3>
                             <p class="what">사주 궁합 기반 1일 1매칭 소개팅 앱</p>
-                            <p>매일 사주 궁합이 가장 잘 맞는 한 명을 추천합니다. 천간·지지·오행 상생상극·대운까지 사주 계산을 직접 구현하고, 궁합 해설은 온프레미스 LLM으로 만듭니다. Flutter 하나로 iOS·Android·웹을 개발해 스토어 출시 준비까지 진행했습니다.</p>
+                            <p>매일 사주 궁합이 가장 잘 맞는 한 명을 추천합니다. 천간·지지·오행 상생상극·대운까지 사주 계산을 직접 구현하고 궁합 해설은 온프레미스 LLM으로 생성합니다. Flutter 하나로 iOS·Android·웹을 개발해 스토어 출시 준비까지 진행했습니다.</p>
                             <ul class="stack">
                                 <li>Flutter</li><li>FastAPI</li><li>PostgreSQL</li><li>온프레미스 LLM</li>
                             </ul>
@@ -182,7 +182,7 @@
                         <div class="work-body">
                             <h3><span class="kind" style="--c: var(--product)"></span><a href="projects/codefill.html">CodeFill</a></h3>
                             <p class="what">LangGraph 멀티 에이전트 코딩 학습 플랫폼</p>
-                            <p>사용자 메시지의 의도를 분류해 정보 수집, 문제 탐색, 풀이 지원 파이프라인으로 보내는 학습 플랫폼입니다. LangGraph 오케스트레이터와 에이전트 설계, pgvector RAG, 평가 코드, LangSmith 모니터링, FastAPI 백엔드를 맡았습니다.</p>
+                            <p>사용자 메시지의 의도를 분류해 정보 수집, 문제 탐색, 풀이 지원 파이프라인으로 보내는 학습 플랫폼입니다. LangGraph 오케스트레이터와 에이전트를 설계했고 pgvector RAG, 평가 코드, LangSmith 모니터링, FastAPI 백엔드도 맡았습니다.</p>
                             <ul class="stack">
                                 <li>LangGraph</li><li>FastAPI</li><li>pgvector</li><li>LangSmith</li><li>Next.js</li>
                             </ul>
@@ -193,7 +193,7 @@
                         <div class="work-body">
                             <h3><span class="kind" style="--c: var(--research)"></span><a href="projects/adbias.html">ADBIAS 논문</a></h3>
                             <p class="what">여러 LLM의 에세이 채점 편향을 줄이는 프레임워크</p>
-                            <p>LLM 4종의 채점 편향을 MFRM으로 정량화했습니다. 채점 근거를 만드는 모델과 그 근거를 함께 보고 판단하는 메타모델 구조를 제안하고 검증해, 편향 분산을 57.9% 줄였습니다. 2025년 국제 학회에 제출했습니다.</p>
+                            <p>LLM 4종의 채점 편향을 MFRM으로 정량화했습니다. 채점 근거를 생성하는 모델과 그 근거를 함께 보고 판단하는 메타모델 구조를 제안하고 검증해 편향 분산을 57.9% 줄였습니다. 2025년 국제 학회에 제출했습니다.</p>
                             <ul class="stack">
                                 <li>Python</li><li>Multi-LLM</li><li>MFRM</li><li>QWK</li>
                             </ul>
@@ -204,7 +204,7 @@
                         <div class="work-body">
                             <h3><span class="kind" style="--c: var(--product)"></span><a href="projects/talet.html">Talet</a></h3>
                             <p class="what">다문화 가정을 위한 AI 전래동화 낭독 iOS 앱</p>
-                            <p>외국인 한국어 발화 데이터로 XTTS v2를 파인튜닝해, 부모님 목소리로 전래동화를 읽어 주는 보이스 클로닝을 만들었습니다.</p>
+                            <p>외국인 한국어 발화 데이터로 XTTS v2를 파인튜닝해 부모님 목소리로 전래동화를 읽어 주는 보이스 클로닝을 구현했습니다.</p>
                             <ul class="stack">
                                 <li>PyTorch</li><li>XTTS v2</li><li>FastAPI</li>
                             </ul>

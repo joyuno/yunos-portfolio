@@ -33,7 +33,7 @@
             <span class="hero-label">테라시스 · 보안 관제 연동 · 멀티테넌트</span>
             <h1>소명 처리 시스템</h1>
             <p class="subtitle">
-                보안 관제(SIEM)에서 알람이 오면 당사자에게 소명을 받고, 다단계 결재와 보고서 발행, 감사 기록까지 한 플랫폼에서 처리하는 멀티테넌트 시스템입니다.
+                보안 관제(SIEM)에서 알람이 오면 당사자에게 소명을 받고 다단계 결재와 보고서 발행, 감사 기록까지 한 플랫폼에서 처리하는 멀티테넌트 시스템입니다.
             </p>
             <div class="project-badges">
                 <span class="badge">2026.04 ~ 현재</span>
@@ -61,12 +61,12 @@
         <div class="container">
             <h2>맡은 일</h2>
             <ul class="feature-list">
-                <li><strong>멀티테넌트 모델</strong>상위 기관 아래 여러 하위 기관이 있는 조직 구조에 맞춰 테넌트 트리를 만들었습니다. 사용자와 테넌트를 분리해, 토큰을 다시 발급하지 않고도 요청 헤더로 테넌트를 바꿀 수 있습니다. 임직원 CSV를 올리면 소속 테넌트로 자동 배정됩니다.</li>
+                <li><strong>멀티테넌트 모델</strong>상위 기관 아래 여러 하위 기관이 있는 조직 구조에 맞춰 테넌트 트리를 만들었습니다. 사용자와 테넌트를 분리해 토큰을 다시 발급하지 않고도 요청 헤더로 테넌트를 바꿀 수 있습니다. 임직원 CSV를 올리면 소속 테넌트로 자동 배정됩니다.</li>
                 <li><strong>소명 워크플로우</strong>자동 분류, 메일 발송, 다단계 결재, 위임, 만료 알림을 구현했습니다. 케이스 상태는 상태 기계를 거쳐서만 바뀌게 해 비정상 전이를 막았습니다.</li>
-                <li><strong>비동기 처리와 중복 차단</strong>메일 발송과 리포트 생성은 Celery로 비동기 처리하고, 같은 요청이 두 번 들어오면 409로 막았습니다. LLM 호출 오류는 원인별 HTTP 응답으로 나눠 화면에서 구분되게 했습니다.</li>
+                <li><strong>비동기 처리와 중복 차단</strong>메일 발송과 리포트 생성은 Celery로 비동기 처리하고 같은 요청이 두 번 들어오면 409로 막았습니다. LLM 호출 오류는 원인별 HTTP 응답으로 나눠 화면에서 구분되게 했습니다.</li>
                 <li><strong>LLM 리포트와 번역</strong>보안 운영 데이터가 밖으로 나가지 않도록 자체 호스팅 LLM으로 소명 리포트를 발행하고 다국어로 번역합니다. 보고서 PDF는 matplotlib 차트를 넣어 생성합니다.</li>
                 <li><strong>인증과 관리 화면</strong>SSO 로그인과 직급별 역할 자동 매핑, 권한별 대시보드와 예외 정책 관리 화면을 React로 만들었습니다.</li>
-                <li><strong>배포</strong>폐쇄망 서버에 self-hosted runner로 배포하고, Docker Compose와 Nginx HTTPS로 운영 환경을 구성했습니다.</li>
+                <li><strong>배포</strong>폐쇄망 서버에 self-hosted runner로 배포하고 Docker Compose와 Nginx HTTPS로 운영 환경을 구성했습니다.</li>
             </ul>
         </div>
     </section>

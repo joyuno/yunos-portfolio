@@ -103,7 +103,7 @@
     <section class="project-content-section">
         <div class="container">
             <h2>AI Coach 약점 분석</h2>
-            <p>ELO 레이팅과 BKT(Bayesian Knowledge Tracing)를 결합하여 26개 토픽별 숙련도를 추적하고, AI Coach가 맞춤형 학습 경로를 제안합니다.</p>
+            <p>ELO 레이팅과 BKT(Bayesian Knowledge Tracing)를 결합하여 26개 토픽별 숙련도를 추적하고 AI Coach가 맞춤형 학습 경로를 제안합니다.</p>
             <div class="screenshot-gallery">
                 <figure class="screenshot-item">
                     <img src="../assets/codefill/약점분석1.png" alt="학습 분석 개요" class="lightbox-img">
@@ -135,19 +135,19 @@
             <h2>Overview</h2>
             <p>
                 <strong>CodeFill</strong>은 12개의 전문화된 LLM Agent가 협업하여
-                사용자 맞춤형 코딩 학습 경험을 제공하는 AI 기반 교육 플랫폼입니다.
+                사용자 맞춤형 코딩 학습을 돕는 AI 교육 플랫폼입니다.
                 Baekjoon(8,000+), TACO(1,500+), Programmers(459) 등 <strong>10,000개 이상의 문제</strong>와
-                4가지 문제 유형(빈칸/퍼즐/대화형/직접구현), RAG 기반 문제 검색,
-                ELO + BKT 학습 분석, 농장 기반 게이미피케이션을 통합했습니다.
+                4가지 문제 유형(빈칸/퍼즐/대화형/직접구현), RAG 문제 검색,
+                ELO + BKT 학습 분석, 농장 게이미피케이션을 통합했습니다.
             </p>
 
             <div class="info-box">
                 <h4>Project Motivation</h4>
                 <p>
                     기존 코딩 학습 플랫폼은 "문제 제공 → 정답 확인"의 단순한 흐름에 그칩니다.
-                    CodeFill은 <strong>소크라테스식 교수법</strong>을 적용하여 학습자가 스스로 답을 찾아가도록 유도하고,
-                    <strong>Multi-Agent 협업</strong>으로 다양한 학습 시나리오에 지능적으로 대응합니다.
-                    또한 <strong>게이미피케이션</strong>을 통해 학습 동기를 지속적으로 유지시킵니다.
+                    CodeFill은 <strong>소크라테스식 교수법</strong>을 적용해 학습자가 스스로 답을 찾아가도록 유도합니다.
+                    다양한 학습 시나리오에는 <strong>Multi-Agent 협업</strong>으로 대응합니다.
+                    <strong>게이미피케이션</strong>으로 학습 동기도 유지합니다.
                 </p>
             </div>
 
@@ -164,14 +164,14 @@
                     <div class="arch-number">2</div>
                     <div class="arch-content">
                         <h4>Multi-Agent Orchestration (12 Agents)</h4>
-                        <p>Intent 분류, 문제 생성(CodeGen), 유형별 변환(Blank/Puzzle/Guided), 사용자 풀이 기반 힌트, 코드 검증, 피드백 분석 등 전문화된 Agent들이 OpenRouter를 통해 최적의 LLM(Gemini/GPT-4o-mini)을 선택하여 협업.</p>
+                        <p>Intent 분류, 문제 생성(CodeGen), 유형별 변환(Blank/Puzzle/Guided), 사용자 풀이 기반 힌트, 코드 검증, 피드백 분석 등 전문화된 Agent들이 OpenRouter로 작업에 맞는 LLM(Gemini/GPT-4o-mini)을 선택해 협업.</p>
                     </div>
                 </div>
                 <div class="arch-item">
                     <div class="arch-number">3</div>
                     <div class="arch-content">
                         <h4>RAG Hybrid Search + CodeGen Fallback</h4>
-                        <p>pgvector 기반 Vector Search + 메타데이터 필터링의 Hybrid Search. 유사도 0.30 미만 시 Claude Sonnet이 참고 문제를 분석하여 새로운 창의적 문제 즉시 생성.</p>
+                        <p>pgvector 기반 Vector Search + 메타데이터 필터링의 Hybrid Search. 유사도 0.30 미만 시 Claude Sonnet이 참고 문제를 분석하여 새 문제 즉시 생성.</p>
                     </div>
                 </div>
                 <div class="arch-item">
@@ -197,7 +197,7 @@
         <div class="container">
             <h2>LangGraph Orchestrator Pipeline</h2>
             <p>
-                사용자 메시지는 <strong>Intent Tool</strong>에서 category와 action을 분류한 후,
+                사용자 메시지는 <strong>Intent Tool</strong>에서 category와 action을 분류한 후
                 <strong>InfoCollectionGraph</strong>(정보 수집), <strong>DiscoveryGraph</strong>(문제 탐색),
                 <strong>SolvingGraph</strong>(문제 풀이) 중 적절한 파이프라인으로 라우팅됩니다.
             </p>
@@ -249,7 +249,7 @@
         <div class="container">
             <h2>시스템 구조</h2>
             <p>
-                사용자 요청은 의도 분류를 거쳐 알맞은 에이전트로 라우팅되고, 각 에이전트는 자기 역할만 처리하면서 대화 상태를 공유합니다.
+                사용자 요청은 의도 분류를 거쳐 알맞은 에이전트로 라우팅됩니다. 각 에이전트는 자기 역할만 처리하면서 대화 상태를 공유합니다.
                 화면부터 외부 서비스까지 계층별로 나누면 다음과 같습니다.
             </p>
             <div class="layers">
@@ -395,7 +395,7 @@
 
             <h3>1. LangGraph 파이프라인 오케스트레이터</h3>
             <p>
-                사용자 입력은 Intent Tool에서 category와 action을 분류한 후,
+                사용자 입력은 Intent Tool에서 category와 action을 분류한 후
                 InfoCollectionGraph(정보 수집), DiscoveryGraph(문제 탐색), SolvingGraph(풀이 지원) 중
                 적절한 파이프라인으로 라우팅됩니다.
             </p>
@@ -403,27 +403,26 @@
             <h3>2. 문제 유형 변환 시스템</h3>
             <p>
                 원본 문제(솔루션 포함)를 사용자가 선택한 유형으로 변환합니다.
-                각 Agent는 원본 코드의 구조를 100% 유지하며 학습에 최적화된 형태로 변환합니다.
+                각 Agent는 원본 코드의 구조를 100% 유지한 채 학습용 형태로 바꿉니다.
             </p>
 
             <h3>3. 유형별 사용자 풀이 기반 힌트 시스템</h3>
             <p>
-                소크라테스식 질문 유도를 통해 자기 주도적 문제 해결을 촉진합니다.
+                소크라테스식 질문으로 학습자가 스스로 문제를 해결하도록 유도합니다.
                 사용자의 현재 풀이 상태(빈칸 답안, 블록 배치, 코드 진행상황)를 분석하여
                 유형별 전문 Hint Agent가 맞춤형 힌트를 제공합니다.
             </p>
 
             <h3>4. AI Coach 약점 분석 시스템</h3>
             <p>
-                <strong>ELO 레이팅</strong>으로 전체 실력을 수치화하고,
+                <strong>ELO 레이팅</strong>으로 전체 실력을 수치화하고
                 <strong>Bayesian Knowledge Tracing</strong>으로 26개 토픽별 숙달도를 추적합니다.
                 AI Coach가 강점/약점을 분석하여 맞춤형 학습 경로와 개선 액션을 제안합니다.
             </p>
 
             <h3>5. 게이미피케이션 시스템</h3>
             <p>
-                문제 풀이로 씨앗/골드를 획득하고, 농장을 꾸미며,
-                뱃지와 미션을 통해 학습 동기를 지속적으로 유지합니다.
+                문제 풀이로 씨앗/골드를 획득해 농장을 꾸밉니다. 뱃지와 미션으로 학습 동기를 유지합니다.
             </p>
         </div>
     </section>
@@ -549,7 +548,7 @@
             <ul>
                 <li><strong>LangGraph Multi-Agent Orchestration</strong>: Intent Tool 기반 category/action 분류 후 InfoCollection/Discovery/Solving 파이프라인으로 라우팅. 12개 전문 Agent가 협업하여 문제 탐색부터 풀이 지원까지 처리.</li>
                 <li><strong>RAG + CodeGen Hybrid</strong>: pgvector 기반 Hybrid Search(Vector + Metadata) + CodeGen Fallback으로 항상 관련 문제 제공. 10,000+ 문제 DB에서 유사도 0.30 미만 시 새 문제 자동 생성.</li>
-                <li><strong>유형별 코드 변환</strong>: 원본 코드 구조 100% 유지하며 빈칸/퍼즐/대화형으로 자동 변환. 사용자 풀이 기반 맞춤형 힌트 시스템으로 소크라테스식 학습 유도.</li>
+                <li><strong>유형별 코드 변환</strong>: 원본 코드 구조 100% 유지하며 빈칸/퍼즐/대화형으로 자동 변환. 사용자 풀이에 맞춘 힌트 시스템으로 소크라테스식 학습 유도.</li>
                 <li><strong>게이미피케이션 통합</strong>: Phaser.js 기반 농장 시스템, 30+ 뱃지, 일일/주간 미션, 친구 랭킹. 씨앗 드롭률(Common 70%, Rare 25%, Epic 5%)로 보상 기대감 형성.</li>
                 <li><strong>ELO + BKT 분석</strong>: ELO 레이팅(600~1600, K-Factor 동적 조정) + Bayesian Knowledge Tracing(P_T=0.1, P_G=0.2, P_S=0.1)으로 스킬별 숙달도 추적 및 개인화 추천.</li>
             </ul>
@@ -599,8 +598,8 @@
                     <strong>Embedding Caching</strong>: 서버 시작 시 30개 Intent 임베딩 사전 생성, O(1) 조회 성능<br>
                     <strong>PostgreSQL Cache</strong>: Redis 대신 Supabase PostgreSQL 기반 TTL 캐싱 (추천 5분, 선호도 10분)<br>
                     <strong>Agentic RAG</strong>: 메타데이터 검색 우선, 필요시 시맨틱 검색 + 조건 완화 재시도<br>
-                    <strong>Edge Case Logging</strong>: EC-D01(의도 파악 실패), EC-D03(선택 범위 초과) 등 체계적 디버깅<br>
-                    <strong>Dynamic Response</strong>: 모든 응답 노드에서 LLM 기반 맞춤형 응답 생성
+                    <strong>Edge Case Logging</strong>: EC-D01(의도 파악 실패), EC-D03(선택 범위 초과) 등 코드로 분류해 디버깅<br>
+                    <strong>Dynamic Response</strong>: 모든 응답 노드에서 LLM이 맞춤형 응답 생성
                 </p>
             </div>
         </div>
