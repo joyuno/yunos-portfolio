@@ -118,6 +118,47 @@ img { max-width: 100%; display: block; }
     line-height: 1.6;
 }
 
+.intro-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+}
+
+.intro-photo {
+    width: 180px;
+    height: 234px;
+    object-fit: cover;
+    flex: none;
+}
+
+.intro-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 32px;
+    margin-top: 22px;
+    font-size: var(--fs-sm);
+}
+
+.intro-facts dt { color: var(--ink-3); font-size: var(--fs-xs); }
+.intro-facts dd { color: var(--ink); }
+
+@media (max-width: 640px) {
+    .intro-top { flex-direction: column-reverse; gap: 20px; }
+    .intro-photo { width: 120px; height: 156px; }
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+}
+
+.project-link:hover { text-decoration: underline; }
+.project-link svg { width: 16px; height: 16px; }
+
 .intro-links {
     display: flex;
     flex-wrap: wrap;
