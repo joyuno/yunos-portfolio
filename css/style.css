@@ -142,6 +142,7 @@ img { max-width: 100%; display: block; }
 
 .intro-facts dt { color: var(--ink-3); font-size: var(--fs-xs); }
 .intro-facts dd { color: var(--ink); }
+.intro-facts .wide { flex-basis: 100%; }
 
 @media (max-width: 640px) {
     .intro-top { flex-direction: column-reverse; gap: 20px; }
