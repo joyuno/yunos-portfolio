@@ -532,7 +532,7 @@ img { max-width: 100%; display: block; }
 
 .print-only { display: none; }
 @media print {
-    .promo-video { display: none; }
+    .image-block .promo-video { display: none; }
     .print-only { display: block; }
 }
 
