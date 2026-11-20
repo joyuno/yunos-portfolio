@@ -530,6 +530,12 @@ img { max-width: 100%; display: block; }
     background: #11161d;
 }
 
+.print-only { display: none; }
+@media print {
+    .promo-video { display: none; }
+    .print-only { display: block; }
+}
+
 .image-caption { margin-top: 8px; font-size: var(--fs-xs); color: var(--ink-3); max-width: var(--measure); }
 
 .image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
