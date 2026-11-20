@@ -119,7 +119,7 @@
                 <h2>소개</h2>
                 <div class="about-text">
                     <p>필요한 기능을 직접 정의하고 프로토타입을 만들어 품질을 숫자로 확인한 뒤 배포까지 가져가는 방식으로 일합니다. 테라시스에서는 외부 API를 쓸 수 없는 폐쇄망 고객 환경에 맞춰 AI 어시스턴트를 구현했습니다. 사내 GPU 서버의 자체 호스팅 LLM이 자연어 질문을 ClickHouse SQL·RAG·대시보드 위젯으로 바꿔 답합니다.</p>
-                    <p>복단대학교에서 통계학을 전공했고 LLM 채점 편향을 줄이는 ADBIAS 논문 작업에 참여했습니다. 업무 밖에서는 여러 PC와 원격 VM의 AI 코딩 세션을 한 창에서 다루는 데스크톱 앱 Lepons를 혼자 만들고 있습니다.</p>
+                    <p>복단대학교에서 통계학을 전공했고 LLM 채점 편향을 줄이는 ADBIAS 논문 작업에 참여했습니다. 업무 밖에서는 여러 PC의 AI 코딩 에이전트를 한 화면과 폰으로 관리하는 Lepons를 혼자 기획·개발해 lepons.app과 App Store에 출시했고, 지금도 매주 새 버전을 내고 있습니다.</p>
                 </div>
             </div>
         </section>
@@ -170,11 +170,15 @@
             <div class="container">
                 <h2>프로젝트</h2>
                 <ol class="work-list">
-                    <li class="work-item pending" id="lepons">
-                        <div class="work-when"><strong>2026.07 ~ 현재</strong></div>
+                    <li class="work-item" id="lepons">
+                        <div class="work-when"><strong>2026.07 ~ 현재</strong>1인 창업 · 출시</div>
                         <div class="work-body">
                             <h3><span class="kind" style="--c: var(--product)"></span><a href="projects/lepons.html">Lepons</a></h3>
-                            <p>1.8.0 정식 버전 공개 후 내용을 채웁니다.</p>
+                            <p class="what">여러 PC의 AI 코딩 에이전트를 한 화면과 폰 하나로 관리하는 제품 · App Store 출시</p>
+                            <p>집 PC, 회사 PC, 원격 서버의 Claude Code·Codex 세션을 데스크톱 앱 한 창에 모으고, 다른 PC의 AI가 내 코드를 git 없이 읽게 하고, 답이 필요하면 폰으로 바로 답하게 만들었습니다. SSH 역방향 터널 위의 MCP 서버로 원격 설치 없이 코드를 공유하고, 폰과 PC 사이는 X25519·AES-GCM 종단간 암호화로 잇습니다. 기획·설계·개발부터 lepons.app 운영, 스토어 출시, 홍보 영상까지 혼자 맡고 있습니다.</p>
+                            <ul class="stack">
+                                <li>Electron</li><li>TypeScript</li><li>Go</li><li>Expo</li><li>MCP</li><li>SSH</li>
+                            </ul>
                         </div>
                     </li>
                     <li class="work-item">
@@ -253,9 +257,9 @@
                 <dl class="skills">
                     <div><dt>LLM · AI</dt><dd>LangGraph, RAG(하이브리드 검색), LLM 평가(골든셋 · LLM 채점기), LoRA 파인튜닝, PyTorch, Transformers, TTS</dd></div>
                     <div><dt>백엔드</dt><dd>Python, FastAPI, Celery, Go, Java</dd></div>
-                    <div><dt>프론트엔드</dt><dd>React, Next.js, TypeScript, Flutter, Electron</dd></div>
+                    <div><dt>프론트엔드</dt><dd>React, Next.js, TypeScript, Flutter, Electron, React Native(Expo)</dd></div>
                     <div><dt>데이터</dt><dd>PostgreSQL, ClickHouse, Redis, Qdrant, pgvector, Supabase</dd></div>
-                    <div><dt>도구 · 운영</dt><dd>Docker, Nginx, Linux, Git, GitHub Actions, OpenTelemetry, Claude Code · Codex</dd></div>
+                    <div><dt>도구 · 운영</dt><dd>Docker, Nginx, Linux, Git, GitHub Actions, OpenTelemetry, MCP, Claude Code · Codex</dd></div>
                 </dl>
             </div>
         </section>

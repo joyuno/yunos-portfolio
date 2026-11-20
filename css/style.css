@@ -521,6 +521,15 @@ img { max-width: 100%; display: block; }
     background: var(--surface);
 }
 
+.image-block video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: #11161d;
+}
+
 .image-caption { margin-top: 8px; font-size: var(--fs-xs); color: var(--ink-3); max-width: var(--measure); }
 
 .image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
